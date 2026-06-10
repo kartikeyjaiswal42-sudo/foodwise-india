@@ -3296,3 +3296,376 @@ kbd {
     grid-template-columns: 1fr;
   }
 }
+
+/* Corporate Directory Styling */
+.companies-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.company-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.company-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.company-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(34, 75, 58, 0.15);
+}
+
+.company-card-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(30, 37, 34, 0.02);
+  border-bottom: 1px solid var(--line);
+}
+
+.company-avatar {
+  min-width: 90px;
+  height: 40px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.company-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.company-rank-badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.company-card-body h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--green);
+  margin: 0;
+}
+
+.company-summary {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 54px;
+}
+
+.company-card-footer {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brand-tags {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.brand-tags strong {
+  color: var(--green);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.company-revenue-pill {
+  width: fit-content;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  background: var(--green-light);
+  color: var(--green);
+  border-radius: 6px;
+}
+
+.company-card-action {
+  padding: 16px 24px;
+  background: rgba(30, 37, 34, 0.01);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  transition: var(--transition);
+}
+
+.company-card:hover .company-card-action {
+  background: var(--green-light);
+}
+
+/* Company Detail Page */
+.company-detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.company-detail-header {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  box-shadow: var(--shadow);
+}
+
+.company-title-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.company-logo-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.company-detail-rank {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--orange);
+  letter-spacing: 0.08em;
+}
+
+.company-title-row h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--green);
+  margin: 4px 0;
+  line-height: 1.1;
+}
+
+.company-title-row p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.company-title-row p strong {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.company-score-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(30, 37, 34, 0.02);
+  border-radius: 18px;
+  padding: 16px 20px;
+  border: 1px dashed var(--line);
+}
+
+.company-score-ring {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 9px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(30, 37, 34, 0.06);
+}
+
+.company-score-ring strong {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.company-score-ring.good {
+  background: #e6f6eb;
+  color: #166534;
+}
+
+.company-score-ring.fair {
+  background: #fffbeb;
+  color: #854d0e;
+}
+
+.company-score-ring.poor {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.company-score-copy {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+.company-score-copy strong {
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.company-score-copy p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.company-grid-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.company-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.company-info-panel .panel {
+  padding: 20px;
+}
+
+.company-info-panel h3 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.company-info-panel p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.company-products-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.empty-state-card {
+  background: var(--panel);
+  border: 1px dashed var(--line);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-state-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--green);
+}
+
+.empty-state-card p {
+  font-size: 13px;
+  max-width: 300px;
+}
+
+/* Responsive detail layout */
+@media (max-width: 992px) {
+  .company-grid-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .company-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Real Product Image Styling */
+.product-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.product-real-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(30, 37, 34, 0.08));
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-real-image {
+  transform: scale(1.05);
+}
+
+.detail-pack-panel .product-image-container {
+  width: 220px;
+  height: 220px;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(30, 37, 34, 0.08);
+}
+

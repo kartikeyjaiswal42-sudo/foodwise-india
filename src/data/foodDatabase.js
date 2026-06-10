@@ -1,6 +1,7 @@
 export const products = [
   {
     id: 'maggi',
+    image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=400&auto=format&fit=crop&q=60',
     name: '2-Minute Masala Noodles',
     brand: 'MAGGI',
     company: 'Nestlé India',
@@ -36,6 +37,7 @@ export const products = [
   },
   {
     id: 'slurrp',
+    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&auto=format&fit=crop&q=60',
     name: 'Millet Noodles (Yummy Masala)',
     brand: 'Slurrp Farm',
     company: 'Wholsum Foods',
@@ -64,6 +66,7 @@ export const products = [
   },
   {
     id: 'lays',
+    image: 'https://images.unsplash.com/photo-1566478989037-eec170784d20?w=400&auto=format&fit=crop&q=60',
     name: 'India’s Magic Masala Chips',
     brand: "Lay's",
     company: 'PepsiCo India',
@@ -98,6 +101,7 @@ export const products = [
   },
   {
     id: 'makhana',
+    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&auto=format&fit=crop&q=60',
     name: 'Himalayan Salt Roasted Makhana',
     brand: 'Farmley',
     company: 'Connedit Business Solutions',
@@ -126,6 +130,7 @@ export const products = [
   },
   {
     id: 'coke',
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&auto=format&fit=crop&q=60',
     name: 'Original Taste Cola',
     brand: 'Coca-Cola',
     company: 'Coca-Cola India',
@@ -160,6 +165,7 @@ export const products = [
   },
   {
     id: 'lahori',
+    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&auto=format&fit=crop&q=60',
     name: 'Lahori Zeera (Spiced Soda)',
     brand: 'Lahori Zeera',
     company: 'Archian Foods',
@@ -189,6 +195,7 @@ export const products = [
   },
   {
     id: 'bourbon',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
     name: 'Bourbon Chocolate Biscuits',
     brand: 'Britannia',
     company: 'Britannia Industries',
@@ -224,6 +231,7 @@ export const products = [
   },
   {
     id: 'millet-cookie',
+    image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&auto=format&fit=crop&q=60',
     name: 'Ragi & Jaggery Millet Cookies',
     brand: 'Tata Soulfull',
     company: 'Tata Consumer Products',
@@ -252,6 +260,7 @@ export const products = [
   },
   {
     id: 'cornflakes',
+    image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&auto=format&fit=crop&q=60',
     name: 'Original Corn Flakes',
     brand: "Kellogg's",
     company: 'Kellogg India',
@@ -286,6 +295,7 @@ export const products = [
   },
   {
     id: 'muesli',
+    image: 'https://images.unsplash.com/photo-1517881917431-1355499739c7?w=400&auto=format&fit=crop&q=60',
     name: 'No Added Sugar Fruit & Nut Muesli',
     brand: 'Yoga Bar',
     company: 'Sproutlife Foods',
@@ -314,6 +324,7 @@ export const products = [
   },
   {
     id: 'kool',
+    image: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=400&auto=format&fit=crop&q=60',
     name: 'Kool Café Milk Beverage',
     brand: 'Amul',
     company: 'GCMMF',
@@ -346,6 +357,7 @@ export const products = [
   },
   {
     id: 'lassi',
+    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&auto=format&fit=crop&q=60',
     name: 'Unsweetened Probiotic Lassi',
     brand: "Sid's Farm",
     company: 'Sids Farm',
@@ -374,6 +386,7 @@ export const products = [
   },
   {
     id: 'kurkure',
+    image: 'https://images.unsplash.com/photo-1600189020840-e9db18c375ef?w=400&auto=format&fit=crop&q=60',
     name: 'Masala Munch Crunchy Snacks',
     brand: 'Kurkure',
     company: 'PepsiCo India',
@@ -409,6 +422,7 @@ export const products = [
   },
   {
     id: 'roasted-chana',
+    image: 'https://images.unsplash.com/photo-1536304997881-a372c179924b?w=400&auto=format&fit=crop&q=60',
     name: 'Spiced Roasted Chana',
     brand: 'Open Secret',
     company: 'Immensitas Private Limited',
@@ -437,6 +451,7 @@ export const products = [
   },
   {
     id: 'real-juice',
+    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&auto=format&fit=crop&q=60',
     name: 'Real Activ 100% Mixed Fruit Juice',
     brand: 'Real',
     company: 'Dabur India',
@@ -469,6 +484,7 @@ export const products = [
   },
   {
     id: 'coconut-water',
+    image: 'https://images.unsplash.com/photo-1525385133512-2f3d9d2b8952?w=400&auto=format&fit=crop&q=60',
     name: '100% Tender Coconut Water',
     brand: 'Raw Pressery',
     company: 'Rakyan Beverages',
@@ -497,6 +513,7 @@ export const products = [
   },
   {
     id: 'hersheys',
+    image: 'https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&auto=format&fit=crop&q=60',
     name: 'Chocolate Flavor Syrup',
     brand: "Hershey's",
     company: 'Hershey India',
@@ -531,6 +548,7 @@ export const products = [
   },
   {
     id: 'clean-cocoa-spread',
+    image: 'https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=400&auto=format&fit=crop&q=60',
     name: 'Hazelnut Cocoa Spread (100% Clean)',
     brand: 'The Whole Truth',
     company: 'Fitshit Health Foods',
@@ -559,6 +577,7 @@ export const products = [
   },
   {
     id: 'knorr-soup',
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&auto=format&fit=crop&q=60',
     name: 'Mixed Vegetable Soup Mix',
     brand: 'Knor',
     company: 'Hindustan Unilever',
@@ -594,6 +613,7 @@ export const products = [
   },
   {
     id: 'organic-soup',
+    image: 'https://images.unsplash.com/photo-1607532941433-304659e8198a?w=400&auto=format&fit=crop&q=60',
     name: 'Organic Lentil & Veggie Soup',
     brand: 'Tata Sampann',
     company: 'Tata Consumer Products',
@@ -622,6 +642,7 @@ export const products = [
   },
   {
     id: 'bournvita',
+    image: 'https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=400&auto=format&fit=crop&q=60',
     name: 'Cadbury Bournvita Health Drink',
     brand: 'Bournvita',
     company: 'Mondelez India',
@@ -656,6 +677,7 @@ export const products = [
   },
   {
     id: 'clean-cocoa-powder',
+    image: 'https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&auto=format&fit=crop&q=60',
     name: '100% Clean Almond Cocoa Drink',
     brand: 'The Whole Truth',
     company: 'Fitshit Health Foods',
@@ -684,6 +706,7 @@ export const products = [
   },
   {
     id: 'parleg',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
     name: 'Parle-G Glucose Biscuits',
     brand: 'Parle',
     company: 'Parle Products',
@@ -719,6 +742,7 @@ export const products = [
   },
   {
     id: 'clean-ragi-biscuit',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format&fit=crop&q=60',
     name: 'Organic Butter Ragi Biscuits',
     brand: 'Early Foods',
     company: 'Early Foods Private Limited',
@@ -747,6 +771,7 @@ export const products = [
   },
   {
     id: 'kissan-jam',
+    image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&auto=format&fit=crop&q=60',
     name: 'Kissan Mixed Fruit Jam',
     brand: 'Kissan',
     company: 'Hindustan Unilever',
@@ -781,6 +806,7 @@ export const products = [
   },
   {
     id: 'clean-fruit-spread',
+    image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&auto=format&fit=crop&q=60',
     name: 'Organic Mixed Berry Fruit Spread',
     brand: 'Orchard Lane',
     company: 'Fresh Food Industries',
@@ -809,6 +835,7 @@ export const products = [
   },
   {
     id: 'maggi-sauce',
+    image: 'https://images.unsplash.com/photo-1607305387299-a3d9611cd46f?w=400&auto=format&fit=crop&q=60',
     name: 'Rich Tomato Ketchup',
     brand: 'MAGGI',
     company: 'Nestlé India',
@@ -843,6 +870,7 @@ export const products = [
   },
   {
     id: 'clean-tomato-ketchup',
+    image: 'https://images.unsplash.com/photo-1607305387299-a3d9611cd46f?w=400&auto=format&fit=crop&q=60',
     name: '100% Clean Tomato Ketchup',
     brand: 'The Whole Truth',
     company: 'Fitshit Health Foods',
@@ -871,6 +899,7 @@ export const products = [
   },
   {
     id: 'quaker-masala-oats',
+    image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&auto=format&fit=crop&q=60',
     name: 'Quaker Homestyle Masala Oats',
     brand: 'Quaker',
     company: 'PepsiCo India',
@@ -905,6 +934,7 @@ export const products = [
   },
   {
     id: 'clean-masala-oats',
+    image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&auto=format&fit=crop&q=60',
     name: 'Tata Sampann Masala Oats (Classic)',
     brand: 'Tata Sampann',
     company: 'Tata Consumer Products',
@@ -933,6 +963,7 @@ export const products = [
   },
   {
     id: 'nutella',
+    image: 'https://images.unsplash.com/photo-1532499016263-f2c3e89df9cd?w=400&auto=format&fit=crop&q=60',
     name: 'Nutella Hazelnut Spread',
     brand: 'Nutella',
     company: 'Ferrero India',
@@ -967,6 +998,7 @@ export const products = [
   },
   {
     id: 'clean-peanut-butter',
+    image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&auto=format&fit=crop&q=60',
     name: 'Unsweetened Creamy Peanut Butter',
     brand: 'Happy Jars',
     company: 'Happy Jars Private Limited',
@@ -992,7 +1024,926 @@ export const products = [
       ingredientsAvoided: [],
       ingredientsReplacedWith: []
     }
+  },
+  {
+    id: 'nescafe-classic',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop&q=60',
+    name: 'Classic Instant Coffee',
+    brand: 'Nescafé',
+    company: 'Nestlé India',
+    category: 'Beverages',
+    price: 90,
+    size: '50 g glass jar',
+    score: 68,
+    grade: 'B',
+    color: '#3d261c',
+    ink: '#ffffff',
+    accent: 'NESCAFE',
+    calories: 120,
+    servingSize: '2g (1 cup)',
+    nutrients: { sugar: 0, sodium: 1, satFat: 0 },
+    concerns: [
+      { name: 'High caffeine content', level: 'medium', amount: 'Moderate in serving', note: 'Can cause jitteriness, sleep cycle disruption, or high heart rate if consumed in excess.' }
+    ],
+    ingredients: ['100% pure soluble coffee beans'],
+    bestFor: 'Daily morning energy boost',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'kitkat',
+    image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=400&auto=format&fit=crop&q=60',
+    name: 'KitKat Chocolate Wafer',
+    brand: 'KitKat',
+    company: 'Nestlé India',
+    category: 'Snacks',
+    price: 30,
+    size: '37 g 4-finger bar',
+    score: 32,
+    grade: 'D',
+    color: '#df2027',
+    ink: '#ffffff',
+    accent: 'KITKAT',
+    calories: 185,
+    servingSize: '37g',
+    nutrients: { sugar: 18.2, sodium: 58, satFat: 7.2 },
+    concerns: [
+      { name: 'High added sugar', level: 'high', amount: '18.2 g', note: 'Provides almost 73% of the daily added sugar limit in a small bar.' },
+      { name: 'Palm oil', level: 'high', amount: 'Wafer fat layer', note: 'Cheap hydrogenated/palm fat used inside the wafer layer, adding high saturated fats.' },
+      { name: 'Emulsifier (INS 476)', level: 'medium', amount: 'Chocolate coating', note: 'Synthetic PGPR emulsifier is added to thin chocolate coating, reducing cocoa butter ratio.' }
+    ],
+    ingredients: ['Sugar', 'Refined wheat flour (Maida)', 'Hydrogenated vegetable fats (Palm oil base)', 'Cocoa solids (10%)', 'Milk solids', 'Emulsifiers (INS 322, INS 476)', 'Raising agent (INS 500(ii))', 'Yeast'],
+    bestFor: 'Very rare indulgence',
+    alternative: 'amul-dark-chocolate',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.81/g vs ₹0.73/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Hydrogenated vegetable fats', 'INS 476 (PGPR)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Finger millet (Ragi) & Whole wheat Atta' },
+        { avoided: 'Palm oil', replaced: 'Pure cocoa butter' },
+        { avoided: 'INS 476', replaced: 'Natural soy lecithin (INS 322)' }
+      ]
+    }
+  },
+  {
+    id: 'milkmaid',
+    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&auto=format&fit=crop&q=60',
+    name: 'Sweetened Condensed Milk',
+    brand: 'Milkmaid',
+    company: 'Nestlé India',
+    category: 'Spreads',
+    price: 144,
+    size: '400 g tin',
+    score: 22,
+    grade: 'E',
+    color: '#0d47a1',
+    ink: '#ffffff',
+    accent: 'MILKMAID',
+    calories: 65,
+    servingSize: '20g (1 tbsp)',
+    nutrients: { sugar: 11.2, sodium: 25, satFat: 1.2 },
+    concerns: [
+      { name: 'Extremely high sugar concentration', level: 'high', amount: '11.2 g sugar', note: 'Condensed milk is 56% added sugar by weight. Rapid insulin spikes.' }
+    ],
+    ingredients: ['Milk solids', 'Sugar'],
+    bestFor: 'Rare festival baking only',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'goodday-butter',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    name: 'Good Day Butter Cookies',
+    brand: 'Good Day',
+    company: 'Britannia Industries',
+    category: 'Biscuits',
+    price: 30,
+    size: '200 g pack',
+    score: 35,
+    grade: 'D',
+    color: '#b08b3e',
+    ink: '#ffffff',
+    accent: 'GOOD DAY',
+    calories: 195,
+    servingSize: '4 cookies (~40g)',
+    nutrients: { sugar: 11.6, sodium: 135, satFat: 5.4 },
+    concerns: [
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Primary cookie base', note: 'Lacks dietary fiber, causing rapid blood glucose spikes.' },
+      { name: 'Palm oil', level: 'high', amount: 'Baking fat', note: 'Contains palm oil alongside butter to reduce costs, loading saturated fats.' },
+      { name: 'Added white sugar', level: 'high', amount: '11.6 g', note: 'High sugar load, contributing to daily calorie limits.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida)', 'Sugar', 'Edible vegetable oil (Palm oil)', 'Butter (2%)', 'Raising agents (INS 503(ii), INS 500(ii))', 'Iodised salt', 'Milk solids', 'Emulsifiers (INS 322, INS 471)', 'Artificial butter and vanilla flavors'],
+    bestFor: 'Occasional tea-time treat',
+    alternative: 'clean-ragi-biscuit',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.15/g vs ₹1.20/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'Artificial butter flavors'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Finger millet (Ragi) & Whole wheat Atta' },
+        { avoided: 'Palm oil (Cheap fat)', replaced: '100% pure cow butter (20%)' },
+        { avoided: 'Refined white sugar', replaced: 'Organic palm jaggery' }
+      ]
+    }
+  },
+  {
+    id: 'mariegold',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    name: 'Marie Gold Biscuits',
+    brand: 'Marie Gold',
+    company: 'Britannia Industries',
+    category: 'Biscuits',
+    price: 15,
+    size: '120 g pack',
+    score: 42,
+    grade: 'D',
+    color: '#df691a',
+    ink: '#ffffff',
+    accent: 'MARIE GOLD',
+    calories: 180,
+    servingSize: '8 biscuits (~40g)',
+    nutrients: { sugar: 9.2, sodium: 160, satFat: 2.2 },
+    concerns: [
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Primary ingredient', note: 'Stripped grain base that yields zero dietary fiber.' },
+      { name: 'Palm oil', level: 'medium', amount: 'Baking fat', note: 'Cheap processed fat rich in saturated cholesterol-raising fats.' },
+      { name: 'Dough conditioner (INS 223)', level: 'medium', amount: 'Chemical conditioner', note: 'Contains metabisulphite which can release sulfur dioxide, triggering sensitivities.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida) (69%)', 'Sugar', 'Edible vegetable oil (Palm oil)', 'Invert sugar syrup', 'Raising agents (INS 503(ii), INS 500(ii))', 'Milk solids', 'Iodised salt', 'Dough conditioner (INS 223)', 'Emulsifier (INS 322)'],
+    bestFor: 'Occasional light tea snack',
+    alternative: 'millet-cookie',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.12/g vs ₹0.42/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'Dough conditioner (INS 223)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Ragi (Finger millet) & whole wheat' },
+        { avoided: 'Palm oil', replaced: 'Cold-pressed Rice bran oil' },
+        { avoided: 'Dough conditioner (INS 223)', replaced: 'Physical dough resting' }
+      ]
+    }
+  },
+  {
+    id: 'tiger-glucose',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    name: 'Tiger Glucose Biscuits',
+    brand: 'Tiger',
+    company: 'Britannia Industries',
+    category: 'Biscuits',
+    price: 10,
+    size: '120 g pack',
+    score: 32,
+    grade: 'D',
+    color: '#ef4444',
+    ink: '#ffffff',
+    accent: 'TIGER',
+    calories: 185,
+    servingSize: '8 biscuits (~40g)',
+    nutrients: { sugar: 14.8, sodium: 150, satFat: 4.2 },
+    concerns: [
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Primary ingredient', note: 'No beneficial fiber, highly refined starch base.' },
+      { name: 'Added white sugar', level: 'high', amount: '14.8 g', note: 'High added sugar load (almost 4 teaspoons of sugar) in a small serving.' },
+      { name: 'Palm oil', level: 'high', amount: 'Baking fat', note: 'Cheap industrial fat rich in saturated cholesterol-raising fats.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida)', 'Sugar', 'Edible vegetable oil (Palm oil)', 'Liquid Glucose', 'Raising agents (INS 503(ii), INS 500(ii))', 'Iodised salt', 'Milk solids', 'Emulsifier (INS 322)', 'Vitamins & Minerals'],
+    bestFor: 'Occasional snack',
+    alternative: 'clean-ragi-biscuit',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.08/g vs ₹1.20/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'Liquid Glucose'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Finger millet (Ragi) & Whole wheat Atta' },
+        { avoided: 'Palm oil', replaced: 'Pure cow butter' },
+        { avoided: 'Liquid Glucose & white sugar', replaced: 'Organic palm jaggery' }
+      ]
+    }
+  },
+  {
+    id: 'haldirams-bhujia',
+    image: 'https://images.unsplash.com/photo-1600189020840-e9db18c375ef?w=400&auto=format&fit=crop&q=60',
+    name: 'Aloo Bhujia Namkeen',
+    brand: "Haldiram's",
+    company: "Haldiram's",
+    category: 'Snacks',
+    price: 45,
+    size: '150 g pack',
+    score: 25,
+    grade: 'E',
+    color: '#d69e2e',
+    ink: '#ffffff',
+    accent: 'ALOO BHUJIA',
+    calories: 232,
+    servingSize: '40g',
+    nutrients: { sugar: 0.8, sodium: 380, satFat: 9.8 },
+    concerns: [
+      { name: 'Extremely high saturated fat', level: 'high', amount: '9.8 g', note: 'Consists of deep-fried potato and gram flour in palm oil, loading high saturated fats.' },
+      { name: 'Palm oil frying medium', level: 'high', amount: 'Deep fried', note: 'Heavily processed oil used at high temperatures, increasing lipid strain.' },
+      { name: 'High Sodium load', level: 'high', amount: '380 mg', note: 'Packed with salt and spices to trigger overeating.' }
+    ],
+    ingredients: ['Potatoes (44%)', 'Gram flour', 'Dew bean flour (Moth dal flour)', 'Edible vegetable oil (Palm oil)', 'Sago starch', 'Salt', 'Spices (Mango powder, Red chilli, Coriander, Cumin, Mint powder, Ginger, Black pepper)', 'Acidity regulator (Citric acid)'],
+    bestFor: 'Very rare snacks consumption',
+    alternative: 'makhana',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.30/g vs ₹1.20/g',
+      ingredientsAvoided: ['Palm oil frying', 'Maida/starch fillers', 'Excess salt'],
+      ingredientsReplacedWith: [
+        { avoided: 'Palm oil deep fried base', replaced: 'Olive/Rice bran oil lightly sprayed' },
+        { avoided: 'Potato starch & Gram flour', replaced: 'Whole puffed roasted Fox nuts (Makhana)' }
+      ]
+    }
+  },
+  {
+    id: 'haldirams-soanpapdi',
+    image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&auto=format&fit=crop&q=60',
+    name: 'Traditional Soan Papdi',
+    brand: "Haldiram's",
+    company: "Haldiram's",
+    category: 'Spreads',
+    price: 120,
+    size: '250 g box',
+    score: 18,
+    grade: 'E',
+    color: '#e28743',
+    ink: '#ffffff',
+    accent: 'SOAN PAPDI',
+    calories: 200,
+    servingSize: '40g',
+    nutrients: { sugar: 22.4, sodium: 5, satFat: 8.4 },
+    concerns: [
+      { name: 'Ultra-high added sugar', level: 'high', amount: '22.4 g', note: 'Over 56% of this traditional sweet is pure added white sugar.' },
+      { name: 'Hydrogenated vegetable fat (Vanaspati)', level: 'high', amount: 'Structuring fat', note: 'Contains partially hydrogenated fats which are high in saturated fats and trace trans fats.' },
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Starch base', note: 'Combined with gram flour to create fine flakes; lacks any dietary fiber.' }
+    ],
+    ingredients: ['Sugar', 'Hydrogenated vegetable fat (Vanaspati)', 'Refined wheat flour (Maida)', 'Gram flour', 'Almond', 'Pistachio', 'Cardamom'],
+    bestFor: 'Rare festival indulgence only',
+    alternative: 'clean-cocoa-spread',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.48/g vs ₹1.10/g',
+      ingredientsAvoided: ['Vanaspati (Hydrogenated fat)', 'Refined wheat flour (Maida)', 'White sugar (56% load)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Vanaspati', replaced: 'Organic Date powder & Cocoa butter' },
+        { avoided: 'Maida & Sugar', replaced: 'Hazelnuts & Cocoa solids (100% clean)' }
+      ]
+    }
+  },
+  {
+    id: 'haldirams-bhujia-sev',
+    image: 'https://images.unsplash.com/photo-1600189020840-e9db18c375ef?w=400&auto=format&fit=crop&q=60',
+    name: 'Classic Bhujia Sev',
+    brand: "Haldiram's",
+    company: "Haldiram's",
+    category: 'Snacks',
+    price: 40,
+    size: '150 g pack',
+    score: 28,
+    grade: 'E',
+    color: '#d4af37',
+    ink: '#ffffff',
+    accent: 'BHUJIA SEV',
+    calories: 228,
+    servingSize: '40g',
+    nutrients: { sugar: 0.5, sodium: 340, satFat: 8.8 },
+    concerns: [
+      { name: 'High saturated fat', level: 'high', amount: '8.8 g', note: 'Deep fried gram flour namkeen, containing significant saturated lipids.' },
+      { name: 'Palm oil deep frying', level: 'high', amount: 'Processed fat base', note: 'Cheap industrial fat frying medium used for long shelf life.' },
+      { name: 'High Sodium', level: 'high', amount: '340 mg', note: 'Savory sodium levels encourage rapid packet consumption.' }
+    ],
+    ingredients: ['Gram flour (Tepary Bean flour)', 'Edible vegetable oil (Palm oil)', 'Salt', 'Black pepper powder', 'Ginger powder', 'Clove powder', 'Cardamom powder', 'Nutmeg', 'Cinnamon'],
+    bestFor: 'Occasional traditional snack',
+    alternative: 'roasted-chana',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.26/g vs ₹0.66/g',
+      ingredientsAvoided: ['Palm oil deep frying', 'Processed refined starch'],
+      ingredientsReplacedWith: [
+        { avoided: 'Palm oil frying', replaced: 'Mustard oil light spray (Roasted, not fried)' },
+        { avoided: 'Gram flour deep fried', replaced: 'Whole Bengal gram roasted (high fiber & protein)' }
+      ]
+    }
+  },
+  {
+    id: 'aashirvaad-atta',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format&fit=crop&q=60',
+    name: 'Aashirvaad Superior MP Atta',
+    brand: 'Aashirvaad',
+    company: 'ITC (Foods Division)',
+    category: 'Staples',
+    price: 260,
+    size: '5 kg bag',
+    score: 96,
+    grade: 'A',
+    color: '#c2185b',
+    ink: '#ffffff',
+    accent: 'ATTA',
+    calories: 140,
+    servingSize: '40g',
+    nutrients: { sugar: 0, sodium: 2, satFat: 0.1 },
+    concerns: [],
+    ingredients: ['100% Whole Wheat flour (MP Wheat)'],
+    bestFor: 'Daily staple cooking (Rotis & breads)',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'sunfeast-darkfantasy',
+    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=60',
+    name: 'Dark Fantasy Choco Fills',
+    brand: 'Sunfeast',
+    company: 'ITC (Foods Division)',
+    category: 'Biscuits',
+    price: 45,
+    size: '100 g pack',
+    score: 20,
+    grade: 'E',
+    color: '#1e1b18',
+    ink: '#f0c243',
+    accent: 'DARK FANTASY',
+    calories: 205,
+    servingSize: '2 biscuits (~40g)',
+    nutrients: { sugar: 15.6, sodium: 110, satFat: 6.4 },
+    concerns: [
+      { name: 'Very high sugar content', level: 'high', amount: '15.6 g', note: 'Provides almost 62% of the daily sugar limit in just two chocolate biscuits.' },
+      { name: 'Hydrogenated vegetable fat', level: 'high', amount: 'Choco cream filling', note: 'Contains interesterified/hydrogenated oils with saturated fats.' },
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Cookie shell', note: 'No beneficial fiber, refined starch leads to rapid digestion.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida)', 'Sugar', 'Interesterified vegetable fat', 'Cocoa solids (8%)', 'Hydrogenated vegetable oil', 'Raising agents (INS 503(ii), INS 500(ii))', 'Emulsifiers (INS 322, INS 476)', 'Iodised salt', 'Artificial chocolate flavour'],
+    bestFor: 'Rare treat',
+    alternative: 'clean-cocoa-spread',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.45/g vs ₹1.10/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Hydrogenated vegetable fat', 'INS 476'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Stone-ground hazelnut butter' },
+        { avoided: 'Hydrogenated cream', replaced: 'Cocoa butter & organic date powder' }
+      ]
+    }
+  },
+  {
+    id: 'bingo-madangles',
+    image: 'https://images.unsplash.com/photo-1566478989037-eec170784d20?w=400&auto=format&fit=crop&q=60',
+    name: 'Bingo Mad Angles Achaari Masti',
+    brand: 'Bingo',
+    company: 'ITC (Foods Division)',
+    category: 'Snacks',
+    price: 20,
+    size: '66 g pack',
+    score: 27,
+    grade: 'E',
+    color: '#e65100',
+    ink: '#ffffff',
+    accent: 'MAD ANGLES',
+    calories: 220,
+    servingSize: '40g',
+    nutrients: { sugar: 2.2, sodium: 420, satFat: 6.8 },
+    concerns: [
+      { name: 'High saturated fat', level: 'high', amount: '6.8 g', note: 'Fried cornmeal chips, containing high industrial fats.' },
+      { name: 'Palm oil frying', level: 'high', amount: 'Frying medium', note: 'Used to fry snacks, increasing saturated lipid load.' },
+      { name: 'Flavour enhancers (627 & 631)', level: 'medium', amount: 'Additive combination', note: 'Used to multiply savory taste to encourage overeating.' }
+    ],
+    ingredients: ['Cornmeal', 'Refined wheat flour (Maida)', 'Edible vegetable oil (Palm oil)', 'Spices & seasonings (Onion powder, Garlic powder, Mango powder, Achaar spice blend)', 'Salt', 'Sugar', 'Flavour enhancers (INS 627, INS 631)', 'Acidity regulators (INS 330, INS 296)'],
+    bestFor: 'Occasional snacking',
+    alternative: 'makhana',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.30/g vs ₹1.20/g',
+      ingredientsAvoided: ['Palm oil', 'INS 627 & INS 631 flavor enhancers', 'Refined wheat flour (Maida)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Palm oil (Deep fried)', replaced: 'Rice bran oil (Roasted Fox nuts)' },
+        { avoided: 'Flavour enhancers', replaced: 'Himalayan pink salt & spices' }
+      ]
+    }
+  },
+  {
+    id: 'yippee-noodles',
+    image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=400&auto=format&fit=crop&q=60',
+    name: 'Yippee Magic Masala Noodles',
+    brand: 'Yippee',
+    company: 'ITC (Foods Division)',
+    category: 'Instant food',
+    price: 15,
+    size: '70 g pack',
+    score: 32,
+    grade: 'D',
+    color: '#ff6d00',
+    ink: '#ffffff',
+    accent: 'YIPPEE',
+    calories: 315,
+    servingSize: '70g',
+    nutrients: { sugar: 2.8, sodium: 890, satFat: 6.5 },
+    concerns: [
+      { name: 'High sodium', level: 'high', amount: '890 mg', note: 'Contains nearly 39% of the daily limit of sodium in one pack.' },
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Noodle cake', note: 'Processed white flour base with no fiber or nutrition.' },
+      { name: 'Palm oil', level: 'high', amount: 'Fried noodle block', note: 'The noodle block is pre-fried in palm oil during processing.' },
+      { name: 'Flavour enhancer (INS 635)', level: 'medium', amount: 'Taste enhancer', note: 'Synergistic chemical flavor enhancer; triggers gout and skin sensitivities.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida)', 'Edible vegetable oil (Palm oil)', 'Iodised salt', 'Spices & condiments (Onion, Garlic, Turmeric, Cumin, Cardamom, Clove, Cinnamon)', 'Sugar', 'Flavour enhancer (INS 635)', 'Acidity regulators (INS 501(i), INS 500(i))', 'Thickener (INS 412)'],
+    bestFor: 'Rare convenience snack',
+    alternative: 'slurrp',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.21/g vs ₹1.08/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'INS 635'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Millet flour (Foxtail & Little millets)' },
+        { avoided: 'Palm oil', replaced: 'Rice bran oil' },
+        { avoided: 'INS 635', replaced: 'Natural spices' }
+      ]
+    }
+  },
+  {
+    id: 'parle-monaco',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    name: 'Monaco Salted Biscuits',
+    brand: 'Monaco',
+    company: 'Parle Products',
+    category: 'Biscuits',
+    price: 10,
+    size: '75 g pack',
+    score: 35,
+    grade: 'D',
+    color: '#ffd54f',
+    ink: '#3e2723',
+    accent: 'MONACO',
+    calories: 190,
+    servingSize: '10 biscuits (~40g)',
+    nutrients: { sugar: 3.2, sodium: 260, satFat: 4.8 },
+    concerns: [
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Primary ingredient', note: 'Stripped grain base that yields zero dietary fiber.' },
+      { name: 'High Sodium load', level: 'high', amount: '260 mg', note: 'Salty biscuit coating contains high levels of sodium per serving.' },
+      { name: 'Palm oil', level: 'high', amount: 'Baking fat', note: 'Cheap baking oil high in saturated fats.' },
+      { name: 'Dough conditioner (INS 223)', level: 'medium', amount: 'Chemical conditioner', note: 'Metabisulphites can cause allergic and respiratory reactions in sensitive people.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida) (73%)', 'Edible vegetable oil (Palm oil)', 'Sugar', 'Raising agents (INS 503(ii), INS 500(ii))', 'Iodised salt', 'Invert sugar syrup', 'Dough conditioner (INS 223)', 'Emulsifier (INS 322)'],
+    bestFor: 'Occasional light snack',
+    alternative: 'clean-ragi-biscuit',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.13/g vs ₹1.20/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'Dough conditioner (INS 223)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Finger millet (Ragi) & Whole wheat Atta' },
+        { avoided: 'Palm oil', replaced: 'Pure cow butter' }
+      ]
+    }
+  },
+  {
+    id: 'parle-hideandseek',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    name: 'Hide & Seek Chocolate Cookies',
+    brand: 'Hide & Seek',
+    company: 'Parle Products',
+    category: 'Biscuits',
+    price: 35,
+    size: '120 g pack',
+    score: 24,
+    grade: 'E',
+    color: '#0d47a1',
+    ink: '#ffffff',
+    accent: 'HIDE & SEEK',
+    calories: 198,
+    servingSize: '4 cookies (~40g)',
+    nutrients: { sugar: 14.8, sodium: 98, satFat: 5.2 },
+    concerns: [
+      { name: 'High added sugar', level: 'high', amount: '14.8 g', note: 'High added sugar (nearly 4 teaspoons of sugar) in a small portion.' },
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Primary cookie base', note: 'Processed flour lacks fiber and raises blood sugar quickly.' },
+      { name: 'Palm oil', level: 'high', amount: 'Baking oil fat', note: 'Industrial baking fat used in cookies, loading saturated fats.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida)', 'Sugar', 'Chocolate chips (15%) [Sugar, Cocoa solids, Cocoa butter, Emulsifier (INS 322, INS 476)]', 'Edible vegetable oil (Palm oil)', 'Raising agents (INS 503(ii), INS 500(ii))', 'Iodised salt', 'Emulsifier (INS 322)', 'Artificial vanilla flavor'],
+    bestFor: 'Rare treat',
+    alternative: 'millet-cookie',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.29/g vs ₹0.42/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'INS 476 emulsifier'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Ragi (Finger millet) & whole wheat' },
+        { avoided: 'Palm oil', replaced: 'Cold-pressed Rice bran oil' }
+      ]
+    }
+  },
+  {
+    id: 'amul-butter',
+    image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&auto=format&fit=crop&q=60',
+    name: 'Pasteurised Salted Butter',
+    brand: 'Amul',
+    company: 'Amul (GCMMF)',
+    category: 'Spreads',
+    price: 56,
+    size: '100 g pack',
+    score: 72,
+    grade: 'B',
+    color: '#388e3c',
+    ink: '#ffffff',
+    accent: 'AMUL BUTTER',
+    calories: 144,
+    servingSize: '20g',
+    nutrients: { sugar: 0, sodium: 168, satFat: 10.4 },
+    concerns: [
+      { name: 'High saturated fat', level: 'medium', amount: '10.4 g', note: 'Pure milk fat is highly rich in saturated fatty acids; consume in moderation.' },
+      { name: 'Contains Sodium', level: 'medium', amount: '168 mg', note: 'Salted butter adds to daily sodium intake. Keep portions balanced.' }
+    ],
+    ingredients: ['Milk fat', 'Salt', 'Natural food color (INS 160b / Annatto)'],
+    bestFor: 'Daily culinary spreading in moderation',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'amul-cheese-slices',
+    image: 'https://images.unsplash.com/photo-1486299267070-8382e214434b?w=400&auto=format&fit=crop&q=60',
+    name: 'Amul Cheese Slices',
+    brand: 'Amul',
+    company: 'Amul (GCMMF)',
+    category: 'Spreads',
+    price: 130,
+    size: '200 g (10 slices)',
+    score: 48,
+    grade: 'C',
+    color: '#ffc107',
+    ink: '#3e2723',
+    accent: 'AMUL CHEESE',
+    calories: 62,
+    servingSize: '20g (1 slice)',
+    nutrients: { sugar: 0.2, sodium: 280, satFat: 3.8 },
+    concerns: [
+      { name: 'High Sodium load', level: 'high', amount: '280 mg', note: '12% of the daily limit of sodium in just one single slice of cheese.' },
+      { name: 'Emulsifying salts (INS 331, 339)', level: 'medium', amount: 'Processing salts', note: 'Used to blend cheese oils; high intake of phosphorus-based salts can affect bone health.' },
+      { name: 'Preservative (INS 200)', level: 'medium', amount: 'Sorbic acid', note: 'Permitted preservative to prevent mold; can cause mild sensitivity.' }
+    ],
+    ingredients: ['Cheese', 'Milk solids', 'Emulsifying salts (INS 331, INS 339(iii))', 'Iodised salt', 'Preservative (INS 200)', 'Acidity regulator (INS 270)'],
+    bestFor: 'Occasional cheese toast',
+    alternative: 'motherdairy-classiccurd',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.65/g vs ₹0.15/g',
+      ingredientsAvoided: ['Emulsifying salts (INS 331, 339)', 'Preservative (INS 200)', 'High sodium'],
+      ingredientsReplacedWith: [
+        { avoided: 'Processed emulsified cheese', replaced: 'Natural fresh Curd / Yogurt' }
+      ]
+    }
+  },
+  {
+    id: 'amul-dark-chocolate',
+    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=60',
+    name: 'Amul Dark Chocolate 55% Cocoa',
+    brand: 'Amul',
+    company: 'Amul (GCMMF)',
+    category: 'Snacks',
+    price: 110,
+    size: '150 g bar',
+    score: 62,
+    grade: 'C',
+    color: '#2b1b17',
+    ink: '#d4af37',
+    accent: 'DARK CHOCO',
+    calories: 140,
+    servingSize: '25g',
+    nutrients: { sugar: 11.2, sodium: 5, satFat: 5.6 },
+    concerns: [
+      { name: 'Moderate added sugar', level: 'medium', amount: '11.2 g', note: 'Contains added sugar to balance cocoa bitterness. Eat in moderation.' }
+    ],
+    ingredients: ['Cocoa solids (55%)', 'Sugar', 'Cocoa butter', 'Permitted emulsifiers (INS 322, INS 476)', 'Natural vanilla flavoring'],
+    bestFor: 'Lower-sugar chocolate indulgence',
+    alternative: 'clean-cocoa-spread',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.73/g vs ₹1.10/g',
+      ingredientsAvoided: ['Added refined sugar', 'INS 476 emulsifier'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined sugar', replaced: 'Organic Date powder' },
+        { avoided: 'INS 476', replaced: 'Cocoa butter' }
+      ]
+    }
+  },
+  {
+    id: 'tropicana-orange',
+    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&auto=format&fit=crop&q=60',
+    name: 'Tropicana 100% Orange Juice',
+    brand: 'Tropicana',
+    company: 'PepsiCo India',
+    category: 'Beverages',
+    price: 140,
+    size: '1 L tetrapack',
+    score: 45,
+    grade: 'D',
+    color: '#f57c00',
+    ink: '#ffffff',
+    accent: 'ORANGE JUICE',
+    calories: 115,
+    servingSize: '250ml',
+    nutrients: { sugar: 23.6, sodium: 18, satFat: 0 },
+    concerns: [
+      { name: 'High sugar load', level: 'high', amount: '23.6 g sugar', note: 'Pure liquid fruit sugars are quickly absorbed by the liver, causing metabolic stress.' },
+      { name: 'Reconstituted juice base', level: 'medium', amount: 'Juice concentrate', note: 'Boiled down and re-diluted with water, destroying natural fibers and fresh flavor.' }
+    ],
+    ingredients: ['Reconstituted Orange Juice (99.9%) from Orange Juice Concentrate', 'Natural orange flavors'],
+    bestFor: 'Rare beverage use',
+    alternative: 'coconut-water',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.14/ml vs ₹0.20/ml',
+      ingredientsAvoided: ['Concentrated liquid sugars', 'Reconstituted water base'],
+      ingredientsReplacedWith: [
+        { avoided: 'Juice concentrate', replaced: 'Fresh raw tender coconut water' }
+      ]
+    }
+  },
+  {
+    id: 'motherdairy-tonedmilk',
+    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&auto=format&fit=crop&q=60',
+    name: 'Mother Dairy Toned Milk',
+    brand: 'Mother Dairy',
+    company: 'Mother Dairy',
+    category: 'Beverages',
+    price: 54,
+    size: '1 L pouch',
+    score: 85,
+    grade: 'A',
+    color: '#0288d1',
+    ink: '#ffffff',
+    accent: 'TONED MILK',
+    calories: 116,
+    servingSize: '200ml',
+    nutrients: { sugar: 0, sodium: 90, satFat: 3.2 },
+    concerns: [
+      { name: 'Fortified Vitamins A & D', level: 'low', amount: 'Fortification', note: 'Synthetically added vitamins to meet regulatory nutrition mandates.' }
+    ],
+    ingredients: ['Pasteurized toned milk', 'Vitamin A', 'Vitamin D2'],
+    bestFor: 'Daily dairy beverage consumption',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'motherdairy-classiccurd',
+    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&auto=format&fit=crop&q=60',
+    name: 'Mother Dairy Classic Curd',
+    brand: 'Mother Dairy',
+    company: 'Mother Dairy',
+    category: 'Staples',
+    price: 35,
+    size: '400 g cup',
+    score: 94,
+    grade: 'A',
+    color: '#00bcd4',
+    ink: '#ffffff',
+    accent: 'CLASSIC CURD',
+    calories: 120,
+    servingSize: '200g',
+    nutrients: { sugar: 0, sodium: 60, satFat: 3.0 },
+    concerns: [],
+    ingredients: ['Pasteurized toned milk', 'Active lactic culture'],
+    bestFor: 'Probiotic digestion booster with meals',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'dhara-mustard-oil',
+    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&auto=format&fit=crop&q=60',
+    name: 'Dhara Kachi Ghani Mustard Oil',
+    brand: 'Dhara',
+    company: 'Mother Dairy',
+    category: 'Staples',
+    price: 175,
+    size: '1 L pouch',
+    score: 88,
+    grade: 'A',
+    color: '#fbc02d',
+    ink: '#3e2723',
+    accent: 'MUSTARD OIL',
+    calories: 180,
+    servingSize: '20ml',
+    nutrients: { sugar: 0, sodium: 0, satFat: 1.2 },
+    concerns: [
+      { name: 'Erucic acid presence', level: 'low', amount: 'Natural component', note: 'Mustard oil contains erucic acid naturally. Totally safe in standard culinary amounts.' }
+    ],
+    ingredients: ['100% pure cold-pressed Mustard Oil'],
+    bestFor: 'Healthy traditional cooking & deep frying',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'safal-peas',
+    image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&auto=format&fit=crop&q=60',
+    name: 'Safal Frozen Green Peas',
+    brand: 'Safal',
+    company: 'Mother Dairy',
+    category: 'Staples',
+    price: 120,
+    size: '1 kg bag',
+    score: 98,
+    grade: 'A',
+    color: '#4caf50',
+    ink: '#ffffff',
+    accent: 'SAFAL PEAS',
+    calories: 78,
+    servingSize: '100g',
+    nutrients: { sugar: 0, sodium: 5, satFat: 0 },
+    concerns: [],
+    ingredients: ['100% frozen green peas'],
+    bestFor: 'Adding fiber & nutrients to everyday dishes',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'tata-salt',
+    image: 'https://images.unsplash.com/photo-1604838612732-c65112163b40?w=400&auto=format&fit=crop&q=60',
+    name: 'Tata Salt (Vacuum Evaporated)',
+    brand: 'Tata Salt',
+    company: 'Tata Consumer Products',
+    category: 'Staples',
+    price: 28,
+    size: '1 kg packet',
+    score: 75,
+    grade: 'B',
+    color: '#03a9f4',
+    ink: '#ffffff',
+    accent: 'TATA SALT',
+    calories: 0,
+    servingSize: '1g',
+    nutrients: { sugar: 0, sodium: 387, satFat: 0 },
+    concerns: [
+      { name: 'High Sodium base', level: 'medium', amount: '387 mg per gram', note: 'Salt is pure sodium chloride. Consume within daily dietary limits (under 5g salt/day).' }
+    ],
+    ingredients: ['Edible common salt', 'Potassium iodate', 'Anticaking agent (INS 551)'],
+    bestFor: 'Daily nutritional iodine & seasoning',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'tata-tea-premium',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&auto=format&fit=crop&q=60',
+    name: 'Tata Tea Premium',
+    brand: 'Tata Tea',
+    company: 'Tata Consumer Products',
+    category: 'Beverages',
+    price: 140,
+    size: '250 g pack',
+    score: 98,
+    grade: 'A',
+    color: '#1b5e20',
+    ink: '#ffffff',
+    accent: 'TATA TEA',
+    calories: 0,
+    servingSize: '2g (1 cup tea)',
+    nutrients: { sugar: 0, sodium: 0, satFat: 0 },
+    concerns: [],
+    ingredients: ['100% pure black tea leaves'],
+    bestFor: 'Daily traditional Indian chai preparation',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'tata-sampann-moongdal',
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&auto=format&fit=crop&q=60',
+    name: 'Tata Sampann Unpolished Moong Dal',
+    brand: 'Tata Sampann',
+    company: 'Tata Consumer Products',
+    category: 'Staples',
+    price: 190,
+    size: '1 kg packet',
+    score: 98,
+    grade: 'A',
+    color: '#fbc02d',
+    ink: '#1e1e1e',
+    accent: 'MOONG DAL',
+    calories: 138,
+    servingSize: '40g',
+    nutrients: { sugar: 0, sodium: 4, satFat: 0.1 },
+    concerns: [],
+    ingredients: ['100% unpolished split green gram lentils'],
+    bestFor: 'High protein daily lentil soups (Dal)',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'mtr-rava-idlimix',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&auto=format&fit=crop&q=60',
+    name: 'MTR Rava Idli Breakfast Mix',
+    brand: 'MTR',
+    company: 'MTR Foods / Mondelez (Cadbury)',
+    category: 'Breakfast',
+    price: 110,
+    size: '500 g pack',
+    score: 74,
+    grade: 'B',
+    color: '#c62828',
+    ink: '#ffffff',
+    accent: 'RAVA IDLI',
+    calories: 145,
+    servingSize: '40g',
+    nutrients: { sugar: 0.8, sodium: 280, satFat: 1.4 },
+    concerns: [
+      { name: 'Hydrogenated vegetable fat', level: 'medium', amount: 'Spice seasoning', note: 'Contains small amount of hydrogenated palm/sesame fats in tempering.' }
+    ],
+    ingredients: ['Semolina (Suji) (75%)', 'Hydrogenated vegetable fat', 'Cashew nuts', 'Salt', 'Curry leaves', 'Mustard seeds', 'Raising agent (INS 500(ii))', 'Acidity regulator (INS 330)'],
+    bestFor: 'Quick traditional South Indian breakfast',
+    alternative: null,
+    alternativeCompare: {
+      pricePerUnitDiffText: '',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'cadbury-dairy-milk',
+    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=60',
+    name: 'Cadbury Dairy Milk Chocolate',
+    brand: 'Cadbury',
+    company: 'MTR Foods / Mondelez (Cadbury)',
+    category: 'Snacks',
+    price: 45,
+    size: '50 g bar',
+    score: 22,
+    grade: 'E',
+    color: '#4a148c',
+    ink: '#ffffff',
+    accent: 'DAIRY MILK',
+    calories: 135,
+    servingSize: '25g',
+    nutrients: { sugar: 14.5, sodium: 32, satFat: 4.8 },
+    concerns: [
+      { name: 'Very high sugar concentration', level: 'high', amount: '14.5 g sugar', note: '58% of this milk chocolate bar is pure added white sugar. Rapid blood sugar surge.' },
+      { name: 'Emulsifiers (INS 442 & 476)', level: 'medium', amount: 'Flow modifiers', note: 'Contains synthetic viscosity modifiers to speed up chocolate production lines.' }
+    ],
+    ingredients: ['Sugar', 'Milk solids (16%)', 'Cocoa butter', 'Cocoa solids', 'Emulsifiers (INS 442, INS 476)', 'Artificial vanilla flavor'],
+    bestFor: 'Rare snack treat',
+    alternative: 'amul-dark-chocolate',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.90/g vs ₹0.73/g',
+      ingredientsAvoided: ['INS 476 emulsifier', 'INS 442 emulsifier', '58% added sugar'],
+      ingredientsReplacedWith: [
+        { avoided: 'INS 476', replaced: 'Natural pure cocoa butter' },
+        { avoided: 'High added sugar (58%)', replaced: 'Cocoa solids 55%' }
+      ]
+    }
+  },
+  {
+    id: 'oreo-original',
+    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    name: 'Oreo Vanilla Creme Biscuit',
+    brand: 'Oreo',
+    company: 'MTR Foods / Mondelez (Cadbury)',
+    category: 'Biscuits',
+    price: 30,
+    size: '120 g pack',
+    score: 24,
+    grade: 'E',
+    color: '#0d47a1',
+    ink: '#ffffff',
+    accent: 'OREO COOKIE',
+    calories: 196,
+    servingSize: '4 biscuits (~40g)',
+    nutrients: { sugar: 15.2, sodium: 198, satFat: 4.8 },
+    concerns: [
+      { name: 'High added white sugar', level: 'high', amount: '15.2 g', note: 'Sugar is a highly concentrated primary ingredient in both cookie and cream.' },
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Dark biscuit shells', note: 'Stripped of all fiber and bran. Spikes insulin levels rapidly.' },
+      { name: 'Palm oil', level: 'high', amount: 'Cream filling emulsifier', note: 'Solid vegetable fat base for chocolate cookie dough and vanilla cream.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida)', 'Sugar', 'Edible vegetable oil (Palm oil)', 'Cocoa solids (4%)', 'Invert syrup', 'Raising agents (INS 503(ii), INS 500(ii))', 'Iodised salt', 'Emulsifier (INS 322)', 'Artificial vanilla flavor'],
+    bestFor: 'Rare snack treat only',
+    alternative: 'millet-cookie',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.25/g vs ₹0.42/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'Palm oil', 'Refined sugar (38% load)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Ragi (Finger millet) & whole wheat' },
+        { avoided: 'Palm oil', replaced: 'Cold-pressed Rice bran oil' },
+        { avoided: 'Refined white sugar', replaced: 'Organic palm jaggery' }
+      ]
+    }
   }
 ]
 
-export const categories = ['All', 'Snacks', 'Beverages', 'Breakfast', 'Instant food', 'Biscuits', 'Spreads']
+export const categories = ['All', 'Snacks', 'Beverages', 'Breakfast', 'Instant food', 'Biscuits', 'Spreads', 'Staples']

@@ -26,6 +26,7 @@ import Diary from './components/Diary'
 import IngredientGuide from './components/IngredientGuide'
 import ProductDetail from './components/ProductDetail'
 import AddFoodModal from './components/AddFoodModal'
+import Companies from './components/Companies'
 
 const navItems = [
   { id: 'home', label: 'Today', icon: Home },
@@ -167,6 +168,13 @@ export default function App() {
         )
       case 'ingredients':
         return <IngredientGuide />
+      case 'companies':
+        return (
+          <Companies
+            onOpen={openProduct}
+            onAdd={openAdd}
+          />
+        )
       case 'home':
       default:
         return (
@@ -208,7 +216,7 @@ export default function App() {
             )
           })}
           <span className="nav-label">Discover</span>
-          <button onClick={() => navigate('explore')}>
+          <button className={view === 'companies' && !selectedProduct ? 'active' : ''} onClick={() => navigate('companies')}>
             <Store size={18} />
             Companies list
           </button>

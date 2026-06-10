@@ -168,5 +168,85 @@ export const ingredientsDb = {
     sources: 'Jams, jellies, marmalades, dessert sauces',
     regulatory: 'Approved globally as a safe, natural thickener.',
     replacedBy: 'No replacement needed; pectin itself is a clean fiber.'
+  },
+  'INS 476': {
+    name: 'Polyglycerol polyricinoleate (INS 476)',
+    alternativeNames: ['INS 476', 'PGPR', 'E476'],
+    risk: 'medium',
+    organs: ['gut', 'liver'],
+    issues: 'A synthetic emulsifier made from castor beans and glycerol. Often used by chocolate manufacturers to reduce the amount of expensive cocoa butter. While considered safe in low doses, high consumption has been linked to liver enlargement in animal studies and may cause mild gastrointestinal distress or allergy in sensitive individuals.',
+    sources: 'Chocolates, compound chocolate coatings, spreads',
+    regulatory: 'Approved globally, but with strict daily intake limit recommendations (up to 7.5 mg/kg body weight).',
+    replacedBy: 'Pure cocoa butter, sunflower lecithin.'
+  },
+  'INS 442': {
+    name: 'Ammonium phosphatides (INS 442)',
+    alternativeNames: ['INS 442', 'Ammonium phosphatides', 'E442'],
+    risk: 'low',
+    organs: ['gut'],
+    issues: 'An emulsifier used to stabilize chocolate viscosity, synthesized from rapeseed oil fatty acids and ammonia. Generally has low risk, but like other synthetic emulsifiers, high doses may impact gut microbial flora.',
+    sources: 'Cocoa products, chocolate confectionery',
+    regulatory: 'Approved in India, UK, and EU; regulated maximum limits in confectionery.',
+    replacedBy: 'Soy lecithin, sunflower lecithin, or pure cocoa butter.'
+  },
+  'INS 200': {
+    name: 'Sorbic Acid (INS 200)',
+    alternativeNames: ['INS 200', 'Sorbic acid', 'E200'],
+    risk: 'medium',
+    organs: ['cellular', 'gut'],
+    issues: 'A naturally occurring organic compound used as a food preservative to inhibit mold and yeast growth. In concentrated amounts, it can trigger skin hypersensitivity and mild gut irritation. In rare instances, it has been linked to DNA damage in cellular assays under high exposures.',
+    sources: 'Processed cheese, bakery items, jams, dried meats',
+    regulatory: 'Approved globally with safe usage limits (typically < 0.1% of food weight).',
+    replacedBy: 'Vacuum packing, pasteurization, lactic fermentation.'
+  },
+  'INS 160b': {
+    name: 'Annatto (INS 160b)',
+    alternativeNames: ['INS 160b', 'Annatto extract', 'Natural yellow-orange color'],
+    risk: 'low',
+    organs: ['cellular'],
+    issues: 'A natural food coloring extracted from the seeds of the achiote tree. Generally safe, but has been documented to cause mild allergic reactions (hives, itching) in susceptible individuals, sometimes confused with nut allergies.',
+    sources: 'Salted butter, cheese, bakery, margarine',
+    regulatory: 'Approved globally as a natural colorant; requires declaration on product packaging.',
+    replacedBy: 'Beta-carotene, turmeric extract, or no added color.'
+  },
+  'INS 331': {
+    name: 'Sodium Citrates (INS 331)',
+    alternativeNames: ['INS 331', 'Sodium citrate', 'Trisodium citrate'],
+    risk: 'low',
+    organs: ['metabolic'],
+    issues: 'Sodium salt of citric acid. Used as an acidity regulator and emulsifying salt. Highly safe in general, but contributes to dietary sodium intake.',
+    sources: 'Processed cheese, club soda, jam, gelatin desserts',
+    regulatory: 'Approved globally as a safe additive with no upper limit of daily intake (GRAS).',
+    replacedBy: 'Fresh lemon juice, citric acid.'
+  },
+  'Vanaspati': {
+    name: 'Hydrogenated Vegetable Fat (Vanaspati)',
+    alternativeNames: ['Vanaspati', 'Hydrogenated vegetable oil', 'Partially hydrogenated oil'],
+    risk: 'high',
+    organs: ['heart', 'metabolic'],
+    issues: 'Liquid vegetable oils converted to solid fats via hydrogenation. Historically high in trans fats, which significantly raise LDL (bad) cholesterol and lower HDL (good) cholesterol, dramatically increasing the risk of coronary heart disease, stroke, insulin resistance, and type-2 diabetes.',
+    sources: 'Traditional Indian sweets (Soan Papdi), biscuits, bakery, street food',
+    regulatory: 'FSSAI has restricted trans fats in industrial fats/oils in India to under 2% by weight.',
+    replacedBy: 'Pure cow ghee, cold-pressed oils, or butter (in moderation).'
+  },
+  'INS 503(ii)': {
+    name: 'Ammonium Hydrogen Carbonate (INS 503(ii))',
+    alternativeNames: ['INS 503(ii)', 'Ammonium bicarbonate', 'Raising agent 503'],
+    risk: 'low',
+    organs: ['gut'],
+    issues: 'A chemical leavening agent used in baking. It breaks down into carbon dioxide, water, and ammonia gas during baking. Safe as the ammonia gas fully dissipates, leaving no residue, but can cause respiratory irritation during the manufacturing/baking process before baking is complete.',
+    sources: 'Biscuits, crackers, cookies',
+    regulatory: 'Approved globally as a food raising agent.',
+    replacedBy: 'Yeast fermentation, physical aeration.'
+  },
+  'INS 500(ii)': {
+    name: 'Sodium Hydrogen Carbonate (INS 500(ii))',
+    alternativeNames: ['INS 500(ii)', 'Sodium bicarbonate', 'Baking soda'],
+    risk: 'low',
+    organs: ['metabolic'],
+    issues: 'Common baking soda used as a raising agent. Extremely safe, though it does contain sodium and can slightly contribute to daily sodium intake if consumed in massive amounts.',
+    sources: 'Biscuits, cakes, instant batters, ready mixes',
+    regulatory: 'Approved globally with no upper limit.',
+    replacedBy: 'Physical whipping, yeast fermentation.'
   }
 }

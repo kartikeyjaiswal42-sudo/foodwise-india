@@ -54,6 +54,13 @@ export default function Dashboard({ totals, log, onAdd, onOpen, onNavigate }) {
   }, [])
 
   const ProductPack = ({ product, compact = false }) => {
+    if (product.image && !compact) {
+      return (
+        <div className="product-image-container">
+          <img src={product.image} alt={product.name} className="product-real-image" />
+        </div>
+      )
+    }
     return (
       <div
         className={`product-pack ${compact ? 'compact' : ''}`}
