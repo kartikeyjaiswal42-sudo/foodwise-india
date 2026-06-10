@@ -7,21 +7,21 @@ import fs from 'fs'
 
 const UA = 'FoodwiseIndia/1.0 (jaano; educational; contact via github kartikeyjaiswal42-sudo/foodwise-india)'
 const DELAY_MS = 6500          // OFF search API ~10 req/min
-const MAX_PAGES = 4            // up to 400 products per brand
+const MAX_PAGES = 6            // up to 600 products per brand
 const PAGE_SIZE = 100
 
 // brand slug (OFF brands_tags) -> { company, palette }
 const COMPANIES = {
-  'Nestlé India':       { color: '#C8202F', ink: '#FFF', brands: ['maggi','nescafe','kit-kat','kitkat','milkmaid','munch','milkybar','nestle','everyday','ceregrow','nestle-india','polo'] },
-  'Britannia':          { color: '#E51F2A', ink: '#FFF', brands: ['britannia','good-day','marie-gold','tiger','bourbon','nutrichoice','milk-bikis','treat','jim-jam','little-hearts','50-50','pure-magic'] },
-  "Haldiram's":         { color: '#E4002B', ink: '#FFF', brands: ['haldiram','haldiram-s','haldirams'] },
-  'ITC':                { color: '#0A5D3B', ink: '#FFF', brands: ['aashirvaad','sunfeast','bingo','yippee','b-natural','candyman','mint-o','itc','dark-fantasy'] },
-  'Parle Products':     { color: '#FFC20E', ink: '#1A2B49', brands: ['parle','parle-g','monaco','hide-seek','hide-and-seek','melody','mango-bite','krackjack','20-20','parle-products'] },
-  'Amul':               { color: '#ED1C24', ink: '#FFF', brands: ['amul'] },
-  'PepsiCo India':      { color: '#0E4D92', ink: '#FFF', brands: ['lay-s','lays','kurkure','quaker','tropicana','doritos','cheetos','uncle-chipps'] },
-  'Mother Dairy':       { color: '#00A551', ink: '#FFF', brands: ['mother-dairy','dhara','safal'] },
-  'Tata Consumer':      { color: '#486AAE', ink: '#FFF', brands: ['tata','tata-sampann','tata-salt','tata-tea','tetley','soulfull','tata-consumer','himalayan'] },
-  'MTR / Mondelez':     { color: '#5C2D91', ink: '#FFF', brands: ['mtr','cadbury','bournvita','oreo','5-star','dairy-milk','gems','perk','halls','milka'] },
+  'Nestlé India':       { color: '#C8202F', ink: '#FFF', brands: ['maggi','nescafe','kit-kat','kitkat','milkmaid','munch','milkybar','nestle','everyday','ceregrow','nestle-india','polo','nesplus','nangrow','lactogrow','koko-krunch','nestle-everyday','maggi-masala-magic','maggi-pazzta','a-+'] },
+  'Britannia':          { color: '#E51F2A', ink: '#FFF', brands: ['britannia','good-day','marie-gold','tiger','bourbon','nutrichoice','milk-bikis','treat','jim-jam','little-hearts','50-50','pure-magic','winkin-cow','nice-time','marie','britannia-cheese','britannia-bourbon','time-pass','little-debbie','britannia-good-day'] },
+  "Haldiram's":         { color: '#E4002B', ink: '#FFF', brands: ['haldiram','haldiram-s','haldirams','haldiram-nagpur','haldiram-s-nagpur'] },
+  'ITC':                { color: '#0A5D3B', ink: '#FFF', brands: ['aashirvaad','sunfeast','bingo','yippee','b-natural','candyman','mint-o','itc','dark-fantasy','sunfeast-mom-s-magic','sunfeast-dark-fantasy','sunfeast-bounce','farmland','kitchens-of-india','gum-on','fabelle','aashirvaad-svasti','sunfeast-yippee'] },
+  'Parle Products':     { color: '#FFC20E', ink: '#1A2B49', brands: ['parle','parle-g','monaco','hide-seek','hide-and-seek','melody','mango-bite','krackjack','20-20','parle-products','kismi','poppins','rol-a-cola','parle-marie','magix','happy-happy','milk-shakti','parle-platina','parle-20-20'] },
+  'Amul':               { color: '#ED1C24', ink: '#FFF', brands: ['amul','amul-kool','amul-taaza','amul-gold','amul-masti'] },
+  'PepsiCo India':      { color: '#0E4D92', ink: '#FFF', brands: ['lay-s','lays','kurkure','quaker','tropicana','doritos','cheetos','uncle-chipps','lehar','quaker-oats','kurkure-triangles'] },
+  'Mother Dairy':       { color: '#00A551', ink: '#FFF', brands: ['mother-dairy','dhara','safal','mother-dairy-classic'] },
+  'Tata Consumer':      { color: '#486AAE', ink: '#FFF', brands: ['tata','tata-sampann','tata-salt','tata-tea','tetley','soulfull','tata-consumer','himalayan','tata-soulfull','tata-gluco-plus','tata-coffee','ching-s-secret','ching-s','smith-jones','tata-q','tata-sampann-yumside','tata-simply-better'] },
+  'MTR / Mondelez':     { color: '#5C2D91', ink: '#FFF', brands: ['mtr','cadbury','bournvita','oreo','5-star','dairy-milk','gems','perk','halls','milka','cadbury-dairy-milk','cadbury-bournville','toblerone','tang','cadbury-silk','cadbury-gems','mtr-foods','cadbury-5-star','cadbury-celebrations'] },
 }
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms))
@@ -50,6 +50,32 @@ function cleanName(p) {
   // title-case ALL-CAPS or all-lower noise
   if (n === n.toUpperCase() || n === n.toLowerCase()) n = titleCase(n)
   return n
+}
+
+// Reject low-quality names: too short, mostly digits, just the brand, or
+// just "brand + pack size" (e.g. "Maggi 140g") with nothing descriptive.
+function goodName(name, brand) {
+  const n = name.trim()
+  if (n.length < 4) return false
+  const letters = (n.match(/[a-zA-Z]/g) || []).length
+  if (letters < 4) return false
+  const norm = n.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const bnorm = (brand || '').toLowerCase().replace(/[^a-z0-9]/g, '')
+  if (bnorm && norm === bnorm) return false
+  // strip the brand + any pack-size tokens; require something left
+  let rest = n.toLowerCase()
+  if (bnorm) rest = rest.replace(brand.toLowerCase(), ' ')
+  rest = rest.replace(/\b[\d.]+\s*(g|kg|gm|gms|ml|l|ltr|pc|pcs|pack|packs|x|n)\b/gi, ' ')
+             .replace(/[^a-z]/gi, '')
+  return rest.length >= 3
+}
+
+// OFF serves 100/200/400/full size variants of a selected photo.
+function imageVariants(url) {
+  if (!url) return { small: url, large: url }
+  const small = url.replace(/\.(\d+)\.jpg$/i, '.400.jpg')
+  const large = url.replace(/\.(\d+)\.jpg$/i, '.full.jpg')
+  return { small, large }
 }
 
 function categoryOf(tags = [], company) {
@@ -156,7 +182,8 @@ for (const [brand, company] of allBrands) {
       if (!p.code || seenCodes.has(p.code)) continue
       const img = p.image_front_url || p.image_front_small_url
       const name = cleanName(p)
-      if (!img || !name || name.length < 3) continue
+      const brandName = (p.brands || '').split(',')[0].trim() || titleCase(brand.replace(/-/g, ' '))
+      if (!img || !goodName(name, brandName)) continue
       const nname = name.toLowerCase().replace(/[^a-z0-9]/g, '')
       const key = `${company}|${nname}`
       if (seenKey.has(key)) continue
@@ -164,11 +191,13 @@ for (const [brand, company] of allBrands) {
       const category = categoryOf(p.categories_tags, company)
       const nutr = nutrientsOf(p.nutriments)
       const { score, grade } = scoreGrade(p, nutr)
+      const { small, large } = imageVariants(img)
       out.push({
         id: `off-${p.code}`,
-        image: img,
+        image: small,
+        imageLarge: large,
         name,
-        brand: (p.brands || '').split(',')[0].trim() || titleCase(brand.replace(/-/g, ' ')),
+        brand: brandName,
         company,
         category,
         price: estPrice(p.quantity, category),

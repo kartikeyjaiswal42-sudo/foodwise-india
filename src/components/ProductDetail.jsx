@@ -4,7 +4,7 @@ import { products } from '../data/foodDatabase'
 import { ingredientsDb } from '../data/ingredientsDb'
 import ProductPack from './ProductPack'
 
-export default function ProductDetail({ product, onBack, onAdd, onOpen }) {
+export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }) {
   const [selectedIngredient, setSelectedIngredient] = useState(null)
 
   const alternative = useMemo(() => {
@@ -13,7 +13,7 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen }) {
 
   const isBetter = alternative && alternative.score > product.score
 
-  const dailyLimits = { sugar: 25, sodium: 2300, satFat: 20 }
+  const dailyLimits = limits || { sugar: 25, sodium: 2300, satFat: 20 }
   const metricMeta = {
     sugar: { label: 'Added sugar', unit: 'g', color: '#df7b54', icon: Zap },
     sodium: { label: 'Sodium', unit: 'mg', color: '#7d88d9', icon: Sparkles },
@@ -49,7 +49,7 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen }) {
       <section className="detail-hero">
         <div className="detail-pack-panel">
           <div className="pack-halo" />
-          <ProductPack product={product} />
+          <ProductPack product={product} large />
           <div className="verified-chip">
             <ShieldCheck size={15} /> Lab Audited Data
           </div>

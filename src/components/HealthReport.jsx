@@ -2,28 +2,26 @@ import { useState, useMemo } from 'react'
 import { Heart, Activity, ShieldAlert, Sparkles, CheckCircle2, AlertTriangle } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 
-// Estimated weights of harmful ingredients in grams/milligrams per single serving
-const ingredientWeights = {
-  maggi: { maida: 50, palmOil: 10, carrageenan: 0, maltodextrin: 0, sugar: 3.2, sodium: 870, additivesCount: 1 },
-  slurrp: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 1.0, sodium: 380, additivesCount: 0 },
-  lays: { maida: 0, palmOil: 15, carrageenan: 0, maltodextrin: 0, sugar: 2.1, sodium: 505, additivesCount: 2 },
-  makhana: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 0.2, sodium: 160, additivesCount: 0 },
-  coke: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 27.5, sodium: 15, additivesCount: 2 },
-  lahori: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 12.5, sodium: 120, additivesCount: 1 },
-  bourbon: { maida: 25, palmOil: 8, carrageenan: 0, maltodextrin: 0, sugar: 16.5, sodium: 180, additivesCount: 1 },
-  'millet-cookie': { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 7.2, sodium: 90, additivesCount: 0 },
-  cornflakes: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 2.5, sugar: 2.4, sodium: 238, additivesCount: 0 },
-  muesli: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 1.1, sodium: 12, additivesCount: 0 },
-  kool: { maida: 0, palmOil: 0, carrageenan: 0.2, maltodextrin: 0, sugar: 19.5, sodium: 110, additivesCount: 2 },
-  lassi: { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 0, sodium: 65, additivesCount: 0 },
-  kurkure: { maida: 0, palmOil: 24, carrageenan: 0, maltodextrin: 0, sugar: 3.8, sodium: 790, additivesCount: 2 },
-  'roasted-chana': { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 0.8, sodium: 190, additivesCount: 0 },
-  'real-juice': { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 24.8, sodium: 22, additivesCount: 1 },
-  'coconut-water': { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 0, sodium: 45, additivesCount: 0 },
-  hersheys: { maida: 0, palmOil: 0, carrageenan: 0, xanthan: 0.1, sugar: 14.8, sodium: 25, additivesCount: 2 },
-  'clean-cocoa-spread': { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 0, sodium: 5, additivesCount: 0 },
-  'knorr-soup': { maida: 6, palmOil: 1.5, carrageenan: 0, starch: 4, sugar: 4.8, sodium: 690, additivesCount: 3 },
-  'organic-soup': { maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0, sugar: 0.6, sodium: 280, additivesCount: 0 }
+// Derive per-serving exposure for a product from its real ingredients + nutrition.
+// Ingredient flags are detected from the declared ingredient list; sugar/sodium/
+// satFat come straight from the per-100g nutrition (1 serving ≈ 100 g basis).
+function exposureOf(product) {
+  const ing = (product.ingredients || []).join(' ').toLowerCase()
+  const has = (re) => re.test(ing)
+  const additiveConcern = (product.concerns || []).find((c) => /additive/i.test(c.name))
+  const additivesCount = additiveConcern
+    ? (parseInt(additiveConcern.amount, 10) || (additiveConcern.amount.match(/[A-Z]?\d{3}/g) || []).length || 1)
+    : 0
+  return {
+    maida: has(/maida|refined wheat/) ? 25 : 0,
+    palmOil: has(/palm/) ? 12 : 0,
+    carrageenan: has(/carrageenan|\b407\b/) ? 0.2 : 0,
+    maltodextrin: has(/maltodextrin/) ? 3 : 0,
+    sugar: product.nutrients?.sugar || 0,
+    sodium: product.nutrients?.sodium || 0,
+    satFat: product.nutrients?.satFat || 0,
+    additivesCount,
+  }
 }
 
 export default function HealthReport({ log, activeDate, allLogs = [] }) {
@@ -54,27 +52,23 @@ export default function HealthReport({ log, activeDate, allLogs = [] }) {
   // Aggregate total consumption of toxic components
   const totals = useMemo(() => {
     let aggregates = {
-      maida: 0,
-      palmOil: 0,
-      carrageenan: 0,
-      maltodextrin: 0,
-      sugar: 0,
-      sodium: 0,
-      additivesCount: 0
+      maida: 0, palmOil: 0, carrageenan: 0, maltodextrin: 0,
+      sugar: 0, sodium: 0, satFat: 0, additivesCount: 0,
     }
 
     targetLogs.forEach((item) => {
-      const weights = ingredientWeights[item.productId]
-      if (weights) {
-        const factor = item.servings
-        aggregates.maida += (weights.maida || 0) * factor
-        aggregates.palmOil += (weights.palmOil || 0) * factor
-        aggregates.carrageenan += (weights.carrageenan || 0) * factor
-        aggregates.maltodextrin += (weights.maltodextrin || 0) * factor
-        aggregates.sugar += (weights.sugar || 0) * factor
-        aggregates.sodium += (weights.sodium || 0) * factor
-        aggregates.additivesCount += (weights.additivesCount || 0) * factor
-      }
+      const product = products.find((p) => p.id === item.productId)
+      if (!product) return
+      const w = exposureOf(product)
+      const factor = item.servings
+      aggregates.maida += w.maida * factor
+      aggregates.palmOil += w.palmOil * factor
+      aggregates.carrageenan += w.carrageenan * factor
+      aggregates.maltodextrin += w.maltodextrin * factor
+      aggregates.sugar += w.sugar * factor
+      aggregates.sodium += w.sodium * factor
+      aggregates.satFat += w.satFat * factor
+      aggregates.additivesCount += w.additivesCount * factor
     })
 
     return aggregates
@@ -94,7 +88,7 @@ export default function HealthReport({ log, activeDate, allLogs = [] }) {
     ))
 
     const heart = Math.min(100, Math.round(
-      ((totals.sodium * 0.025) + (totals.palmOil * 1.5)) / durationMultiplier
+      ((totals.sodium * 0.025) + (totals.palmOil * 1.5) + (totals.satFat * 1.2)) / durationMultiplier
     ))
 
     const cellular = Math.min(100, Math.round(

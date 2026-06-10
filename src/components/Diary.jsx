@@ -2,15 +2,17 @@ import { useState, useMemo } from 'react'
 import { Plus, ArrowLeft, ArrowRight, Trash2, ChevronRight, Info, Calendar } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import HealthReport from './HealthReport'
+import { DEFAULT_LIMITS } from '../lib/health'
 
-const dailyLimits = { sugar: 25, sodium: 2300, satFat: 20 }
 const metricMeta = {
+  calories: { label: 'Calories', unit: ' kcal', color: '#9c1b2e' },
   sugar: { label: 'Added sugar', unit: 'g', color: '#df7b54' },
   sodium: { label: 'Sodium', unit: 'mg', color: '#7d88d9' },
   satFat: { label: 'Saturated fat', unit: 'g', color: '#c49143' },
 }
 
-export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOpen, onDeleteLog }) {
+export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOpen, onDeleteLog, limits = DEFAULT_LIMITS }) {
+  const dailyLimits = limits
   // Generate a dynamic list of 7 days around the activeDate
   const daysList = useMemo(() => {
     const days = []

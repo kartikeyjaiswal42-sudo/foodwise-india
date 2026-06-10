@@ -1,25 +1,26 @@
+'use client'
 import { useState, useEffect } from 'react'
 
 // Shared product visual. Shows a real packaging photo when a working image URL
-// is supplied, and gracefully falls back to the illustrated brand pack if the
-// image is missing or fails to load (e.g. dead CDN link, offline).
-export default function ProductPack({ product, compact = false }) {
-  const [imgFailed, setImgFailed] = useState(false)
+// is supplied, gracefully falling back large → 400px → illustrated brand pack
+// if an image is missing or fails to load (dead link, offline).
+export default function ProductPack({ product, compact = false, large = false }) {
+  const candidates = []
+  if (large && product.imageLarge) candidates.push(product.imageLarge)
+  if (product.image) candidates.push(product.image)
 
-  // Reset the failure flag if this component instance is reused for a different image.
-  useEffect(() => {
-    setImgFailed(false)
-  }, [product.image])
+  const [idx, setIdx] = useState(0)
+  useEffect(() => { setIdx(0) }, [product.image, product.imageLarge])
 
-  if (product.image && !compact && !imgFailed) {
+  if (!compact && idx < candidates.length) {
     return (
       <div className="product-image-container">
         <img
-          src={product.image}
+          src={candidates[idx]}
           alt={product.name}
           className="product-real-image"
           loading="lazy"
-          onError={() => setImgFailed(true)}
+          onError={() => setIdx((i) => i + 1)}
         />
       </div>
     )

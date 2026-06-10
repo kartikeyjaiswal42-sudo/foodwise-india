@@ -1,57 +1,43 @@
 import { useMemo } from 'react'
-import { Plus, HeartPulse, Zap, Sparkles, Home, ArrowRight, CheckCircle2, Leaf, Info, TriangleAlert } from 'lucide-react'
+import { Plus, HeartPulse, Zap, Sparkles, Flame, ArrowRight, CheckCircle2, Leaf, Info, TriangleAlert } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import ProductPack from './ProductPack'
+import { DEFAULT_LIMITS } from '../lib/health'
 
-const dailyLimits = { sugar: 25, sodium: 2300, satFat: 20 }
 const metricMeta = {
+  calories: { label: 'Calories', unit: ' kcal', color: '#9c1b2e', icon: Flame },
   sugar: { label: 'Added sugar', unit: 'g', color: '#df7b54', icon: Zap },
   sodium: { label: 'Sodium', unit: 'mg', color: '#7d88d9', icon: Sparkles },
   satFat: { label: 'Saturated fat', unit: 'g', color: '#c49143', icon: HeartPulse },
 }
 
-export default function Dashboard({ totals, log, onAdd, onOpen, onNavigate }) {
-  // Overall daily balance rating based on nutritional watchpoints
+export default function Dashboard({ totals, log, onAdd, onOpen, onNavigate, limits = DEFAULT_LIMITS, profile }) {
+  const dailyLimits = limits
+  // Overall daily balance rating based on nutritional watchpoints (sugar/sodium/satFat)
   const overall = useMemo(() => {
+    const watch = ['sugar', 'sodium', 'satFat']
     return Math.max(
       0,
       Math.round(
-        100 -
-          Object.keys(totals).reduce(
-            (sum, metric) => sum + Math.max(0, (totals[metric] / dailyLimits[metric]) * 25),
-            0
-          )
+        100 - watch.reduce((sum, metric) => sum + Math.max(0, (totals[metric] / dailyLimits[metric]) * 25), 0)
       )
     )
-  }, [totals])
+  }, [totals, dailyLimits])
 
-  // Organ health warnings summary at a glance
-  const organStatus = useMemo(() => {
-    let aggregates = { maida: 0, palmOil: 0, carrageenan: 0, sugar: 0, sodium: 0 }
-    log.forEach((item) => {
-      if (item.productId === 'maggi') { aggregates.maida += 50 * item.servings; aggregates.palmOil += 10 * item.servings }
-      else if (item.productId === 'lays') { aggregates.palmOil += 15 * item.servings }
-      else if (item.productId === 'coke') { aggregates.sugar += 27.5 * item.servings }
-      else if (item.productId === 'bourbon') { aggregates.maida += 25 * item.servings; aggregates.palmOil += 8 * item.servings }
-      else if (item.productId === 'kool') { aggregates.carrageenan += 0.2 * item.servings }
-      else if (item.productId === 'kurkure') { aggregates.palmOil += 24 * item.servings }
-      else if (item.productId === 'knorr-soup') { aggregates.maida += 6 * item.servings; aggregates.palmOil += 1.5 * item.servings }
-    })
-    
-    return {
-      gutRisk: aggregates.carrageenan > 0 || aggregates.maida > 30 || aggregates.palmOil > 20,
-      liverRisk: totals.sugar > dailyLimits.sugar || aggregates.sugar > 20,
-      cardioRisk: totals.sodium > dailyLimits.sodium * 0.5 || aggregates.palmOil > 15
-    }
-  }, [log, totals])
+  // Organ health warnings derived from the day's totals vs the user's ceilings
+  const organStatus = useMemo(() => ({
+    gutRisk: totals.satFat > dailyLimits.satFat * 0.8,
+    liverRisk: totals.sugar > dailyLimits.sugar,
+    cardioRisk: totals.sodium > dailyLimits.sodium * 0.6 || totals.satFat > dailyLimits.satFat,
+  }), [totals, dailyLimits])
+
+  // Calorie budget for today
+  const calPct = Math.min(100, Math.round((totals.calories / dailyLimits.calories) * 100))
+  const calOver = totals.calories > dailyLimits.calories
 
   const recommendations = useMemo(() => {
-    // Pick 3 healthy alternatives as upgrade recommendations
-    return [
-      products.find((p) => p.id === 'makhana'),
-      products.find((p) => p.id === 'muesli'),
-      products.find((p) => p.id === 'lassi')
-    ].filter(Boolean)
+    // Highest-scoring clean products as upgrade suggestions
+    return [...products].filter((p) => p.score >= 80 && p.image).sort((a, b) => b.score - a.score).slice(0, 3)
   }, [])
 
   const ScoreBadge = ({ score, grade }) => {
@@ -129,6 +115,29 @@ export default function Dashboard({ totals, log, onAdd, onOpen, onNavigate }) {
         <button className="primary-button" onClick={() => onAdd(null)}>
           <Plus size={18} /> Log food item
         </button>
+      </section>
+
+      <section className={`calorie-budget ${calOver ? 'over' : ''}`}>
+        <div className="cal-budget-head">
+          <div className="cal-budget-icon"><Flame size={20} /></div>
+          <div>
+            <span className="eyebrow">
+              {profile?.goal === 'lose' ? 'Weight-loss budget' : profile?.goal === 'gain' ? 'Weight-gain budget' : 'Daily calorie budget'}
+            </span>
+            <strong>{Math.round(totals.calories).toLocaleString()} <small>/ {dailyLimits.calories.toLocaleString()} kcal</small></strong>
+          </div>
+          <div className="cal-budget-remain">
+            {calOver
+              ? <span className="over-pill">{Math.round(totals.calories - dailyLimits.calories).toLocaleString()} kcal over</span>
+              : <span className="left-pill">{Math.round(dailyLimits.calories - totals.calories).toLocaleString()} kcal left</span>}
+          </div>
+        </div>
+        <div className="cal-budget-bar"><span style={{ width: `${calPct}%` }} /></div>
+        {!profile && (
+          <button className="text-button" onClick={() => onNavigate('profile')}>
+            Set your height, weight & goal to personalise this <ArrowRight size={14} />
+          </button>
+        )}
       </section>
 
       <section className="hero-card">
