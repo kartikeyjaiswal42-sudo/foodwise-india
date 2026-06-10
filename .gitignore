@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 src/data/*.bak-*
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
