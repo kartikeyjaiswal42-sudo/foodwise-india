@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Plus, HeartPulse, Zap, Sparkles, Home, ArrowRight, CheckCircle2, Leaf, Info, TriangleAlert } from 'lucide-react'
 import { products } from '../data/foodDatabase'
+import ProductPack from './ProductPack'
 
 const dailyLimits = { sugar: 25, sodium: 2300, satFat: 20 }
 const metricMeta = {
@@ -52,27 +53,6 @@ export default function Dashboard({ totals, log, onAdd, onOpen, onNavigate }) {
       products.find((p) => p.id === 'lassi')
     ].filter(Boolean)
   }, [])
-
-  const ProductPack = ({ product, compact = false }) => {
-    if (product.image && !compact) {
-      return (
-        <div className="product-image-container">
-          <img src={product.image} alt={product.name} className="product-real-image" />
-        </div>
-      )
-    }
-    return (
-      <div
-        className={`product-pack ${compact ? 'compact' : ''}`}
-        style={{ '--pack': product.color, '--ink': product.ink }}
-      >
-        <span className="pack-company">{product.brand}</span>
-        <strong>{product.accent}</strong>
-        <span className="pack-line" />
-        <small>{product.category}</small>
-      </div>
-    )
-  }
 
   const ScoreBadge = ({ score, grade }) => {
     const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'

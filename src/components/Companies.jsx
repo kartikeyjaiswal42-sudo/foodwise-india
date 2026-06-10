@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { ArrowLeft, ArrowRight, Store, ShieldAlert, Award, TrendingUp, Sparkles, AlertTriangle, ShieldCheck, Check } from 'lucide-react'
 import { products } from '../data/foodDatabase'
+import ProductPack from './ProductPack'
 
 const companyList = [
   {
@@ -173,27 +174,6 @@ export default function Companies({ onOpen, onAdd }) {
     if (!selectedCompany) return null
     return computedCompanies.find((c) => c.name === selectedCompany)
   }, [selectedCompany, computedCompanies])
-
-  const ProductPack = ({ product, compact = false }) => {
-    if (product.image && !compact) {
-      return (
-        <div className="product-image-container">
-          <img src={product.image} alt={product.name} className="product-real-image" />
-        </div>
-      )
-    }
-    return (
-      <div
-        className={`product-pack ${compact ? 'compact' : ''}`}
-        style={{ '--pack': product.color, '--ink': product.ink }}
-      >
-        <span className="pack-company">{product.brand}</span>
-        <strong>{product.accent}</strong>
-        <span className="pack-line" />
-        <small>{product.category}</small>
-      </div>
-    )
-  }
 
   const ScoreBadge = ({ score, grade }) => {
     const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'

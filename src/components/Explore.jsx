@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
-import { Search, ScanLine, X, SlidersHorizontal, Check, Store, ArrowRight, CornerDownRight, Leaf, ShieldAlert } from 'lucide-react'
+import { Search, ScanLine, X, SlidersHorizontal, Check, Store, ArrowRight, CornerDownRight, Leaf, ShieldAlert, Info, Plus } from 'lucide-react'
 import { products, categories } from '../data/foodDatabase'
+import ProductPack from './ProductPack'
 
 export default function Explore({ query, setQuery, onOpen, onAdd }) {
   const [activeCategory, setActiveCategory] = useState('All')
@@ -17,27 +18,6 @@ export default function Explore({ query, setQuery, onOpen, onAdd }) {
       return matchesQuery && matchesCategory && matchesBetter
     })
   }, [query, activeCategory, onlyBetter])
-
-  const ProductPack = ({ product, compact = false }) => {
-    if (product.image && !compact) {
-      return (
-        <div className="product-image-container">
-          <img src={product.image} alt={product.name} className="product-real-image" />
-        </div>
-      )
-    }
-    return (
-      <div
-        className={`product-pack ${compact ? 'compact' : ''}`}
-        style={{ '--pack': product.color, '--ink': product.ink }}
-      >
-        <span className="pack-company">{product.brand}</span>
-        <strong>{product.accent}</strong>
-        <span className="pack-line" />
-        <small>{product.category}</small>
-      </div>
-    )
-  }
 
   const ScoreBadge = ({ score, grade }) => {
     const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'

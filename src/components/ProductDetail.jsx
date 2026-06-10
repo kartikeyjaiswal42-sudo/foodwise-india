@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { ArrowLeft, Plus, ShoppingBasket, ShieldCheck, HeartPulse, Sparkles, Zap, Info, TriangleAlert, ArrowRight, CornerDownRight, X, Heart, Activity } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import { ingredientsDb } from '../data/ingredientsDb'
+import ProductPack from './ProductPack'
 
 export default function ProductDetail({ product, onBack, onAdd, onOpen }) {
   const [selectedIngredient, setSelectedIngredient] = useState(null)
@@ -27,27 +28,6 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen }) {
       key.toLowerCase().includes(cleanName.toLowerCase())
     )
     return foundKey ? ingredientsDb[foundKey] : null
-  }
-
-  const ProductPack = ({ product, compact = false }) => {
-    if (product.image && !compact) {
-      return (
-        <div className="product-image-container">
-          <img src={product.image} alt={product.name} className="product-real-image" />
-        </div>
-      )
-    }
-    return (
-      <div
-        className={`product-pack ${compact ? 'compact' : ''}`}
-        style={{ '--pack': product.color, '--ink': product.ink }}
-      >
-        <span className="pack-company">{product.brand}</span>
-        <strong>{product.accent}</strong>
-        <span className="pack-line" />
-        <small>{product.category}</small>
-      </div>
-    )
   }
 
   const ScoreBadge = ({ score, grade, large = false }) => {
