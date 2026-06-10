@@ -1,10 +1,12 @@
 import './globals.css'
 
+const base = process.env.PAGES_BASE === '1' ? '/foodwise-india' : ''
+
 export const metadata = {
   title: 'Jaano — Know what you eat',
   description:
     'Jaano helps Indian shoppers understand food labels, compare alternatives, set health goals, and track daily nutrition.',
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: `${base}/favicon.svg` },
 }
 
 export const viewport = {
