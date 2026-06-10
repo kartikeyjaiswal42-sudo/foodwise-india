@@ -1,7 +1,7 @@
 export const products = [
   {
     id: 'maggi',
-    image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/266109_15-maggi-2-minute-instant-noodles-masala.jpg',
     name: '2-Minute Masala Noodles',
     brand: 'MAGGI',
     company: 'Nestlé India',
@@ -37,7 +37,7 @@ export const products = [
   },
   {
     id: 'slurrp',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40224641_2-slurrp-farm-millet-noodles-yummy-masala.jpg',
     name: 'Millet Noodles (Yummy Masala)',
     brand: 'Slurrp Farm',
     company: 'Wholsum Foods',
@@ -66,7 +66,7 @@ export const products = [
   },
   {
     id: 'lays',
-    image: 'https://images.unsplash.com/photo-1566478989037-eec170784d20?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102750_9-lays-potato-chips-indias-magic-masala.jpg',
     name: 'India’s Magic Masala Chips',
     brand: "Lay's",
     company: 'PepsiCo India',
@@ -101,7 +101,7 @@ export const products = [
   },
   {
     id: 'makhana',
-    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40209772_2-farmley-roasted-salted-makhana-himalayan-salt.jpg',
     name: 'Himalayan Salt Roasted Makhana',
     brand: 'Farmley',
     company: 'Connedit Business Solutions',
@@ -130,7 +130,7 @@ export const products = [
   },
   {
     id: 'coke',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/251014_11-coca-cola-soft-drink-original-taste.jpg',
     name: 'Original Taste Cola',
     brand: 'Coca-Cola',
     company: 'Coca-Cola India',
@@ -165,7 +165,7 @@ export const products = [
   },
   {
     id: 'lahori',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40192055_2-lahori-zeera.jpg',
     name: 'Lahori Zeera (Spiced Soda)',
     brand: 'Lahori Zeera',
     company: 'Archian Foods',
@@ -195,7 +195,7 @@ export const products = [
   },
   {
     id: 'bourbon',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102220_11-britannia-biscuits-bourbon-chocolate.jpg',
     name: 'Bourbon Chocolate Biscuits',
     brand: 'Britannia',
     company: 'Britannia Industries',
@@ -231,7 +231,7 @@ export const products = [
   },
   {
     id: 'millet-cookie',
-    image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40225132_2-tata-soulfull-ragi-cookies.jpg',
     name: 'Ragi & Jaggery Millet Cookies',
     brand: 'Tata Soulfull',
     company: 'Tata Consumer Products',
@@ -260,7 +260,7 @@ export const products = [
   },
   {
     id: 'cornflakes',
-    image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/100004351_18-kelloggs-corn-flakes-original.jpg',
     name: 'Original Corn Flakes',
     brand: "Kellogg's",
     company: 'Kellogg India',
@@ -295,7 +295,7 @@ export const products = [
   },
   {
     id: 'muesli',
-    image: 'https://images.unsplash.com/photo-1517881917431-1355499739c7?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40120117_8-yogabar-muesli-no-added-sugar.jpg',
     name: 'No Added Sugar Fruit & Nut Muesli',
     brand: 'Yoga Bar',
     company: 'Sproutlife Foods',
@@ -324,7 +324,7 @@ export const products = [
   },
   {
     id: 'kool',
-    image: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/104764_5-amul-kool-cafe-milk-drink.jpg',
     name: 'Kool Café Milk Beverage',
     brand: 'Amul',
     company: 'GCMMF',
@@ -357,7 +357,7 @@ export const products = [
   },
   {
     id: 'lassi',
-    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40213192_2-sids-farm-unsweetened-lassi.jpg',
     name: 'Unsweetened Probiotic Lassi',
     brand: "Sid's Farm",
     company: 'Sids Farm',
@@ -386,7 +386,7 @@ export const products = [
   },
   {
     id: 'kurkure',
-    image: 'https://images.unsplash.com/photo-1600189020840-e9db18c375ef?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102699_12-kurkure-namkeen-masala-munch.jpg',
     name: 'Masala Munch Crunchy Snacks',
     brand: 'Kurkure',
     company: 'PepsiCo India',
@@ -422,7 +422,7 @@ export const products = [
   },
   {
     id: 'roasted-chana',
-    image: 'https://images.unsplash.com/photo-1536304997881-a372c179924b?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40191773_3-open-secret-spiced-roasted-chana.jpg',
     name: 'Spiced Roasted Chana',
     brand: 'Open Secret',
     company: 'Immensitas Private Limited',
@@ -451,7 +451,7 @@ export const products = [
   },
   {
     id: 'real-juice',
-    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/266037_17-real-activ-100-mixed-fruit-juice.jpg',
     name: 'Real Activ 100% Mixed Fruit Juice',
     brand: 'Real',
     company: 'Dabur India',
@@ -484,7 +484,7 @@ export const products = [
   },
   {
     id: 'coconut-water',
-    image: 'https://images.unsplash.com/photo-1525385133512-2f3d9d2b8952?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40192314_2-raw-pressery-100-tender-coconut-water.jpg',
     name: '100% Tender Coconut Water',
     brand: 'Raw Pressery',
     company: 'Rakyan Beverages',
@@ -513,7 +513,7 @@ export const products = [
   },
   {
     id: 'hersheys',
-    image: 'https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/241697_8-hersheys-chocolate-syrup.jpg',
     name: 'Chocolate Flavor Syrup',
     brand: "Hershey's",
     company: 'Hershey India',
@@ -548,7 +548,7 @@ export const products = [
   },
   {
     id: 'clean-cocoa-spread',
-    image: 'https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40217983_2-the-whole-truth-hazelnut-cocoa-spread-100-clean.jpg',
     name: 'Hazelnut Cocoa Spread (100% Clean)',
     brand: 'The Whole Truth',
     company: 'Fitshit Health Foods',
@@ -577,7 +577,7 @@ export const products = [
   },
   {
     id: 'knorr-soup',
-    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40020141_12-knorr-soup-mixed-vegetable.jpg',
     name: 'Mixed Vegetable Soup Mix',
     brand: 'Knor',
     company: 'Hindustan Unilever',
@@ -613,7 +613,7 @@ export const products = [
   },
   {
     id: 'organic-soup',
-    image: 'https://images.unsplash.com/photo-1607532941433-304659e8198a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40209432_2-tata-sampann-organic-lentil-soup.jpg',
     name: 'Organic Lentil & Veggie Soup',
     brand: 'Tata Sampann',
     company: 'Tata Consumer Products',
@@ -642,7 +642,7 @@ export const products = [
   },
   {
     id: 'bournvita',
-    image: 'https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/266540_12-cadbury-bournvita-chocolate-health-drink.jpg',
     name: 'Cadbury Bournvita Health Drink',
     brand: 'Bournvita',
     company: 'Mondelez India',
@@ -677,7 +677,7 @@ export const products = [
   },
   {
     id: 'clean-cocoa-powder',
-    image: 'https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40217984_2-the-whole-truth-dark-chocolate-powder.jpg',
     name: '100% Clean Almond Cocoa Drink',
     brand: 'The Whole Truth',
     company: 'Fitshit Health Foods',
@@ -706,7 +706,7 @@ export const products = [
   },
   {
     id: 'parleg',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102102_4-parle-g-biscuits-glucose.jpg',
     name: 'Parle-G Glucose Biscuits',
     brand: 'Parle',
     company: 'Parle Products',
@@ -742,7 +742,7 @@ export const products = [
   },
   {
     id: 'clean-ragi-biscuit',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40191834_2-early-foods-organic-ragi-butter-biscuits.jpg',
     name: 'Organic Butter Ragi Biscuits',
     brand: 'Early Foods',
     company: 'Early Foods Private Limited',
@@ -771,7 +771,7 @@ export const products = [
   },
   {
     id: 'kissan-jam',
-    image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/103013_11-kissan-mixed-fruit-jam.jpg',
     name: 'Kissan Mixed Fruit Jam',
     brand: 'Kissan',
     company: 'Hindustan Unilever',
@@ -806,7 +806,7 @@ export const products = [
   },
   {
     id: 'clean-fruit-spread',
-    image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40169312_2-orchard-lane-organic-mixed-berry-jam.jpg',
     name: 'Organic Mixed Berry Fruit Spread',
     brand: 'Orchard Lane',
     company: 'Fresh Food Industries',
@@ -835,7 +835,7 @@ export const products = [
   },
   {
     id: 'maggi-sauce',
-    image: 'https://images.unsplash.com/photo-1607305387299-a3d9611cd46f?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/1204456_2-maggi-rich-tomato-ketchup-sauce.jpg',
     name: 'Rich Tomato Ketchup',
     brand: 'MAGGI',
     company: 'Nestlé India',
@@ -870,7 +870,7 @@ export const products = [
   },
   {
     id: 'clean-tomato-ketchup',
-    image: 'https://images.unsplash.com/photo-1607305387299-a3d9611cd46f?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40217985_2-the-whole-truth-tomato-ketchup.jpg',
     name: '100% Clean Tomato Ketchup',
     brand: 'The Whole Truth',
     company: 'Fitshit Health Foods',
@@ -899,7 +899,7 @@ export const products = [
   },
   {
     id: 'quaker-masala-oats',
-    image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/20002165_14-quaker-oats.jpg',
     name: 'Quaker Homestyle Masala Oats',
     brand: 'Quaker',
     company: 'PepsiCo India',
@@ -934,7 +934,7 @@ export const products = [
   },
   {
     id: 'clean-masala-oats',
-    image: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40209431_2-tata-sampann-masala-oats-classic.jpg',
     name: 'Tata Sampann Masala Oats (Classic)',
     brand: 'Tata Sampann',
     company: 'Tata Consumer Products',
@@ -963,7 +963,7 @@ export const products = [
   },
   {
     id: 'nutella',
-    image: 'https://images.unsplash.com/photo-1532499016263-f2c3e89df9cd?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40018532_7-nutella-hazelnut-spread-with-cocoa.jpg',
     name: 'Nutella Hazelnut Spread',
     brand: 'Nutella',
     company: 'Ferrero India',
@@ -998,7 +998,7 @@ export const products = [
   },
   {
     id: 'clean-peanut-butter',
-    image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40129038_5-happy-jars-unsweetened-creamy-peanut-butter.jpg',
     name: 'Unsweetened Creamy Peanut Butter',
     brand: 'Happy Jars',
     company: 'Happy Jars Private Limited',
@@ -1027,7 +1027,7 @@ export const products = [
   },
   {
     id: 'nescafe-classic',
-    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/266067_15-nescafe-classic-instant-coffee-100-pure.jpg',
     name: 'Classic Instant Coffee',
     brand: 'Nescafé',
     company: 'Nestlé India',
@@ -1056,7 +1056,7 @@ export const products = [
   },
   {
     id: 'kitkat',
-    image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40082725_8-nestle-kitkat-share-bag-2-finger.jpg',
     name: 'KitKat Chocolate Wafer',
     brand: 'KitKat',
     company: 'Nestlé India',
@@ -1091,7 +1091,7 @@ export const products = [
   },
   {
     id: 'milkmaid',
-    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/104808_9-nestle-milkmaid-sweetened-condensed-milk.jpg',
     name: 'Sweetened Condensed Milk',
     brand: 'Milkmaid',
     company: 'Nestlé India',
@@ -1120,7 +1120,7 @@ export const products = [
   },
   {
     id: 'goodday-butter',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102146_13-britannia-biscuits-good-day-butter.jpg',
     name: 'Good Day Butter Cookies',
     brand: 'Good Day',
     company: 'Britannia Industries',
@@ -1155,7 +1155,7 @@ export const products = [
   },
   {
     id: 'mariegold',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/101965_14-britannia-biscuits-marie-gold.jpg',
     name: 'Marie Gold Biscuits',
     brand: 'Marie Gold',
     company: 'Britannia Industries',
@@ -1190,7 +1190,7 @@ export const products = [
   },
   {
     id: 'tiger-glucose',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/101977_11-britannia-biscuits-tiger-glucose.jpg',
     name: 'Tiger Glucose Biscuits',
     brand: 'Tiger',
     company: 'Britannia Industries',
@@ -1225,7 +1225,7 @@ export const products = [
   },
   {
     id: 'haldirams-bhujia',
-    image: 'https://images.unsplash.com/photo-1600189020840-e9db18c375ef?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/199026_11-haldirams-aloo-bhujia.jpg',
     name: 'Aloo Bhujia Namkeen',
     brand: "Haldiram's",
     company: "Haldiram's",
@@ -1259,7 +1259,7 @@ export const products = [
   },
   {
     id: 'haldirams-soanpapdi',
-    image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/199031_11-haldirams-soan-papdi.jpg',
     name: 'Traditional Soan Papdi',
     brand: "Haldiram's",
     company: "Haldiram's",
@@ -1293,7 +1293,7 @@ export const products = [
   },
   {
     id: 'haldirams-bhujia-sev',
-    image: 'https://images.unsplash.com/photo-1600189020840-e9db18c375ef?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/100021_11-haldirams-bhujia-sev.jpg',
     name: 'Classic Bhujia Sev',
     brand: "Haldiram's",
     company: "Haldiram's",
@@ -1327,7 +1327,7 @@ export const products = [
   },
   {
     id: 'aashirvaad-atta',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/126906_8-aashirvaad-atta-whole-wheat.jpg',
     name: 'Aashirvaad Superior MP Atta',
     brand: 'Aashirvaad',
     company: 'ITC (Foods Division)',
@@ -1354,7 +1354,7 @@ export const products = [
   },
   {
     id: 'sunfeast-darkfantasy',
-    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/20003957_7-sunfeast-biscuits-dark-fantasy-choco-fills.jpg',
     name: 'Dark Fantasy Choco Fills',
     brand: 'Sunfeast',
     company: 'ITC (Foods Division)',
@@ -1388,7 +1388,7 @@ export const products = [
   },
   {
     id: 'bingo-madangles',
-    image: 'https://images.unsplash.com/photo-1566478989037-eec170784d20?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/20004141_6-bingo-mad-angles-achaari-masti.jpg',
     name: 'Bingo Mad Angles Achaari Masti',
     brand: 'Bingo',
     company: 'ITC (Foods Division)',
@@ -1422,7 +1422,7 @@ export const products = [
   },
   {
     id: 'yippee-noodles',
-    image: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40002279_6-sunfeast-yippee-noodles-magic-masala.jpg',
     name: 'Yippee Magic Masala Noodles',
     brand: 'Yippee',
     company: 'ITC (Foods Division)',
@@ -1458,7 +1458,7 @@ export const products = [
   },
   {
     id: 'parle-monaco',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102081_12-parle-biscuits-monaco-salted.jpg',
     name: 'Monaco Salted Biscuits',
     brand: 'Monaco',
     company: 'Parle Products',
@@ -1493,7 +1493,7 @@ export const products = [
   },
   {
     id: 'parle-hideandseek',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/102070_12-parle-hide-seek-chocolate-chip-cookies.jpg',
     name: 'Hide & Seek Chocolate Cookies',
     brand: 'Hide & Seek',
     company: 'Parle Products',
@@ -1527,7 +1527,7 @@ export const products = [
   },
   {
     id: 'amul-butter',
-    image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/104860_8-amul-butter-pasteurised.jpg',
     name: 'Pasteurised Salted Butter',
     brand: 'Amul',
     company: 'Amul (GCMMF)',
@@ -1557,7 +1557,7 @@ export const products = [
   },
   {
     id: 'amul-cheese-slices',
-    image: 'https://images.unsplash.com/photo-1486299267070-8382e214434b?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/104754_6-amul-cheese-slices.jpg',
     name: 'Amul Cheese Slices',
     brand: 'Amul',
     company: 'Amul (GCMMF)',
@@ -1590,7 +1590,7 @@ export const products = [
   },
   {
     id: 'amul-dark-chocolate',
-    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40017111_4-amul-dark-chocolate-55-rich-in-cocoa.jpg',
     name: 'Amul Dark Chocolate 55% Cocoa',
     brand: 'Amul',
     company: 'Amul (GCMMF)',
@@ -1622,7 +1622,7 @@ export const products = [
   },
   {
     id: 'tropicana-orange',
-    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/264132_8-tropicana-100-juice-orange.jpg',
     name: 'Tropicana 100% Orange Juice',
     brand: 'Tropicana',
     company: 'PepsiCo India',
@@ -1654,7 +1654,7 @@ export const products = [
   },
   {
     id: 'motherdairy-tonedmilk',
-    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40008064_2-mother-dairy-toned-milk.jpg',
     name: 'Mother Dairy Toned Milk',
     brand: 'Mother Dairy',
     company: 'Mother Dairy',
@@ -1683,7 +1683,7 @@ export const products = [
   },
   {
     id: 'motherdairy-classiccurd',
-    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40008034_3-mother-dairy-classic-curd.jpg',
     name: 'Mother Dairy Classic Curd',
     brand: 'Mother Dairy',
     company: 'Mother Dairy',
@@ -1710,7 +1710,7 @@ export const products = [
   },
   {
     id: 'dhara-mustard-oil',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/274473_8-dhara-mustard-oil-kachi-ghani.jpg',
     name: 'Dhara Kachi Ghani Mustard Oil',
     brand: 'Dhara',
     company: 'Mother Dairy',
@@ -1739,7 +1739,7 @@ export const products = [
   },
   {
     id: 'safal-peas',
-    image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/10000947_14-safal-frozen-green-peas.jpg',
     name: 'Safal Frozen Green Peas',
     brand: 'Safal',
     company: 'Mother Dairy',
@@ -1766,7 +1766,7 @@ export const products = [
   },
   {
     id: 'tata-salt',
-    image: 'https://images.unsplash.com/photo-1604838612732-c65112163b40?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/241691_9-tata-salt-iodized.jpg',
     name: 'Tata Salt (Vacuum Evaporated)',
     brand: 'Tata Salt',
     company: 'Tata Consumer Products',
@@ -1795,7 +1795,7 @@ export const products = [
   },
   {
     id: 'tata-tea-premium',
-    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/241687_12-tata-tea-premium.jpg',
     name: 'Tata Tea Premium',
     brand: 'Tata Tea',
     company: 'Tata Consumer Products',
@@ -1822,7 +1822,7 @@ export const products = [
   },
   {
     id: 'tata-sampann-moongdal',
-    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40000291_8-tata-sampann-unpolished-moong-dal-split.jpg',
     name: 'Tata Sampann Unpolished Moong Dal',
     brand: 'Tata Sampann',
     company: 'Tata Consumer Products',
@@ -1849,7 +1849,7 @@ export const products = [
   },
   {
     id: 'mtr-rava-idlimix',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/124194_12-mtr-rava-idli-mix.jpg',
     name: 'MTR Rava Idli Breakfast Mix',
     brand: 'MTR',
     company: 'MTR Foods / Mondelez (Cadbury)',
@@ -1878,7 +1878,7 @@ export const products = [
   },
   {
     id: 'cadbury-dairy-milk',
-    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/40192534_3-cadbury-dairy-milk-chocolate.jpg',
     name: 'Cadbury Dairy Milk Chocolate',
     brand: 'Cadbury',
     company: 'MTR Foods / Mondelez (Cadbury)',
@@ -1911,7 +1911,7 @@ export const products = [
   },
   {
     id: 'oreo-original',
-    image: 'https://images.unsplash.com/photo-1558961309-dbdf71791a5a?w=400&auto=format&fit=crop&q=60',
+    image: 'https://www.bigbasket.com/media/uploads/p/l/1200234_4-cadbury-oreo-sandwich-biscuits-vanilla-creme.jpg',
     name: 'Oreo Vanilla Creme Biscuit',
     brand: 'Oreo',
     company: 'MTR Foods / Mondelez (Cadbury)',
