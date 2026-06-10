@@ -619,6 +619,379 @@ export const products = [
       ingredientsAvoided: [],
       ingredientsReplacedWith: []
     }
+  },
+  {
+    id: 'bournvita',
+    name: 'Cadbury Bournvita Health Drink',
+    brand: 'Bournvita',
+    company: 'Mondelez India',
+    category: 'Beverages',
+    price: 260,
+    size: '500 g jar',
+    score: 33,
+    grade: 'D',
+    color: '#D97A06',
+    ink: '#FFFFFF',
+    accent: 'BOURNVITA',
+    calories: 76,
+    servingSize: '20g',
+    nutrients: { sugar: 14.2, sodium: 95, satFat: 0.3 },
+    concerns: [
+      { name: 'Extreme added sugar', level: 'high', amount: '14.2 g', note: 'Sugar and liquid glucose make up 71% of this "health drink" serving.' },
+      { name: 'Maltodextrin & Liquid glucose', level: 'high', amount: 'Refined sweeteners', note: 'Ultra-processed corn syrup derivatives that cause rapid blood sugar surges.' },
+      { name: 'Caramel Colour (150c)', level: 'medium', amount: 'Colorant', note: 'Chemical browning agent; clean food standards advise avoiding ammonia-based caramel dyes.' }
+    ],
+    ingredients: ['Sugar', 'Malt extract', 'Liquid Glucose', 'Cocoa solids', 'Milk solids', 'Maltodextrin', 'Color (INS 150c)', 'Emulsifiers (INS 322, INS 471)', 'Raising agent (INS 500(ii))', 'Vitamins & Minerals'],
+    bestFor: 'Avoid for children',
+    alternative: 'clean-cocoa-powder',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹1.50/g vs ₹0.52/g',
+      ingredientsAvoided: ['Added white sugar', 'Liquid glucose', 'Maltodextrin', 'Ammonia Caramel colour'],
+      ingredientsReplacedWith: [
+        { avoided: 'Sugar & Liquid glucose', replaced: 'Natural date powder & milk lactose' },
+        { avoided: 'INS 150c (Caramel)', replaced: 'Natural premium cocoa bean powder' },
+        { avoided: 'Maltodextrin (Bulking agent)', replaced: 'Stone-ground almond & seed meals' }
+      ]
+    }
+  },
+  {
+    id: 'clean-cocoa-powder',
+    name: '100% Clean Almond Cocoa Drink',
+    brand: 'The Whole Truth',
+    company: 'Fitshit Health Foods',
+    category: 'Beverages',
+    price: 375,
+    size: '250 g pouch',
+    score: 92,
+    grade: 'A',
+    color: '#EADFC9',
+    ink: '#453526',
+    accent: 'CLEAN COCOA',
+    calories: 68,
+    servingSize: '15g',
+    nutrients: { sugar: 0, sodium: 5, satFat: 0.6 },
+    concerns: [
+      { name: 'Nut Allergens', level: 'medium', amount: 'Contains almonds', note: 'Not suitable for people with nut allergies.' }
+    ],
+    ingredients: ['Almonds', 'Date powder', 'Cocoa powder (30%)', 'Whey protein concentrate'],
+    bestFor: 'High-protein sugar-free morning beverage',
+    alternative: 'bournvita',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹1.50/g vs ₹0.52/g',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'parleg',
+    name: 'Parle-G Glucose Biscuits',
+    brand: 'Parle',
+    company: 'Parle Products',
+    category: 'Biscuits',
+    price: 10,
+    size: '110 g pack',
+    score: 30,
+    grade: 'D',
+    color: '#E2973D',
+    ink: '#FFFFFF',
+    accent: 'PARLE-G',
+    calories: 180,
+    servingSize: '8 biscuits (~40g)',
+    nutrients: { sugar: 15.2, sodium: 140, satFat: 4.8 },
+    concerns: [
+      { name: 'Refined wheat flour (Maida)', level: 'high', amount: 'Primary ingredient', note: 'Stripped grain base that yields zero dietary fiber or micro-nutrients.' },
+      { name: 'Added white sugar', level: 'high', amount: '15.2 g', note: 'Almost 4 teaspoons of sugar in a standard tea-dunking portion.' },
+      { name: 'Palm oil', level: 'high', amount: 'Baking fat', note: 'Cheap industrial fat rich in saturated cholesterol-raising fats.' },
+      { name: 'Invert sugar syrup', level: 'medium', amount: 'Liquid sweetener', note: 'Increases shelf stability but causes sharp glycemic insulin surges.' }
+    ],
+    ingredients: ['Refined wheat flour (Maida) (66%)', 'Sugar', 'Edible vegetable oil (Palm oil)', 'Invert sugar syrup', 'Raising agents (INS 503(ii), INS 500(ii))', 'Iodised salt', 'Milk solids', 'Emulsifier (INS 322)', 'Dough conditioner (INS 223)'],
+    bestFor: 'Occasional snack',
+    alternative: 'clean-ragi-biscuit',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹1.20/g vs ₹0.09/g',
+      ingredientsAvoided: ['Refined wheat flour (Maida)', 'White sugar', 'Palm oil', 'INS 223 (Sulphites)'],
+      ingredientsReplacedWith: [
+        { avoided: 'Refined wheat flour (Maida)', replaced: 'Finger millet (Ragi) & Whole wheat Atta' },
+        { avoided: 'Palm oil', replaced: 'Pure cow butter' },
+        { avoided: 'Refined sugar', replaced: 'Organic palm jaggery' }
+      ]
+    }
+  },
+  {
+    id: 'clean-ragi-biscuit',
+    name: 'Organic Butter Ragi Biscuits',
+    brand: 'Early Foods',
+    company: 'Early Foods Private Limited',
+    category: 'Biscuits',
+    price: 180,
+    size: '150 g box',
+    score: 89,
+    grade: 'A',
+    color: '#D2C1A8',
+    ink: '#3D2D1A',
+    accent: 'RAGI BUTTER',
+    calories: 140,
+    servingSize: '4 biscuits (~30g)',
+    nutrients: { sugar: 4.2, sodium: 35, satFat: 2.2 },
+    concerns: [
+      { name: 'Butter fats', level: 'medium', amount: 'Contains saturated fat', note: 'Made with real cow butter. Keep portion sizes balanced.' }
+    ],
+    ingredients: ['Organic Finger millet (Ragi) flour (40%)', 'Organic Whole wheat flour', 'Butter (20%)', 'Organic Jaggery powder', 'Milk', 'Almond powder', 'Cardamom'],
+    bestFor: 'Healthy children snack with milk',
+    alternative: 'parleg',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹1.20/g vs ₹0.09/g',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'kissan-jam',
+    name: 'Kissan Mixed Fruit Jam',
+    brand: 'Kissan',
+    company: 'Hindustan Unilever',
+    category: 'Spreads',
+    price: 80,
+    size: '350 g jar',
+    score: 24,
+    grade: 'E',
+    color: '#DC1E34',
+    ink: '#FFFFFF',
+    accent: 'FRUIT JAM',
+    calories: 56,
+    servingSize: '15g (~1 tbsp)',
+    nutrients: { sugar: 10.8, sodium: 10, satFat: 0 },
+    concerns: [
+      { name: 'Extremely high sugar', level: 'high', amount: '10.8 g sugar', note: '72% of the jam is pure added white sugar. Rapid blood glucose spikes.' },
+      { name: 'Synthetic Colour (Carmoisine)', level: 'high', amount: 'INS 122 dye', note: 'A coal-tar derivative dye linked to hyperactivity in children; banned in US and Norway.' },
+      { name: 'Preservative (Sodium Benzoate)', level: 'high', amount: 'INS 211', note: 'Preserved chemically; can form benzene when exposed to vitamin C.' }
+    ],
+    ingredients: ['Sugar', 'Mixed fruit pulp (45%) (Apple, Grape, Pineapple, Pear, Peach, Orange, Mango, Banana)', 'Acidity regulator (INS 330)', 'Thickener (INS 440 / Pectin)', 'Preservative (INS 211)', 'Synthetic food colour (INS 122 / Carmoisine)', 'Artificial mixed fruit flavours'],
+    bestFor: 'Rare topping',
+    alternative: 'clean-fruit-spread',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.85/g vs ₹0.22/g',
+      ingredientsAvoided: ['Excess added white sugar', 'Carmoisine dye (INS 122)', 'Sodium Benzoate (INS 211)'],
+      ingredientsReplacedWith: [
+        { avoided: 'White sugar (72% load)', replaced: 'Natural fruit sugars & trace honey' },
+        { avoided: 'Carmoisine synthetic dye', replaced: 'Naturally vibrant fruit pigmentation' },
+        { avoided: 'INS 211 (Chemical preservative)', replaced: 'Hot-fill vacuum sealing & high fruit acidity' }
+      ]
+    }
+  },
+  {
+    id: 'clean-fruit-spread',
+    name: 'Organic Mixed Berry Fruit Spread',
+    brand: 'Orchard Lane',
+    company: 'Fresh Food Industries',
+    category: 'Spreads',
+    price: 295,
+    size: '340 g jar',
+    score: 86,
+    grade: 'A',
+    color: '#F4D2DE',
+    ink: '#4D1D2F',
+    accent: 'BERRY SPREAD',
+    calories: 22,
+    servingSize: '15g (~1 tbsp)',
+    nutrients: { sugar: 3.2, sodium: 2, satFat: 0 },
+    concerns: [
+      { name: 'Natural fruit acidity', level: 'low', amount: 'Natural tang', note: 'Low glycemic load, sweetened naturally by organic berry juices.' }
+    ],
+    ingredients: ['Organic berries (Strawberry, Raspberry, Blueberry) (80%)', 'Organic Sugar / Honey (15%)', 'Lemon juice', 'Fruit pectin (INS 440)'],
+    bestFor: 'Clean breakfast toast topping',
+    alternative: 'kissan-jam',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.85/g vs ₹0.22/g',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'maggi-sauce',
+    name: 'Rich Tomato Ketchup',
+    brand: 'MAGGI',
+    company: 'Nestlé India',
+    category: 'Spreads',
+    price: 120,
+    size: '500 g squeeze pack',
+    score: 35,
+    grade: 'D',
+    color: '#D41E2A',
+    ink: '#FFFFFF',
+    accent: 'TOMATO KETCHUP',
+    calories: 24,
+    servingSize: '15g (~1 tbsp)',
+    nutrients: { sugar: 5.4, sodium: 158, satFat: 0.1 },
+    concerns: [
+      { name: 'Hidden added sugars', level: 'high', amount: '5.4 g sugar', note: '36% of the ketchup is pure sugar, heavily masking tomato tang.' },
+      { name: 'High Sodium load', level: 'high', amount: '158 mg', note: 'Highly concentrated sodium to preserve and salt the sauce.' },
+      { name: 'Thickener (Xanthan Gum)', level: 'medium', amount: 'INS 415', note: 'Used as stabilizer to emulsify watered-down tomato paste.' }
+    ],
+    ingredients: ['Water', 'Tomato paste (28%)', 'Sugar', 'Iodised salt', 'Acidity regulator (INS 260)', 'Thickener (INS 415 / Xanthan Gum)', 'Preservative (INS 211 / Sodium Benzoate)', 'Spices & Condiments (Onion powder, Garlic powder, Spices)'],
+    bestFor: 'Occasional dip',
+    alternative: 'clean-tomato-ketchup',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.60/g vs ₹0.24/g',
+      ingredientsAvoided: ['Added sugar (36%)', 'Sodium Benzoate (INS 211)', 'Xanthan Gum (INS 415)'],
+      ingredientsReplacedWith: [
+        { avoided: 'White sugar', replaced: 'Organic jaggery syrup' },
+        { avoided: 'Xanthan Gum (Thickener)', replaced: 'Highly concentrated tomato solids (no water dilution)' },
+        { avoided: 'INS 211 (Preservative)', replaced: 'Natural apple cider vinegar & salt' }
+      ]
+    }
+  },
+  {
+    id: 'clean-tomato-ketchup',
+    name: '100% Clean Tomato Ketchup',
+    brand: 'The Whole Truth',
+    company: 'Fitshit Health Foods',
+    category: 'Spreads',
+    price: 180,
+    size: '300 g bottle',
+    score: 88,
+    grade: 'A',
+    color: '#EAD3CD',
+    ink: '#4D1D1C',
+    accent: 'CLEAN KETCHUP',
+    calories: 14,
+    servingSize: '15g',
+    nutrients: { sugar: 1.2, sodium: 58, satFat: 0 },
+    concerns: [
+      { name: 'Natural spices tang', level: 'low', amount: 'Spiced with cumin', note: 'Low sodium and zero chemical additives.' }
+    ],
+    ingredients: ['Tomatoes (85%)', 'Organic Jaggery', 'Apple cider vinegar', 'Salt', 'Onion', 'Garlic', 'Spices (Cinnamon, Clove, Black pepper)'],
+    bestFor: 'Everyday clean condiment dipping',
+    alternative: 'maggi-sauce',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.60/g vs ₹0.24/g',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'quaker-masala-oats',
+    name: 'Quaker Homestyle Masala Oats',
+    brand: 'Quaker',
+    company: 'PepsiCo India',
+    category: 'Breakfast',
+    price: 65,
+    size: '160 g pouch',
+    score: 48,
+    grade: 'C',
+    color: '#285943',
+    ink: '#FFFFFF',
+    accent: 'MASALA OATS',
+    calories: 148,
+    servingSize: '40g',
+    nutrients: { sugar: 2.8, sodium: 490, satFat: 2.8 },
+    concerns: [
+      { name: 'High sodium load', level: 'high', amount: '490 mg', note: 'Contains 21% of the daily sodium limit in a single breakfast serving.' },
+      { name: 'Palm oil', level: 'medium', amount: 'Flavor carrier', note: 'Used to fry and coat spices, adding saturated fats.' },
+      { name: 'Flavour enhancers (627 & 631)', level: 'medium', amount: 'Chemical additives', note: 'Used to enhance umami taste artificially; promotes overeating.' }
+    ],
+    ingredients: ['Rolled oats (76%)', 'Salt', 'Spices & condiments (Onion powder, Coriander, Turmeric, Garlic, Fenugreek, Cumin, Red chilli, Black pepper)', 'Sugar', 'Edible vegetable oil (Palm oil)', 'Hydrolyzed vegetable protein', 'Flavour enhancers (INS 627, INS 631)', 'Anticaking agent (INS 551)'],
+    bestFor: 'Occasional breakfast',
+    alternative: 'clean-masala-oats',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.56/g vs ₹0.40/g',
+      ingredientsAvoided: ['Palm oil coating', 'Chemical flavor enhancers (INS 627, 631)', 'Hydrolyzed vegetable protein'],
+      ingredientsReplacedWith: [
+        { avoided: 'Palm oil', replaced: 'No oil added (dry blending of spices)' },
+        { avoided: 'INS 627 & 631', replaced: 'Natural rock salt & mango powder (Amchur)' },
+        { avoided: 'Hydrolyzed protein', replaced: 'Natural spices & dehydrated green peas' }
+      ]
+    }
+  },
+  {
+    id: 'clean-masala-oats',
+    name: 'Tata Sampann Masala Oats (Classic)',
+    brand: 'Tata Sampann',
+    company: 'Tata Consumer Products',
+    category: 'Breakfast',
+    price: 90,
+    size: '160 g pouch',
+    score: 83,
+    grade: 'A',
+    color: '#D4C69E',
+    ink: '#3D331A',
+    accent: 'SAMPANN OATS',
+    calories: 122,
+    servingSize: '40g',
+    nutrients: { sugar: 0.5, sodium: 180, satFat: 0.4 },
+    concerns: [
+      { name: 'Contains Sodium', level: 'low', amount: '180 mg', note: 'Safe level of sodium, typical of lightly salted home breakfasts.' }
+    ],
+    ingredients: ['Whole grain rolled oats (90%)', 'Spices & condiments (Coriander, Cumin, Turmeric, Dry mango powder, Fennel, Fenugreek)', 'Rock salt', 'Dehydrated vegetables (Carrots, Green beans, Coriander leaves)'],
+    bestFor: 'Heart-healthy high-fiber breakfast',
+    alternative: 'quaker-masala-oats',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.56/g vs ₹0.40/g',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
+  },
+  {
+    id: 'nutella',
+    name: 'Nutella Hazelnut Spread',
+    brand: 'Nutella',
+    company: 'Ferrero India',
+    category: 'Spreads',
+    price: 330,
+    size: '350 g jar',
+    score: 22,
+    grade: 'E',
+    color: '#282524',
+    ink: '#FFFFFF',
+    accent: 'NUTELLA',
+    calories: 160,
+    servingSize: '20g (~1 tbsp)',
+    nutrients: { sugar: 11.6, sodium: 12, satFat: 3.2 },
+    concerns: [
+      { name: 'Ultra-high sugar', level: 'high', amount: '11.6 g', note: '58% of this jar is pure added white sugar, not hazelnut.' },
+      { name: 'Palm oil', level: 'high', amount: 'Fat emulsifier', note: 'Industrial palm oil is used to provide spreadable texture, raising saturated fat loads.' },
+      { name: 'Artificial flavour (Vanillin)', level: 'low', amount: 'Synthetic flavor', note: 'Contains synthetic vanillin instead of natural vanilla extract.' }
+    ],
+    ingredients: ['Sugar', 'Palm oil', 'Hazelnuts (13%)', 'Skimmed milk powder (8.7%)', 'Low-fat cocoa powder (7.4%)', 'Emulsifier (INS 322 / Lecithin from soy)', 'Artificial flavouring (Vanillin)'],
+    bestFor: 'Rare treat',
+    alternative: 'clean-peanut-butter',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.48/g vs ₹0.94/g',
+      ingredientsAvoided: ['Palm oil', '58% added white sugar', 'Vanillin artificial flavor'],
+      ingredientsReplacedWith: [
+        { avoided: 'Palm oil', replaced: 'Natural peanut/hazelnut oil' },
+        { avoided: 'Refined sugar', replaced: 'No sugar (100% whole roasted peanuts)' },
+        { avoided: 'Artificial vanillin', replaced: 'Natural roasted nut aromas' }
+      ]
+    }
+  },
+  {
+    id: 'clean-peanut-butter',
+    name: 'Unsweetened Creamy Peanut Butter',
+    brand: 'Happy Jars',
+    company: 'Happy Jars Private Limited',
+    category: 'Spreads',
+    price: 170,
+    size: '350 g jar',
+    score: 95,
+    grade: 'A',
+    color: '#EADBC9',
+    ink: '#453526',
+    accent: 'HAPPY JARS',
+    calories: 125,
+    servingSize: '20g (~1 tbsp)',
+    nutrients: { sugar: 0, sodium: 2, satFat: 1.2 },
+    concerns: [
+      { name: 'Nut allergen', level: 'medium', amount: 'Contains Peanuts', note: 'Avoid if you suffer from peanut allergies.' }
+    ],
+    ingredients: ['Roasted peanuts (100%)'],
+    bestFor: 'High-protein fitness spread',
+    alternative: 'nutella',
+    alternativeCompare: {
+      pricePerUnitDiffText: '₹0.48/g vs  ₹0.94/g',
+      ingredientsAvoided: [],
+      ingredientsReplacedWith: []
+    }
   }
 ]
 

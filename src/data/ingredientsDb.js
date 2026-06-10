@@ -39,6 +39,16 @@ export const ingredientsDb = {
     regulatory: 'Permitted globally, but treated as an added free sugar with strict daily recommended limits.',
     replacedBy: 'Naturally sweet whole foods like dates, raisins, or fresh fruits.'
   },
+  'Invert sugar syrup': {
+    name: 'Invert Sugar Syrup',
+    alternativeNames: ['Invert syrup', 'Inverted sugar'],
+    risk: 'high',
+    organs: ['metabolic', 'liver'],
+    issues: 'Liquid mixture of glucose and fructose prepared by heating sucrose with acid. Absorbed faster than regular table sugar, causing sharper insulin spikes. Contributes heavily to hepatic fat storage and cellular inflammation when eaten frequently in packaged baked goods.',
+    sources: 'Cream biscuits, cookies, confectionery, ketchups',
+    regulatory: 'Approved globally as a sweetener.',
+    replacedBy: 'Natural unrefined sweeteners like dates paste, applesauce, or raw jaggery.'
+  },
   'Malt extract (INS 1400 / Maltodextrin)': {
     name: 'Malt Extract / Maltodextrin',
     alternativeNames: ['Maltodextrin', 'INS 1400', 'Malt extract'],
@@ -48,6 +58,16 @@ export const ingredientsDb = {
     sources: 'Packaged soups, spice mixes, nutritional health drinks, energy bars, instant cereals',
     regulatory: 'Approved as a safe food additive, but highly criticized by metabolists and gastroenterologists.',
     replacedBy: 'Natural thickeners like lentil flour, whole-grain starches, or no thickeners.'
+  },
+  'Maltodextrin': {
+    name: 'Maltodextrin',
+    alternativeNames: ['Maltodextrin starch', 'INS 1400'],
+    risk: 'high',
+    organs: ['metabolic', 'gut'],
+    issues: 'Starch derivative with an exceptionally high glycemic index. Causes blood sugar spikes higher than glucose. Can alter gut microbiota, reducing beneficial bacteria and thinning the protective intestinal mucus layer, potentially leading to gut permeability issues.',
+    sources: 'Health drink powders, seasonings, instant gravies, energy bars',
+    regulatory: 'Permitted globally; widely used as a cheap bulking agent.',
+    replacedBy: 'Whole food flours, almond powders, or leaving seasonings dry.'
   },
   'Stabiliser (INS 407 / Carrageenan)': {
     name: 'Carrageenan (INS 407)',
@@ -99,15 +119,15 @@ export const ingredientsDb = {
     regulatory: 'Permitted in India and EU with maximum limits. In California, foods containing 4-MEI above a threshold must carry a cancer warning label (Proposition 65).',
     replacedBy: 'Natural colorants like beetroot juice extract, roasted chicory, cocoa powder, or leaving the food dye-free.'
   },
-  'Acidity regulator (INS 338)': {
-    name: 'Phosphoric Acid (INS 338)',
-    alternativeNames: ['INS 338', 'Phosphoric acid', 'Ortho-phosphoric acid'],
-    risk: 'medium',
-    organs: ['heart', 'cellular'],
-    issues: 'Highly acidic additive used to give colas their sharp tang. Excessive phosphate intake binds to calcium in the bloodstream, forcing the body to leach calcium from bones to restore balance. This weakens bone mineral density (osteopenia/osteoporosis) and causes severe tooth enamel erosion. Can also contribute to chronic kidney disease over time.',
-    sources: 'Cola beverages, processed cheese, cocoa drinks',
-    regulatory: 'Approved worldwide, but nutrition councils advise keeping phosphate intake in check.',
-    replacedBy: 'Natural citric acid (from lemon juice/lime), malic acid (from apples), or tartar sauce.'
+  'Synthetic food colour (INS 122 / Carmoisine)': {
+    name: 'Carmoisine / Azorubine (INS 122)',
+    alternativeNames: ['INS 122', 'Carmoisine', 'Red dye 122', 'E122'],
+    risk: 'high',
+    organs: ['cellular'],
+    issues: 'A red synthetic azo dye derived from petroleum. Highly linked to allergic responses (hives, asthma flares, skin itching) and linked to hyperactive behavior and ADHD symptoms in children. The European Union requires warnings on food containing azo dyes stating they "may have an adverse effect on activity and attention in children."',
+    sources: 'Mixed fruit jams, candies, red syrups, aerated red drinks',
+    regulatory: 'Banned in the United States, Canada, Japan, and Norway due to safety concerns. Allowed in India with strict concentration limits.',
+    replacedBy: 'Natural red colorants like beetroot red, hibiscus extract, or elderberry juice.'
   },
   'Preservative (INS 211 / Sodium Benzoate)': {
     name: 'Sodium Benzoate (INS 211)',
@@ -119,15 +139,15 @@ export const ingredientsDb = {
     regulatory: 'Permitted with strict parts-per-million (ppm) limits. Health advocates recommend avoiding products that pair INS 211 with Vitamin C.',
     replacedBy: 'Natural preservatives like vinegar, citric acid, cold-pressed oils, pasteurization, or cold-chain storage.'
   },
-  'Hydrolyzed vegetable protein': {
-    name: 'Hydrolyzed Vegetable Protein (HVP)',
-    alternativeNames: ['HVP', 'Acid-hydrolyzed vegetable protein'],
-    risk: 'medium',
-    organs: ['cellular'],
-    issues: 'Produced by boiling grains (soy, wheat, or corn) in hydrochloric acid. This process breaks down proteins into free amino acids, including glutamic acid (natural MSG). Consequently, it triggers the same excitotoxic umami receptors, prompting processed food cravings. The acid hydrolysis can also produce chemical byproducts like 3-MCPD, which is toxic to kidneys and a potential carcinogen.',
-    sources: 'Instant soups, soy sauces, flavored snacks, instant noodle masala tastemakers',
-    regulatory: 'Approved, but must be declared on labels. Clean brands avoid it to maintain clean label certifications.',
-    replacedBy: 'Naturally brewed soy sauce, yeast extract, mushroom powder, or direct spices.'
+  'Dough conditioner (INS 223)': {
+    name: 'Sodium Metabisulphite (INS 223)',
+    alternativeNames: ['INS 223', 'Sodium metabisulphite', 'Sulphites'],
+    risk: 'high',
+    organs: ['cellular', 'gut'],
+    issues: 'A chemical chemical bleaching and conditioning agent. Releases sulfur dioxide gas, which can trigger severe, life-threatening asthma attacks and respiratory distress in sulphite-sensitive individuals. Also destroys Thiamine (Vitamin B1) in the food and can irritate the gastrointestinal tract.',
+    sources: 'Glucose biscuits, commercial flour doughs, dried potato flakes',
+    regulatory: 'Approved with maximum limits. Must carry warning declarations in the EU/US if concentrations exceed 10mg/kg.',
+    replacedBy: 'Physical dough rest, enzymes, or leaving the flour natural.'
   },
   'Thickener (INS 415 / Xanthan Gum)': {
     name: 'Xanthan Gum (INS 415)',
@@ -138,5 +158,15 @@ export const ingredientsDb = {
     sources: 'Chocolate syrups, salad dressings, gluten-free baked goods, ketchup',
     regulatory: 'Approved globally as a food additive.',
     replacedBy: 'Stone-ground nut/seed paste, arrowroot powder, tapioca starch, or physical thickening.'
+  },
+  'INS 440 / Pectin': {
+    name: 'Pectin (INS 440)',
+    alternativeNames: ['INS 440', 'Pectin', 'Fruit pectin'],
+    risk: 'low',
+    organs: ['gut'],
+    issues: 'A natural structural heteropolysaccharide found in the primary cell walls of terrestrial plants (typically apples/citrus). Acts as a dietary fiber and is generally safe, although industrial extractions use acid washes. Can cause mild gas or loose stools in highly sensitive people if eaten in massive quantities.',
+    sources: 'Jams, jellies, marmalades, dessert sauces',
+    regulatory: 'Approved globally as a safe, natural thickener.',
+    replacedBy: 'No replacement needed; pectin itself is a clean fiber.'
   }
 }
