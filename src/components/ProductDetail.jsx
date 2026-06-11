@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
-import { ArrowLeft, Plus, ShoppingBasket, ShieldCheck, HeartPulse, Sparkles, Zap, Info, TriangleAlert, ArrowRight, CornerDownRight, X, Heart, Activity } from 'lucide-react'
+import { ArrowLeft, Plus, ShoppingBasket, ShieldCheck, HeartPulse, Sparkles, Zap, Info, TriangleAlert, ArrowRight, CornerDownRight, X, Heart, Activity, Leaf } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import { ingredientsDb } from '../data/ingredientsDb'
+import { classifyIngredient, VERDICT_META } from '../lib/ingredientClassify'
 import ProductPack from './ProductPack'
 
 export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }) {
@@ -151,72 +152,92 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }
         </div>
         
         {/* Decoder Overlay Modal if ingredient is clicked */}
-        {selectedIngredient && (
-          <div className="ingredient-detail-box animated-fade-in">
-            <div className="ing-detail-header">
-              <h3>🔍 Decoder: {selectedIngredient.name}</h3>
-              <button className="icon-button" onClick={() => setSelectedIngredient(null)} aria-label="Close decoder">
-                <X size={15} />
-              </button>
-            </div>
-            <div className="ing-detail-body">
-              <div className={`ing-badge ${selectedIngredient.risk}`}>
-                Risk level: <strong>{selectedIngredient.risk.toUpperCase()}</strong>
+        {selectedIngredient && (() => {
+          const cls = selectedIngredient.cls
+          const rich = selectedIngredient.rich
+          const meta = VERDICT_META[cls.verdict]
+          return (
+            <div className="ingredient-detail-box animated-fade-in">
+              <div className="ing-detail-header">
+                <h3>🔍 Decoder: {cls.label}</h3>
+                <button className="icon-button" onClick={() => setSelectedIngredient(null)} aria-label="Close decoder">
+                  <X size={15} />
+                </button>
               </div>
-              <div className="ing-details-grid">
-                <div>
-                  <strong>Target Organs:</strong>
-                  <div className="ing-organs">
-                    {selectedIngredient.organs.map(o => (
-                      <span key={o} className="organ-tag">
-                        {o === 'gut' && <Activity size={10} />}
-                        {o === 'heart' && <Heart size={10} />}
-                        {o === 'metabolic' && <Activity size={10} />}
-                        {o === 'liver' && <ShieldCheck size={10} />}
-                        {o === 'cellular' && <Sparkles size={10} />}
-                        {o}
-                      </span>
-                    ))}
-                  </div>
+              <div className="ing-detail-body">
+                <div className="ing-verdict-badge" style={{ '--v': meta.color }}>
+                  {cls.verdict === 'good' ? '🟢' : cls.verdict === 'bad' ? '🔴' : '⚪'} {meta.label}
+                  <span> · {cls.group}</span>
                 </div>
-                <div>
-                  <strong>Regulatory Status:</strong>
-                  <p className="ing-small-p">{selectedIngredient.regulatory}</p>
+                <div className="ing-description">
+                  <p>{cls.why}</p>
                 </div>
-              </div>
-              <div className="ing-description">
-                <strong>Biological Issue Created in Body:</strong>
-                <p>{selectedIngredient.issues}</p>
-              </div>
-              <div className="ing-replacement">
-                <strong>Replaced with:</strong>
-                <p>In clean foods, this is replaced by: <span>{selectedIngredient.replacedBy}</span></p>
+                {rich && (
+                  <>
+                    <div className="ing-details-grid">
+                      <div>
+                        <strong>Target Organs:</strong>
+                        <div className="ing-organs">
+                          {rich.organs.map(o => (
+                            <span key={o} className="organ-tag">
+                              {o === 'gut' && <Activity size={10} />}
+                              {o === 'heart' && <Heart size={10} />}
+                              {o === 'metabolic' && <Activity size={10} />}
+                              {o === 'liver' && <ShieldCheck size={10} />}
+                              {o === 'cellular' && <Sparkles size={10} />}
+                              {o}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <strong>Regulatory Status:</strong>
+                        <p className="ing-small-p">{rich.regulatory}</p>
+                      </div>
+                    </div>
+                    <div className="ing-description">
+                      <strong>Biological Issue Created in Body:</strong>
+                      <p>{rich.issues}</p>
+                    </div>
+                    <div className="ing-replacement">
+                      <strong>Replaced with:</strong>
+                      <p>In clean foods, this is replaced by: <span>{rich.replacedBy}</span></p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
-          </div>
-        )}
+          )
+        })()}
 
+        <div className="ingredient-legend">
+          <span><i style={{ background: VERDICT_META.good.color }} /> Good</span>
+          <span><i style={{ background: VERDICT_META.neutral.color }} /> Neutral</span>
+          <span><i style={{ background: VERDICT_META.bad.color }} /> Watch out</span>
+        </div>
         <div className="ingredient-cloud">
           {product.ingredients.map((ingredient, index) => {
-            const audit = getIngredientDetails(ingredient)
+            const cls = classifyIngredient(ingredient)
+            const rich = getIngredientDetails(ingredient)
             return (
-              <span
+              <button
                 key={index}
-                className={`ingredient-chip ${audit ? 'flagged clickable' : ''} ${audit ? audit.risk : ''}`}
-                onClick={() => audit && setSelectedIngredient(audit)}
+                className={`ingredient-chip clickable v-${cls.verdict}`}
+                onClick={() => setSelectedIngredient({ cls, rich })}
               >
                 {ingredient}
-                {audit && (
-                  <span className="info-dot">
-                    {audit.risk === 'high' ? <TriangleAlert size={10} /> : <Info size={10} />}
-                  </span>
-                )}
-              </span>
+                <span className="info-dot">
+                  {cls.verdict === 'bad' ? <TriangleAlert size={10} /> : cls.verdict === 'good' ? <Leaf size={10} /> : <Info size={10} />}
+                </span>
+              </button>
             )
           })}
+          {product.ingredients.length === 0 && (
+            <p className="label-note">No ingredient list was declared for this product in the source data.</p>
+          )}
         </div>
         <p className="label-note">
-          <Info size={14} /> Ingredient statements are extracted from packaging label declarations. Always review product labels in store if you suffer from severe allergies.
+          <Info size={14} /> Click any ingredient to see why it is good, neutral, or worth watching. Always review the on-pack label if you have severe allergies.
         </p>
       </section>
 

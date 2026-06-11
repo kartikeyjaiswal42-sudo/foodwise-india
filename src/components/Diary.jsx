@@ -3,6 +3,7 @@ import { Plus, ArrowLeft, ArrowRight, Trash2, ChevronRight, Info, Calendar } fro
 import { products } from '../data/foodDatabase'
 import HealthReport from './HealthReport'
 import { DEFAULT_LIMITS } from '../lib/health'
+import { ingredientQuality } from '../lib/ingredientClassify'
 
 const metricMeta = {
   calories: { label: 'Calories', unit: ' kcal', color: '#9c1b2e' },
@@ -75,6 +76,19 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
     })
     return totals
   }, [activeLogs])
+
+  // Good / neutral / bad ingredient tally across everything logged today
+  const ingredientTally = useMemo(() => {
+    const t = { good: 0, neutral: 0, bad: 0 }
+    activeLogs.forEach((item) => {
+      const prod = products.find((p) => p.id === item.productId)
+      if (!prod) return
+      const q = ingredientQuality(prod)
+      t.good += q.good; t.neutral += q.neutral; t.bad += q.bad
+    })
+    return t
+  }, [activeLogs])
+  const tallyTotal = ingredientTally.good + ingredientTally.neutral + ingredientTally.bad
 
   const ProductPack = ({ product, compact = false }) => {
     return (
@@ -215,6 +229,22 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
               )
             })}
           </div>
+
+          {tallyTotal > 0 && (
+            <div className="ing-quality-block">
+              <span className="eyebrow">Ingredient quality today</span>
+              <div className="ing-quality-bar">
+                <span className="iq good" style={{ flex: ingredientTally.good || 0.0001 }} />
+                <span className="iq neutral" style={{ flex: ingredientTally.neutral || 0.0001 }} />
+                <span className="iq bad" style={{ flex: ingredientTally.bad || 0.0001 }} />
+              </div>
+              <div className="ing-quality-legend">
+                <span><i className="good" /> {ingredientTally.good} good</span>
+                <span><i className="neutral" /> {ingredientTally.neutral} neutral</span>
+                <span><i className="bad" /> {ingredientTally.bad} watch</span>
+              </div>
+            </div>
+          )}
 
           <div className="summary-tip">
             <Info size={18} />

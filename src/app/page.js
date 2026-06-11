@@ -16,6 +16,7 @@ import ProductDetail from '../components/ProductDetail'
 import AddFoodModal from '../components/AddFoodModal'
 import Companies from '../components/Companies'
 import Profile from '../components/Profile'
+import HealthySwaps from '../components/HealthySwaps'
 
 const navItems = [
   { id: 'home', label: 'Today', icon: Home },
@@ -138,6 +139,8 @@ export default function Page() {
         )
       case 'profile':
         return <Profile profile={profile} onSave={saveProfile} />
+      case 'swaps':
+        return <HealthySwaps onOpen={openProduct} onAdd={openAdd} />
       case 'ingredients':
         return <IngredientGuide />
       case 'companies':
@@ -180,7 +183,7 @@ export default function Page() {
           <button className={view === 'companies' && !selectedProduct ? 'active' : ''} onClick={() => navigate('companies')}>
             <Store size={18} /> Companies list
           </button>
-          <button onClick={() => { navigate('explore'); setQuery('') }}>
+          <button className={view === 'swaps' && !selectedProduct ? 'active' : ''} onClick={() => navigate('swaps')}>
             <Star size={18} /> Healthy Swaps
           </button>
         </nav>
