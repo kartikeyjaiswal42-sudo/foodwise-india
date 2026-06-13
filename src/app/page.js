@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   BookOpen, CalendarDays, CheckCircle2, CircleHelp, Home, HeartPulse,
-  Leaf, Menu, ScanLine, Search, Star, Store, Sparkles,
+  Leaf, Menu, ScanLine, Search, Star, Store, Sparkles, Activity,
 } from 'lucide-react'
 
 import { products } from '../data/foodDatabase'
@@ -17,6 +17,7 @@ import AddFoodModal from '../components/AddFoodModal'
 import Companies from '../components/Companies'
 import Profile from '../components/Profile'
 import HealthySwaps from '../components/HealthySwaps'
+import BodyToxicity from '../components/BodyToxicity'
 
 const navItems = [
   { id: 'home', label: 'Today', icon: Home },
@@ -24,6 +25,7 @@ const navItems = [
   { id: 'diary', label: 'My Food Diary', icon: CalendarDays },
   { id: 'profile', label: 'My Health & Goals', icon: HeartPulse },
   { id: 'ingredients', label: 'Ingredient Guide', icon: BookOpen },
+  { id: 'toxicity', label: 'Body Toxicity Chart', icon: Activity },
 ]
 
 const todayStr = new Date().toISOString().split('T')[0]
@@ -143,6 +145,8 @@ export default function Page() {
         return <HealthySwaps onOpen={openProduct} onAdd={openAdd} />
       case 'ingredients':
         return <IngredientGuide />
+      case 'toxicity':
+        return <BodyToxicity onOpen={openProduct} />
       case 'companies':
         return <Companies onOpen={openProduct} onAdd={openAdd} />
       case 'home':

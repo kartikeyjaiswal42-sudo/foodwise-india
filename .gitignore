@@ -28,3 +28,4 @@ src/data/*.bak-*
 /.next/
 /out/
 next-env.d.ts
+.env*

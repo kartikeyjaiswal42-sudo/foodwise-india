@@ -3788,3 +3788,123 @@ kbd {
 .ing-quality-legend i.good { background: #10b981; }
 .ing-quality-legend i.neutral { background: #9aa0a6; }
 .ing-quality-legend i.bad { background: #ef4444; }
+
+/* ============================== BODY TOXICITY DIAGNOSTIC ============================== */
+.tox-view { display: flex; flex-direction: column; gap: 20px; }
+
+.tox-hero {
+  display: flex; gap: 22px; align-items: center;
+  background: linear-gradient(135deg, #2a1518, #3b1d12);
+  color: #fff; border-radius: 24px; padding: 30px 32px; box-shadow: var(--shadow-lg);
+}
+.tox-hero-icon {
+  flex: 0 0 auto; width: 70px; height: 70px; border-radius: 20px;
+  display: grid; place-items: center; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16); color: #ffb4a8;
+}
+.tox-hero .eyebrow { color: #ffb4a8; }
+.tox-hero h1 { font-family: 'DM Serif Display', serif; font-size: 1.85rem; margin: 6px 0 8px; line-height: 1.15; }
+.tox-hero p { color: rgba(255,255,255,0.82); font-size: 0.96rem; line-height: 1.55; max-width: 62ch; }
+.tox-hero strong { color: #fff; }
+
+.tox-lookup { display: flex; flex-direction: column; gap: 14px; }
+.tox-lookup .search-field { margin: 0; }
+.tox-lookup-result {
+  border: 1px solid var(--line); border-left: 5px solid var(--risk, var(--red));
+  border-radius: 16px; padding: 18px 20px; background: var(--panel-alt);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.tox-lookup-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tox-lookup-head h3 { font-size: 1.15rem; font-weight: 700; }
+.tox-lookup-head small { color: var(--muted); }
+.tox-safe-note { display: flex; align-items: center; gap: 8px; color: #15803d; font-weight: 600; }
+
+.tox-risk-chip {
+  color: #fff; font-size: 0.72rem; font-weight: 700; padding: 4px 9px;
+  border-radius: 999px; letter-spacing: 0.01em; white-space: nowrap;
+}
+.tox-mechanism {
+  display: flex; gap: 9px; align-items: flex-start; font-size: 0.92rem;
+  line-height: 1.55; color: var(--ink); background: #fff;
+  border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+}
+.tox-mechanism svg { flex: 0 0 auto; margin-top: 3px; color: var(--orange); }
+.tox-entry-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.tox-entry-meta > div { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; }
+.tox-entry-meta strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
+.tox-entry-meta p { font-size: 0.86rem; line-height: 1.5; }
+
+.tox-entry-systems { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tox-entry-systems strong { font-size: 0.85rem; }
+.tox-system-tag {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); border: 1px solid #cfe0c9;
+  padding: 5px 11px; border-radius: 999px; cursor: pointer; transition: var(--transition);
+}
+.tox-system-tag:hover { background: var(--green); color: #fff; }
+
+/* The grid of body systems */
+.tox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.tox-card {
+  text-align: left; background: var(--panel); border: 1px solid var(--line);
+  border-top: 4px solid var(--organ, var(--red)); border-radius: 18px; padding: 18px;
+  display: flex; flex-direction: column; gap: 13px; cursor: pointer; transition: var(--transition);
+}
+.tox-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.tox-card-top { display: flex; gap: 12px; align-items: flex-start; }
+.tox-card-emoji { font-size: 1.7rem; line-height: 1; flex: 0 0 auto; }
+.tox-card-title h3 { font-size: 1.05rem; font-weight: 700; }
+.tox-card-title small { color: var(--muted); font-size: 0.78rem; line-height: 1.35; display: block; margin-top: 3px; }
+
+.tox-load-bar { display: flex; height: 9px; border-radius: 999px; overflow: hidden; background: #efeadd; }
+.tox-load-bar .seg { height: 100%; }
+.tox-load-bar .seg.high { background: #ef4444; }
+.tox-load-bar .seg.medium { background: #f59e0b; }
+.tox-load-bar .seg.low { background: #10b981; }
+.tox-load-legend { display: flex; gap: 12px; font-size: 0.74rem; color: var(--muted); flex-wrap: wrap; }
+.tox-load-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.tox-load-legend .tox-exposure { margin-left: auto; color: var(--orange); font-weight: 600; }
+.tox-card-offenders { display: flex; flex-wrap: wrap; gap: 6px; }
+.tox-offender { font-size: 0.72rem; background: var(--panel-alt); border: 1px solid var(--line); color: var(--muted); padding: 3px 8px; border-radius: 7px; }
+
+/* Organ detail page */
+.tox-organ-hero {
+  display: flex; gap: 20px; align-items: center; padding: 26px 28px; border-radius: 22px;
+  color: #fff; background: linear-gradient(135deg, var(--organ), color-mix(in srgb, var(--organ) 60%, #000));
+  box-shadow: var(--shadow-lg);
+}
+.tox-organ-emoji { font-size: 3rem; line-height: 1; }
+.tox-organ-hero .eyebrow { color: rgba(255,255,255,0.85); }
+.tox-organ-hero h1 { font-family: 'DM Serif Display', serif; font-size: 1.9rem; margin: 4px 0 6px; }
+.tox-organ-hero p { color: rgba(255,255,255,0.88); max-width: 56ch; }
+.tox-organ-stats { display: flex; gap: 18px; margin-top: 12px; flex-wrap: wrap; }
+.tox-organ-stats span { font-size: 0.85rem; color: rgba(255,255,255,0.9); }
+.tox-organ-stats strong { font-size: 1.05rem; }
+
+.tox-entry-list { display: flex; flex-direction: column; gap: 11px; }
+.tox-entry { border: 1px solid var(--line); border-left: 5px solid var(--risk); border-radius: 14px; background: var(--panel); overflow: hidden; }
+.tox-entry > header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; cursor: pointer; }
+.tox-entry > header:hover { background: var(--panel-alt); }
+.tox-entry-title { display: flex; flex-direction: column; gap: 5px; }
+.tox-entry-title .tox-risk-chip { align-self: flex-start; }
+.tox-entry-title h3 { font-size: 1rem; font-weight: 700; }
+.tox-entry-title small { color: var(--muted); font-size: 0.78rem; }
+.tox-entry-organs { display: flex; gap: 4px; flex-wrap: wrap; max-width: 140px; justify-content: flex-end; }
+.tox-mini-organ { font-size: 1.05rem; }
+.tox-entry-body { padding: 4px 16px 18px; display: flex; flex-direction: column; gap: 13px; }
+
+.tox-sample-products h2 { font-size: 1.05rem; margin-bottom: 14px; }
+.tox-sample-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.tox-sample-card { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); cursor: pointer; transition: var(--transition); position: relative; }
+.tox-sample-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.tox-sample-card img { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; background: #fff; flex: 0 0 auto; }
+.tox-sample-card strong { font-size: 0.82rem; display: block; line-height: 1.2; }
+.tox-sample-card small { color: var(--muted); font-size: 0.74rem; }
+.grade-pill { position: absolute; top: 8px; right: 8px; width: 20px; height: 20px; border-radius: 6px; display: grid; place-items: center; font-size: 0.72rem; font-weight: 800; color: #fff; }
+.grade-pill.g-A { background: #15803d; } .grade-pill.g-B { background: #65a30d; }
+.grade-pill.g-C { background: #ca8a04; } .grade-pill.g-D { background: #ea580c; } .grade-pill.g-E { background: #dc2626; }
+
+@media (max-width: 720px) {
+  .tox-hero, .tox-organ-hero { flex-direction: column; text-align: left; align-items: flex-start; padding: 22px; }
+  .tox-hero h1, .tox-organ-hero h1 { font-size: 1.5rem; }
+}

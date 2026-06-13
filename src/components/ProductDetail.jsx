@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { ArrowLeft, Plus, ShoppingBasket, ShieldCheck, HeartPulse, Sparkles, Zap, Info, TriangleAlert, ArrowRight, CornerDownRight, X, Heart, Activity, Leaf } from 'lucide-react'
 import { products } from '../data/foodDatabase'
-import { ingredientsDb } from '../data/ingredientsDb'
+import { findIngredient, ORGAN_SYSTEMS } from '../data/ingredientsDb'
 import { classifyIngredient, VERDICT_META } from '../lib/ingredientClassify'
 import ProductPack from './ProductPack'
 
@@ -22,14 +22,7 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }
   }
 
   // Look up details of an ingredient in our hazard registry
-  const getIngredientDetails = (name) => {
-    const cleanName = name.replace(/[0-9*()]/g, '').trim()
-    const foundKey = Object.keys(ingredientsDb).find(key => 
-      name.toLowerCase().includes(key.toLowerCase()) || 
-      key.toLowerCase().includes(cleanName.toLowerCase())
-    )
-    return foundKey ? ingredientsDb[foundKey] : null
-  }
+  const getIngredientDetails = (name) => findIngredient(name)
 
   const ScoreBadge = ({ score, grade, large = false }) => {
     const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
@@ -176,16 +169,12 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }
                   <>
                     <div className="ing-details-grid">
                       <div>
-                        <strong>Target Organs:</strong>
+                        <strong>Body systems harmed:</strong>
                         <div className="ing-organs">
+                          {rich.organs.length === 0 && <span className="organ-tag">No major organ harm</span>}
                           {rich.organs.map(o => (
                             <span key={o} className="organ-tag">
-                              {o === 'gut' && <Activity size={10} />}
-                              {o === 'heart' && <Heart size={10} />}
-                              {o === 'metabolic' && <Activity size={10} />}
-                              {o === 'liver' && <ShieldCheck size={10} />}
-                              {o === 'cellular' && <Sparkles size={10} />}
-                              {o}
+                              {ORGAN_SYSTEMS[o]?.emoji} {ORGAN_SYSTEMS[o]?.label || o}
                             </span>
                           ))}
                         </div>
