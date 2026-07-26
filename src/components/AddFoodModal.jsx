@@ -1,7 +1,10 @@
 import { useState } from 'react'
-import { Search, ScanLine, X, ArrowLeft, Minus, Plus, Check, Info } from 'lucide-react'
+import { Search, ScanLine, X, ArrowLeft, Minus, Plus, Check, Info, Ban, FlaskConical } from 'lucide-react'
+import { scanProduct, TOX_BANDS } from '../lib/toxicity'
+import { VERDICT_META } from '../lib/ingredientClassify'
+import { avoidHits } from '../lib/avoidList'
 
-export default function AddFoodModal({ products, initialProduct, onClose, onAdd }) {
+export default function AddFoodModal({ products, initialProduct, onClose, onAdd, avoid = [] }) {
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState(initialProduct)
   const [servings, setServings] = useState(1)
@@ -85,6 +88,9 @@ export default function AddFoodModal({ products, initialProduct, onClose, onAdd 
                   <span className="picker-meta">
                     <strong>{product.name}</strong>
                     <small>{product.brand} · {product.size} · ₹{product.price}</small>
+                    {product.ingredients.length > 0 && (
+                      <em className="picker-ing">{product.ingredients.join(', ')}</em>
+                    )}
                   </span>
                   <ScoreBadge score={product.score} grade={product.grade} />
                 </button>
@@ -145,6 +151,38 @@ export default function AddFoodModal({ products, initialProduct, onClose, onAdd 
                 </div>
               </div>
             </div>
+
+            {(() => {
+              const scan = scanProduct(selected)
+              const flags = avoidHits(selected, avoid)
+              return (
+                <>
+                  {flags.length > 0 && (
+                    <div className="alert-box avoid-alert">
+                      <strong><Ban size={14} /> On your avoid list</strong>
+                      <p>This contains {flags.map((f) => f.rule.label).join(', ')}.</p>
+                    </div>
+                  )}
+                  {selected.ingredients.length > 0 && (
+                    <div className="modal-ingredients">
+                      <span className="preview-header">
+                        <FlaskConical size={13} /> What you are about to eat
+                        <i style={{ background: TOX_BANDS[scan.band].color }}>load {scan.toxIndex}</i>
+                      </span>
+                      <div className="modal-ing-chips">
+                        {scan.lines.map((l, i) => (
+                          <span key={i} className={`ing-mini v-${l.verdict}`} style={{ '--v': VERDICT_META[l.verdict].color }}
+                            title={l.harm || l.cls?.why}>
+                            {l.raw}
+                            {l.additives.map((a) => <i key={a.code}>{a.code}</i>)}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )
+            })()}
 
             {selected.score < 50 && (
               <div className="alert-box warning-alert">

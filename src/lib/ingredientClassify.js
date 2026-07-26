@@ -105,7 +105,8 @@ const ADDITIVE_CLASS_LABEL = /(flavou?r enhancers?|colou?rs?|preservatives?|rais
 // Pull additive numbers (e.g. 635, 150d, 500(ii)) — but only when the string is
 // clearly an additive declaration (has a class word OR an INS/E prefix), so we
 // never mistake a quantity like "(200 mg)" for additive 200.
-function additiveCodes(s) {
+export function additiveCodes(s) {
+  s = String(s || '').toLowerCase()
   if (!ADDITIVE_CLASS_RE.test(s)) return []
   const codes = []
   for (const m of s.matchAll(/\b(\d{3})([a-d])?\b(?!\s*(mg|kg|ml|g|%|kcal))/gi)) {

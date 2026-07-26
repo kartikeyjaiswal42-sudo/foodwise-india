@@ -1,12 +1,24 @@
 import { useState, useMemo } from 'react'
-import { ArrowLeft, Plus, ShoppingBasket, ShieldCheck, HeartPulse, Sparkles, Zap, Info, TriangleAlert, ArrowRight, CornerDownRight, X, Heart, Activity, Leaf } from 'lucide-react'
+import { ArrowLeft, Plus, ShoppingBasket, ShieldCheck, HeartPulse, Sparkles, Zap, Info, TriangleAlert, ArrowRight, CornerDownRight, X, Heart, Activity, Leaf, Ban, GitCompareArrows, FileText } from 'lucide-react'
 import { products } from '../data/foodDatabase'
-import { findIngredient, ORGAN_SYSTEMS } from '../data/ingredientsDb'
-import { classifyIngredient, VERDICT_META } from '../lib/ingredientClassify'
+import { ORGAN_SYSTEMS } from '../data/ingredientsDb'
+import { VERDICT_META } from '../lib/ingredientClassify'
+import { scanProduct, TOX_BANDS } from '../lib/toxicity'
+import { avoidHits } from '../lib/avoidList'
+import { IngredientLedger, AdditiveTable } from './LabelScanner'
 import ProductPack from './ProductPack'
 
-export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }) {
-  const [selectedIngredient, setSelectedIngredient] = useState(null)
+export default function ProductDetail({ product, onBack, onAdd, onOpen, limits, avoid = [], onNavigate }) {
+  const [showRaw, setShowRaw] = useState(false)
+
+  const scan = useMemo(() => scanProduct(product), [product])
+  const flags = useMemo(() => avoidHits(product, avoid), [product, avoid])
+  const organs = useMemo(
+    () => Object.entries(scan.organs).sort((a, b) => b[1] - a[1]).filter(([, v]) => v > 0),
+    [scan]
+  )
+  const maxOrgan = Math.max(1, ...organs.map(([, v]) => v))
+  const band = TOX_BANDS[scan.band]
 
   const alternative = useMemo(() => {
     return products.find((item) => item.id === product.alternative)
@@ -20,9 +32,6 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }
     sodium: { label: 'Sodium', unit: 'mg', color: '#7d88d9', icon: Sparkles },
     satFat: { label: 'Saturated fat', unit: 'g', color: '#c49143', icon: HeartPulse },
   }
-
-  // Look up details of an ingredient in our hazard registry
-  const getIngredientDetails = (name) => findIngredient(name)
 
   const ScoreBadge = ({ score, grade, large = false }) => {
     const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
@@ -65,11 +74,63 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }
             <button className="primary-button" onClick={() => onAdd(product)}>
               <Plus size={18} /> Add to diary
             </button>
-            <button className="secondary-button">
-              <ShoppingBasket size={18} /> Find online stores
+            <button className="secondary-button" onClick={() => onNavigate?.('compare')}>
+              <GitCompareArrows size={18} /> Compare with another
             </button>
           </div>
         </div>
+      </section>
+
+      {flags.length > 0 && (
+        <section className="detail-avoid-alert">
+          <Ban size={22} />
+          <div>
+            <strong>This contains {flags.length} thing{flags.length !== 1 ? 's' : ''} on your avoid list</strong>
+            <div className="scanner-avoid-tags">
+              {flags.map((f) => (
+                <span key={f.rule.id}>{f.rule.label} <small>found “{f.matchedTerm}”</small></span>
+              ))}
+            </div>
+          </div>
+          <button className="text-button" onClick={() => onNavigate?.('avoid')}>Edit list <ArrowRight size={14} /></button>
+        </section>
+      )}
+
+      {/* Toxic load + organ impact */}
+      <section className="panel detail-tox-panel" style={{ '--band': band.color }}>
+        <div className="detail-tox-head">
+          <div className="detail-tox-score">
+            <strong>{scan.toxIndex}</strong>
+            <span>toxic load<br />/ 100</span>
+          </div>
+          <div>
+            <span className="tox-risk-chip" style={{ background: band.color }}>{band.label}</span>
+            <h2>Body impact analysis</h2>
+            <p>
+              {band.note} We found <strong>{scan.additives.length} declared additive{scan.additives.length !== 1 ? 's' : ''}</strong>{' '}
+              and <strong>{scan.hazards.length} flagged ingredient{scan.hazards.length !== 1 ? 's' : ''}</strong> loading{' '}
+              <strong>{scan.systemsHit} body system{scan.systemsHit !== 1 ? 's' : ''}</strong>.
+            </p>
+          </div>
+        </div>
+        {organs.length > 0 && (
+          <div className="tox-organ-bars">
+            {organs.slice(0, 8).map(([key, value]) => {
+              const sys = ORGAN_SYSTEMS[key]
+              return (
+                <div key={key} className="tox-organ-bar-row">
+                  <button className="tox-organ-bar-name" onClick={() => onNavigate?.('toxicity')}>
+                    <span>{sys.emoji}</span> {sys.label}
+                  </button>
+                  <div className="tox-organ-bar">
+                    <span style={{ width: `${(value / maxOrgan) * 100}%`, background: sys.color }} />
+                  </div>
+                  <strong>{Math.round(value)}</strong>
+                </div>
+              )
+            })}
+          </div>
+        )}
       </section>
 
       <section className="detail-grid">
@@ -134,101 +195,65 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits }
         </article>
       </section>
 
-      {/* Interactive Ingredient Explainer Cloud */}
+      {/* ============ THE INGREDIENT LIST ============ */}
       <section className="panel ingredient-panel">
         <div className="section-heading">
           <div>
-            <span className="eyebrow">Additive Auditor</span>
-            <h2>Interactive Ingredient Decoder</h2>
+            <span className="eyebrow">Additive auditor</span>
+            <h2>Full ingredient list, decoded</h2>
           </div>
-          <span className="helper-click-badge">💡 Click highlighted items to decode</span>
+          <span className="helper-click-badge">💡 Tap any ingredient for the mechanism</span>
         </div>
-        
-        {/* Decoder Overlay Modal if ingredient is clicked */}
-        {selectedIngredient && (() => {
-          const cls = selectedIngredient.cls
-          const rich = selectedIngredient.rich
-          const meta = VERDICT_META[cls.verdict]
-          return (
-            <div className="ingredient-detail-box animated-fade-in">
-              <div className="ing-detail-header">
-                <h3>🔍 Decoder: {cls.label}</h3>
-                <button className="icon-button" onClick={() => setSelectedIngredient(null)} aria-label="Close decoder">
-                  <X size={15} />
-                </button>
+
+        {product.ingredients.length > 0 ? (
+          <>
+            <div className="ingredient-summary">
+              <div className="ing-quality-bar">
+                <span className="iq good" style={{ flex: scan.counts.good || 0.0001 }} />
+                <span className="iq neutral" style={{ flex: scan.counts.neutral || 0.0001 }} />
+                <span className="iq bad" style={{ flex: scan.counts.bad || 0.0001 }} />
               </div>
-              <div className="ing-detail-body">
-                <div className="ing-verdict-badge" style={{ '--v': meta.color }}>
-                  {cls.verdict === 'good' ? '🟢' : cls.verdict === 'bad' ? '🔴' : '⚪'} {meta.label}
-                  <span> · {cls.group}</span>
-                </div>
-                <div className="ing-description">
-                  <p>{cls.why}</p>
-                </div>
-                {rich && (
-                  <>
-                    <div className="ing-details-grid">
-                      <div>
-                        <strong>Body systems harmed:</strong>
-                        <div className="ing-organs">
-                          {rich.organs.length === 0 && <span className="organ-tag">No major organ harm</span>}
-                          {rich.organs.map(o => (
-                            <span key={o} className="organ-tag">
-                              {ORGAN_SYSTEMS[o]?.emoji} {ORGAN_SYSTEMS[o]?.label || o}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <strong>Regulatory Status:</strong>
-                        <p className="ing-small-p">{rich.regulatory}</p>
-                      </div>
-                    </div>
-                    <div className="ing-description">
-                      <strong>Biological Issue Created in Body:</strong>
-                      <p>{rich.issues}</p>
-                    </div>
-                    <div className="ing-replacement">
-                      <strong>Replaced with:</strong>
-                      <p>In clean foods, this is replaced by: <span>{rich.replacedBy}</span></p>
-                    </div>
-                  </>
-                )}
+              <div className="ing-quality-legend">
+                <span><i className="good" /> {scan.counts.good} good</span>
+                <span><i className="neutral" /> {scan.counts.neutral} neutral</span>
+                <span><i className="bad" /> {scan.counts.bad} watch out</span>
+                <span className="ing-count">{product.ingredients.length} total</span>
               </div>
             </div>
-          )
-        })()}
 
-        <div className="ingredient-legend">
-          <span><i style={{ background: VERDICT_META.good.color }} /> Good</span>
-          <span><i style={{ background: VERDICT_META.neutral.color }} /> Neutral</span>
-          <span><i style={{ background: VERDICT_META.bad.color }} /> Watch out</span>
-        </div>
-        <div className="ingredient-cloud">
-          {product.ingredients.map((ingredient, index) => {
-            const cls = classifyIngredient(ingredient)
-            const rich = getIngredientDetails(ingredient)
-            return (
-              <button
-                key={index}
-                className={`ingredient-chip clickable v-${cls.verdict}`}
-                onClick={() => setSelectedIngredient({ cls, rich })}
-              >
-                {ingredient}
-                <span className="info-dot">
-                  {cls.verdict === 'bad' ? <TriangleAlert size={10} /> : cls.verdict === 'good' ? <Leaf size={10} /> : <Info size={10} />}
+            {scan.lines[0] && (
+              <p className="ingredient-lead">
+                <Info size={14} />
+                <span>
+                  Ingredients are printed by descending weight, so <strong>{scan.lines[0].raw}</strong>
+                  {scan.lines[1] ? <> and <strong>{scan.lines[1].raw}</strong> make up</> : <> makes up</>} the bulk of this pack.
                 </span>
-              </button>
-            )
-          })}
-          {product.ingredients.length === 0 && (
-            <p className="label-note">No ingredient list was declared for this product in the source data.</p>
-          )}
-        </div>
+              </p>
+            )}
+
+            <IngredientLedger lines={scan.lines} />
+
+            <button className="text-button" onClick={() => setShowRaw(!showRaw)} style={{ marginTop: 12 }}>
+              <FileText size={14} /> {showRaw ? 'Hide' : 'Show'} the statement exactly as printed
+            </button>
+            {showRaw && (
+              <div className="ingredient-raw animated-fade-in">
+                <span className="eyebrow">As declared on pack</span>
+                <p>INGREDIENTS: {product.ingredients.join(', ')}</p>
+              </div>
+            )}
+          </>
+        ) : (
+          <p className="label-note">No ingredient list was declared for this product in the source data.</p>
+        )}
+
         <p className="label-note">
-          <Info size={14} /> Click any ingredient to see why it is good, neutral, or worth watching. Always review the on-pack label if you have severe allergies.
+          <Info size={14} /> Always review the physical pack if you have a severe allergy — “may contain” cross-contamination warnings are not part of the declared ingredient list.
         </p>
       </section>
+
+      {/* ============ ADDITIVE TABLE ============ */}
+      {scan.additives.length > 0 && <AdditiveTable additives={scan.additives} />}
 
       {/* Alternative Swap Section */}
       {alternative && (

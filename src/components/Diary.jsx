@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react'
-import { Plus, ArrowLeft, ArrowRight, Trash2, ChevronRight, Info, Calendar } from 'lucide-react'
+import { Plus, ArrowLeft, ArrowRight, Trash2, ChevronRight, Info, Calendar, FlaskConical, ChevronDown } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import HealthReport from './HealthReport'
 import { DEFAULT_LIMITS } from '../lib/health'
-import { ingredientQuality } from '../lib/ingredientClassify'
+import { ingredientQuality, VERDICT_META } from '../lib/ingredientClassify'
+import { scanProduct, TOX_BANDS } from '../lib/toxicity'
 
 const metricMeta = {
   calories: { label: 'Calories', unit: ' kcal', color: '#9c1b2e' },
@@ -14,6 +15,7 @@ const metricMeta = {
 
 export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOpen, onDeleteLog, limits = DEFAULT_LIMITS }) {
   const dailyLimits = limits
+  const [openIng, setOpenIng] = useState(null)   // which timeline entry has its label expanded
   // Generate a dynamic list of 7 days around the activeDate
   const daysList = useMemo(() => {
     const days = []
@@ -89,6 +91,17 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
     return t
   }, [activeLogs])
   const tallyTotal = ingredientTally.good + ingredientTally.neutral + ingredientTally.bad
+
+  // Distinct additive codes eaten on this date, worst first.
+  const dayAdditives = useMemo(() => {
+    const map = new Map()
+    activeLogs.forEach((item) => {
+      const prod = products.find((p) => p.id === item.productId)
+      if (!prod) return
+      scanProduct(prod).additives.forEach((a) => map.set(a.code, a))
+    })
+    return [...map.values()]
+  }, [activeLogs])
 
   const ProductPack = ({ product, compact = false }) => {
     return (
@@ -170,27 +183,56 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
             {activeLogs.map((item, index) => {
               const product = products.find((p) => p.id === item.productId)
               if (!product) return null
+              const scan = scanProduct(product)
+              const rowKey = item.id || `${item.productId}-${index}`
+              const expanded = openIng === rowKey
               return (
-                <div className="timeline-item" key={`${item.productId}-${index}`}>
+                <div className="timeline-item" key={rowKey}>
                   <span className="time">{item.time}</span>
                   <span className="timeline-dot" />
                   <div className="timeline-card">
-                    <ProductPack product={product} compact />
-                    <span className="timeline-card-meta" onClick={() => onOpen(product)}>
-                      <strong>{product.name}</strong>
-                      <small>{product.brand} · {item.servings} serving{item.servings !== 1 ? 's' : ''}</small>
-                    </span>
-                    <div className="timeline-card-cal">
-                      <strong>{Math.round(product.calories * item.servings)}</strong>
-                      <small>kcal</small>
+                    <div className="timeline-card-row">
+                      <ProductPack product={product} compact />
+                      <span className="timeline-card-meta" onClick={() => onOpen(product)}>
+                        <strong>{product.name}</strong>
+                        <small>{product.brand} · {item.servings} serving{item.servings !== 1 ? 's' : ''}</small>
+                        <span className="timeline-tox" style={{ '--band': TOX_BANDS[scan.band].color }}>
+                          load {scan.toxIndex} · {scan.additives.length} additive{scan.additives.length !== 1 ? 's' : ''}
+                        </span>
+                      </span>
+                      <div className="timeline-card-cal">
+                        <strong>{Math.round(product.calories * item.servings)}</strong>
+                        <small>kcal</small>
+                      </div>
+                      <button
+                        className="delete-log-btn"
+                        onClick={() => onDeleteLog(item.id || index)}
+                        title="Remove from logs"
+                      >
+                        <Trash2 size={15} />
+                      </button>
                     </div>
-                    <button
-                      className="delete-log-btn"
-                      onClick={() => onDeleteLog(item.id || index)}
-                      title="Remove from logs"
-                    >
-                      <Trash2 size={15} />
-                    </button>
+
+                    {product.ingredients.length > 0 && (
+                      <>
+                        <button className="timeline-ing-toggle" onClick={() => setOpenIng(expanded ? null : rowKey)}>
+                          <FlaskConical size={12} />
+                          {expanded ? 'Hide' : 'Show'} what was in it ({product.ingredients.length} ingredients)
+                          <ChevronDown size={13} className={expanded ? 'flip' : ''} />
+                        </button>
+                        {expanded && (
+                          <div className="timeline-ing-list animated-fade-in">
+                            {scan.lines.map((l, li) => (
+                              <span key={li} className={`ing-mini v-${l.verdict}`} style={{ '--v': VERDICT_META[l.verdict].color }}
+                                title={l.harm || l.cls?.why}>
+                                {l.raw}
+                                {l.additives.map((a) => <i key={a.code}>{a.code}</i>)}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
               )
@@ -242,6 +284,19 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
                 <span><i className="good" /> {ingredientTally.good} good</span>
                 <span><i className="neutral" /> {ingredientTally.neutral} neutral</span>
                 <span><i className="bad" /> {ingredientTally.bad} watch</span>
+              </div>
+            </div>
+          )}
+
+          {dayAdditives.length > 0 && (
+            <div className="ing-quality-block">
+              <span className="eyebrow">Additives eaten today</span>
+              <div className="diary-additive-chips">
+                {dayAdditives.map((a) => (
+                  <span key={a.code} className={`diary-add-chip r-${a.risk}`} title={`${a.name} — ${a.harm}`}>
+                    <b>{a.code}</b> {a.name.replace(/\s*\(.*\)/, '')}
+                  </span>
+                ))}
               </div>
             </div>
           )}

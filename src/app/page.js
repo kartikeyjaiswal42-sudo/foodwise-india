@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import {
   BookOpen, CalendarDays, CheckCircle2, CircleHelp, Home, HeartPulse,
   Leaf, Menu, ScanLine, Search, Star, Store, Sparkles, Activity,
+  GitCompareArrows, Ban,
 } from 'lucide-react'
 
 import { products } from '../data/foodDatabase'
@@ -18,6 +19,10 @@ import Companies from '../components/Companies'
 import Profile from '../components/Profile'
 import HealthySwaps from '../components/HealthySwaps'
 import BodyToxicity from '../components/BodyToxicity'
+import LabelScanner from '../components/LabelScanner'
+import Compare from '../components/Compare'
+import AvoidList from '../components/AvoidList'
+import { AVOID_STORAGE_KEY } from '../lib/avoidList'
 
 const navItems = [
   { id: 'home', label: 'Today', icon: Home },
@@ -26,6 +31,12 @@ const navItems = [
   { id: 'profile', label: 'My Health & Goals', icon: HeartPulse },
   { id: 'ingredients', label: 'Ingredient Guide', icon: BookOpen },
   { id: 'toxicity', label: 'Body Toxicity Chart', icon: Activity },
+]
+
+const toolItems = [
+  { id: 'scanner', label: 'Label Scanner', icon: ScanLine },
+  { id: 'compare', label: 'Compare Products', icon: GitCompareArrows },
+  { id: 'avoid', label: 'My Avoid List', icon: Ban },
 ]
 
 const todayStr = new Date().toISOString().split('T')[0]
@@ -41,6 +52,7 @@ export default function Page() {
   const [query, setQuery] = useState('')
   const [log, setLog] = useState([])
   const [profile, setProfile] = useState(null)
+  const [avoid, setAvoid] = useState([])
   const [hydrated, setHydrated] = useState(false)
 
   // Hydrate from localStorage AFTER mount (so static prerender has no window access)
@@ -50,6 +62,8 @@ export default function Page() {
       if (savedLog) setLog(JSON.parse(savedLog))
       const savedProfile = localStorage.getItem('jaano-profile-v1')
       if (savedProfile) setProfile(JSON.parse(savedProfile))
+      const savedAvoid = localStorage.getItem(AVOID_STORAGE_KEY)
+      if (savedAvoid) setAvoid(JSON.parse(savedAvoid))
     } catch { /* ignore */ }
     setHydrated(true)
   }, [])
@@ -57,6 +71,10 @@ export default function Page() {
   useEffect(() => {
     if (hydrated) localStorage.setItem('jaano-food-log-v2', JSON.stringify(log))
   }, [log, hydrated])
+
+  useEffect(() => {
+    if (hydrated) localStorage.setItem(AVOID_STORAGE_KEY, JSON.stringify(avoid))
+  }, [avoid, hydrated])
 
   // Personalised daily ceilings (falls back to sensible defaults with no profile)
   const limits = useMemo(() => computePlan(profile)?.limits || DEFAULT_LIMITS, [profile])
@@ -128,12 +146,14 @@ export default function Page() {
           onAdd={openAdd}
           onOpen={openProduct}
           limits={limits}
+          avoid={avoid}
+          onNavigate={navigate}
         />
       )
     }
     switch (view) {
       case 'explore':
-        return <Explore query={query} setQuery={setQuery} onOpen={openProduct} onAdd={openAdd} />
+        return <Explore query={query} setQuery={setQuery} onOpen={openProduct} onAdd={openAdd} avoid={avoid} />
       case 'diary':
         return (
           <Diary log={log} activeDate={activeDate} setActiveDate={setActiveDate}
@@ -146,7 +166,13 @@ export default function Page() {
       case 'ingredients':
         return <IngredientGuide />
       case 'toxicity':
-        return <BodyToxicity onOpen={openProduct} />
+        return <BodyToxicity onOpen={openProduct} log={log} />
+      case 'scanner':
+        return <LabelScanner avoid={avoid} onOpen={openProduct} />
+      case 'compare':
+        return <Compare onOpen={openProduct} onAdd={openAdd} avoid={avoid} />
+      case 'avoid':
+        return <AvoidList avoid={avoid} onChange={setAvoid} onOpen={openProduct} />
       case 'companies':
         return <Companies onOpen={openProduct} onAdd={openAdd} />
       case 'home':
@@ -183,6 +209,20 @@ export default function Page() {
               </button>
             )
           })}
+          <span className="nav-label">Tools</span>
+          {toolItems.map((item) => {
+            const Icon = item.icon
+            return (
+              <button key={item.id}
+                className={view === item.id && !selectedProduct ? 'active' : ''}
+                onClick={() => navigate(item.id)}>
+                <Icon size={18} />
+                {item.label}
+                {item.id === 'avoid' && avoid.length > 0 && <span className="nav-count">{avoid.length}</span>}
+              </button>
+            )
+          })}
+
           <span className="nav-label">Discover</span>
           <button className={view === 'companies' && !selectedProduct ? 'active' : ''} onClick={() => navigate('companies')}>
             <Store size={18} /> Companies list
@@ -195,8 +235,8 @@ export default function Page() {
         <div className="side-card">
           <div><Sparkles size={17} /></div>
           <strong>Scan Pack Ingredients</strong>
-          <p>Instantly audit chemicals and additives on packaging.</p>
-          <button onClick={() => navigate('explore')}><ScanLine size={15} /> Scan barcode</button>
+          <p>Paste any pack's ingredient list and audit every chemical on it.</p>
+          <button onClick={() => navigate('scanner')}><ScanLine size={15} /> Open label scanner</button>
         </div>
 
         <div className="profile-mini">
@@ -235,7 +275,7 @@ export default function Page() {
       </div>
 
       {showAdd && (
-        <AddFoodModal products={products} initialProduct={addTarget}
+        <AddFoodModal products={products} initialProduct={addTarget} avoid={avoid}
           onClose={() => { setShowAdd(false); setAddTarget(null); setQuery('') }}
           onAdd={addFood} />
       )}
