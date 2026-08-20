@@ -2,8 +2,8 @@
   "name": "Jaano — Know what you eat",
   "short_name": "Jaano",
   "description": "Scan any Indian packaged food and see what is really inside it: every additive decoded, organ-level impact, and how it fits your own health conditions.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/foodwise-india/",
+  "scope": "/foodwise-india/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fbf9f4",
@@ -17,25 +17,25 @@
   ],
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "/foodwise-india/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "/foodwise-india/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/maskable-192.png",
+      "src": "/foodwise-india/icons/maskable-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icons/maskable-512.png",
+      "src": "/foodwise-india/icons/maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -46,10 +46,10 @@
       "name": "Scan a barcode",
       "short_name": "Scan",
       "description": "Point the camera at a pack and get its verdict",
-      "url": "/?view=barcode",
+      "url": "/foodwise-india/?view=barcode",
       "icons": [
         {
-          "src": "/icons/icon-192.png",
+          "src": "/foodwise-india/icons/icon-192.png",
           "sizes": "192x192"
         }
       ]
@@ -57,10 +57,10 @@
     {
       "name": "My food diary",
       "short_name": "Diary",
-      "url": "/?view=diary",
+      "url": "/foodwise-india/?view=diary",
       "icons": [
         {
-          "src": "/icons/icon-192.png",
+          "src": "/foodwise-india/icons/icon-192.png",
           "sizes": "192x192"
         }
       ]
