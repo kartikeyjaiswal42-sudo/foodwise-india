@@ -122,7 +122,23 @@ const tata = cat.products.filter((p) => p.company === COMPANY)
 // SKU and the catalog would grow by ~150 duplicates each time.
 const byId = new Map(cat.products.map((p) => [p.id, p]))
 
-const stats = { scraped: records.length, collapsed: collapsed.length, pricedExisting: 0, nutritionAdded: 0, added: 0, skipped: 0 }
+/**
+ * A brand page's "related products" rail can carry other companies' goods, so
+ * the scrape picked up Planet Ayurveda and Nutriwish. Filing a third party's
+ * product under "Tata Consumer" would be simply false — the same ownership
+ * discipline the OFF curation pass applies, enforced again here because the
+ * data arrives by a different route.
+ */
+const TATA_BRAND = /^(tata|tetley|ching|smith\s*&?\s*jones|organic\s*india|himalayan|soulfull|sampann|i-?shakti|teapigs|good\s*earth|vitax|eight\s*o)/i
+const foreign = collapsed.filter((r) => !TATA_BRAND.test(r.brand))
+if (foreign.length) {
+  console.error(`rejected ${foreign.length} non-Tata records: ${[...new Set(foreign.map((r) => r.brand))].join(', ')}`)
+}
+for (let i = collapsed.length - 1; i >= 0; i--) {
+  if (!TATA_BRAND.test(collapsed[i].brand)) collapsed.splice(i, 1)
+}
+
+const stats = { scraped: records.length, rejectedNonTata: foreign.length, collapsed: collapsed.length, pricedExisting: 0, nutritionAdded: 0, added: 0, skipped: 0 }
 
 /* ---- match & update ----------------------------------------------------- */
 const matchedIds = new Set()

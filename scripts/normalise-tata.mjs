@@ -39,6 +39,8 @@ const CANON = [
   [/^tata\s*gluco/i, 'Tata Gluco Plus'],
   [/^tata\s*water/i, 'Tata Water Plus'],
   [/^tata\s*q$/i, 'Tata Q'],
+  [/^tata\s*coffee/i, 'Tata Coffee'],
+  [/^chings?$/i, "Ching's Secret"],
   [/^tata\s*nx/i, 'Tata Nx'],
   [/^tata$/i, 'Tata'],
 ]
