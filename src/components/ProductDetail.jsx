@@ -5,14 +5,21 @@ import { ORGAN_SYSTEMS } from '../data/ingredientsDb'
 import { VERDICT_META } from '../lib/ingredientClassify'
 import { scanProduct, TOX_BANDS } from '../lib/toxicity'
 import { avoidHits } from '../lib/avoidList'
+import { personalAlerts, conditionById, DISCLAIMER } from '../lib/conditions'
 import { IngredientLedger, AdditiveTable } from './LabelScanner'
 import ProductPack from './ProductPack'
+import ScoreBadge from './ScoreBadge'
+import { isRated, auditProduct, CONFIDENCE_META } from '../lib/dataQuality'
 
-export default function ProductDetail({ product, onBack, onAdd, onOpen, limits, avoid = [], onNavigate }) {
+export default function ProductDetail({ product, onBack, onAdd, onOpen, limits, avoid = [], conditions = [], onNavigate }) {
   const [showRaw, setShowRaw] = useState(false)
 
   const scan = useMemo(() => scanProduct(product), [product])
   const flags = useMemo(() => avoidHits(product, avoid), [product, avoid])
+  const personal = useMemo(
+    () => personalAlerts(product, conditions, limits),
+    [product, conditions, limits]
+  )
   const organs = useMemo(
     () => Object.entries(scan.organs).sort((a, b) => b[1] - a[1]).filter(([, v]) => v > 0),
     [scan]
@@ -33,15 +40,6 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits, 
     satFat: { label: 'Saturated fat', unit: 'g', color: '#c49143', icon: HeartPulse },
   }
 
-  const ScoreBadge = ({ score, grade, large = false }) => {
-    const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
-    return (
-      <div className={`score-badge ${tone} ${large ? 'large' : ''}`}>
-        <strong>{grade}</strong>
-        <span>{score}</span>
-      </div>
-    )
-  }
 
   return (
     <main className="detail-view">
@@ -61,12 +59,20 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits, 
           <span className="eyebrow">{product.company} · {product.category}</span>
           <h1>{product.name}</h1>
           <p className="brand-line">
-            {product.brand} <span /> {product.size} <span /> ₹{product.price}
+            {product.brand} <span /> {product.size} <span />
+            <span title={product.priceNote || 'Estimated from pack weight and a category rate — not a printed price.'}>
+              ₹{product.price} {product.priceSource === 'bigbasket-mrp'
+                ? <em className="price-kind real">MRP</em>
+                : <em className="price-kind">est.</em>}
+            </span>
           </p>
           <div className="detail-score-row">
             <ScoreBadge score={product.score} grade={product.grade} large />
             <div className="score-desc">
-              <strong>{product.score >= 75 ? 'Excellent clean alternative' : product.score >= 50 ? 'Occasional consume' : 'Processed food: high watchpoint'}</strong>
+              <strong>{!isRated(product) ? 'Not enough label data to rate this pack'
+                : product.score >= 75 ? 'Excellent clean alternative'
+                  : product.score >= 50 ? 'Occasional consume'
+                    : 'Processed food: high watchpoint'}</strong>
               <p>Score calculated considering synthetic additives, sodium concentration, and glycemic index load.</p>
             </div>
           </div>
@@ -80,6 +86,67 @@ export default function ProductDetail({ product, onBack, onAdd, onOpen, limits, 
           </div>
         </div>
       </section>
+
+      {(() => {
+        const audit = auditProduct(product)
+        if (audit.confidence === 'full' && !audit.implausible.length) return null
+        const meta = CONFIDENCE_META[audit.confidence]
+        return (
+          <section className="data-quality-note">
+            <Info size={19} />
+            <div>
+              <strong>{meta.label}</strong>
+              <p>
+                {audit.confidence === 'none'
+                  ? 'Open Food Facts has this pack on file but nobody has photographed or typed up its label yet, so Jaano will not put a score on it. Anything we do show below comes only from what is published.'
+                  : meta.note}
+              </p>
+              {audit.reasons.length > 0 && (
+                <ul>{audit.reasons.map((r, i) => <li key={i}>{r}</li>)}</ul>
+              )}
+            </div>
+          </section>
+        )
+      })()}
+
+      {personal.length > 0 && (
+        <section className="personal-alert-panel">
+          <div className="personal-alert-head">
+            <HeartPulse size={20} />
+            <div>
+              <strong>What this means for you</strong>
+              <small>
+                Based on {conditions.map((c) => conditionById(c)?.label).filter(Boolean).join(' · ')}
+              </small>
+            </div>
+            <button className="text-button" onClick={() => onNavigate?.('profile')}>
+              Edit <ArrowRight size={14} />
+            </button>
+          </div>
+          <ul className="personal-alert-list">
+            {personal.map((a, i) => (
+              <li key={i} className={`personal-alert sev-${a.severity}`}>
+                <span className="personal-alert-icon">
+                  {a.severity === 'high' ? <TriangleAlert size={15} /> : <Info size={15} />}
+                </span>
+                <div>
+                  <strong>{a.title}</strong>
+                  <p>{a.detail}</p>
+                  {a.ingredient && (
+                    <small className="personal-alert-src">Found in: “{a.ingredient}”</small>
+                  )}
+                </div>
+                {a.kind === 'nutrient' && (
+                  <div className="personal-alert-meter" title={`${a.pct}% of your daily ceiling`}>
+                    <span style={{ width: `${Math.min(100, a.pct)}%` }} />
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+          <p className="personal-alert-foot">{DISCLAIMER}</p>
+        </section>
+      )}
 
       {flags.length > 0 && (
         <section className="detail-avoid-alert">

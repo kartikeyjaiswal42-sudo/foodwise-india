@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react'
 import { ArrowLeft, ArrowRight, Store, ShieldAlert, Award, TrendingUp, Sparkles, AlertTriangle, ShieldCheck, Check } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import ProductPack from './ProductPack'
+import ScoreBadge from './ScoreBadge'
+import { isRated } from '../lib/dataQuality'
 
 const companyList = [
   {
@@ -147,12 +149,20 @@ export default function Companies({ onOpen, onAdd }) {
     return companyList.map((company) => {
       const companyProducts = getCompanyProducts(company.name)
       const count = companyProducts.length
-      const scoreSum = companyProducts.reduce((sum, p) => sum + p.score, 0)
-      const avgScore = count > 0 ? Math.round(scoreSum / count) : 0
+      // Unrated products carry score === null; including them would coerce to 0 and
+      // understate every company's average. They are excluded from the average and
+      // counted separately.
+      const ratedProducts = companyProducts.filter(isRated)
+      const ratedCount = ratedProducts.length
+      const scoreSum = ratedProducts.reduce((sum, p) => sum + p.score, 0)
+      // Divide by the RATED count, not the total: averaging a rated-only sum over
+      // every product would silently penalise companies whose packs happen to be
+      // under-documented in the open database.
+      const avgScore = ratedCount > 0 ? Math.round(scoreSum / ratedCount) : 0
 
       // Grade calculation based on avgScore
       let grade = 'N/A'
-      if (count > 0) {
+      if (ratedCount > 0) {
         if (avgScore >= 80) grade = 'A'
         else if (avgScore >= 70) grade = 'B'
         else if (avgScore >= 50) grade = 'C'
@@ -175,15 +185,6 @@ export default function Companies({ onOpen, onAdd }) {
     return computedCompanies.find((c) => c.name === selectedCompany)
   }, [selectedCompany, computedCompanies])
 
-  const ScoreBadge = ({ score, grade }) => {
-    const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
-    return (
-      <div className={`score-badge ${tone}`}>
-        <strong>{grade}</strong>
-        <span>{score}</span>
-      </div>
-    )
-  }
 
   const ProductCard = ({ product }) => {
     const topConcern = product.concerns[0]

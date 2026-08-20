@@ -50,7 +50,9 @@ export default function Compare({ onOpen, onAdd, avoid = [] }) {
     let best = 0
     scans.forEach((s, i) => {
       if (s.toxIndex < scans[best].toxIndex) best = i
-      else if (s.toxIndex === scans[best].toxIndex && s.product.score > scans[best].product.score) best = i
+      // `null > null` is false and `null > 60` is false, so an unrated product can
+      // never win a tie-break it has no evidence for.
+      else if (s.toxIndex === scans[best].toxIndex && (s.product.score ?? -1) > (scans[best].product.score ?? -1)) best = i
     })
     return best
   }, [scans])
@@ -124,7 +126,7 @@ export default function Compare({ onOpen, onAdd, avoid = [] }) {
                       <strong>{p.name}</strong>
                       <small>{p.brand} · {p.category}</small>
                     </div>
-                    <span className={`grade-pill g-${p.grade}`}>{p.grade}</span>
+                    <span className={`grade-pill g-${p.grade || 'none'}`}>{p.grade || '?'}</span>
                     <Plus size={16} />
                   </button>
                 ))}

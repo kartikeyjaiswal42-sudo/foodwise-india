@@ -1,7 +1,8 @@
 'use client'
 import { useState, useMemo } from 'react'
-import { Activity, Flame, Target, HeartPulse, Save, Scale, Ruler, Check } from 'lucide-react'
-import { ACTIVITY_FACTORS, GOALS, computePlan } from '../lib/health'
+import { Activity, Flame, Target, HeartPulse, Save, Scale, Ruler, Check, ShieldAlert, Info } from 'lucide-react'
+import { ACTIVITY_FACTORS, GOALS, computePlan, DEFAULT_LIMITS } from '../lib/health'
+import { CONDITIONS, CONDITION_GROUPS, applyConditions, DISCLAIMER } from '../lib/conditions'
 
 export default function Profile({ profile, onSave }) {
   const [form, setForm] = useState(() => ({
@@ -11,11 +12,29 @@ export default function Profile({ profile, onSave }) {
     sex: profile?.sex ?? 'male',
     activity: profile?.activity ?? 'moderate',
     goal: profile?.goal ?? 'maintain',
+    conditions: profile?.conditions ?? [],
   }))
   const [saved, setSaved] = useState(false)
 
   const set = (k, v) => { setForm((f) => ({ ...f, [k]: v })); setSaved(false) }
   const plan = useMemo(() => computePlan(form), [form])
+
+  const toggleCondition = (id) => {
+    setForm((f) => ({
+      ...f,
+      conditions: f.conditions.includes(id)
+        ? f.conditions.filter((c) => c !== id)
+        : [...f.conditions, id],
+    }))
+    setSaved(false)
+  }
+
+  // Conditions apply on top of whatever base we have — so someone who only
+  // records an allergy still gets a working plan without entering body metrics.
+  const tightened = useMemo(
+    () => applyConditions(plan?.limits || DEFAULT_LIMITS, form.conditions),
+    [plan, form.conditions]
+  )
 
   const save = () => {
     onSave({
@@ -25,6 +44,7 @@ export default function Profile({ profile, onSave }) {
       sex: form.sex,
       activity: form.activity,
       goal: form.goal,
+      conditions: form.conditions,
     })
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
@@ -104,10 +124,55 @@ export default function Profile({ profile, onSave }) {
             </div>
           </div>
 
-          <button className="primary-button pf-save" onClick={save} disabled={!plan}>
+          <div className="pf-block pf-conditions">
+            <span className="pf-block-label"><ShieldAlert size={14} /> Health conditions <em>(optional)</em></span>
+            <p className="pf-cond-intro">
+              Pick anything that applies. Jaano will tighten your ceilings to the published
+              guideline for that condition and flag the specific ingredients that matter to you —
+              on every product, scan and label.
+            </p>
+            {CONDITION_GROUPS.map((group) => {
+              const items = CONDITIONS.filter((c) => c.group === group)
+              if (!items.length) return null
+              return (
+                <div key={group} className="pf-cond-group">
+                  <span className="pf-cond-group-name">{group}</span>
+                  <div className="pf-cond-grid">
+                    {items.map((c) => {
+                      const on = form.conditions.includes(c.id)
+                      return (
+                        <button
+                          key={c.id}
+                          type="button"
+                          className={`pf-cond ${on ? 'on' : ''}`}
+                          onClick={() => toggleCondition(c.id)}
+                          aria-pressed={on}
+                        >
+                          <span className="pf-cond-emoji">{c.emoji}</span>
+                          <span className="pf-cond-text">
+                            <strong>{c.label}</strong>
+                            <small>{c.short}</small>
+                          </span>
+                          {on && <Check size={15} className="pf-cond-tick" />}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          <button className="primary-button pf-save" onClick={save} disabled={!plan && !form.conditions.length}>
             {saved ? <><Check size={18} /> Saved — diary updated</> : <><Save size={18} /> Save & apply to my diary</>}
           </button>
-          {!plan && <p className="pf-hint">Enter height, weight and age to compute your plan.</p>}
+          {!plan && (
+            <p className="pf-hint">
+              {form.conditions.length
+                ? 'Your conditions will be saved. Add height, weight and age for calorie targets too.'
+                : 'Enter height, weight and age to compute your plan.'}
+            </p>
+          )}
         </article>
 
         {/* RESULT CARD */}
@@ -151,26 +216,77 @@ export default function Profile({ profile, onSave }) {
 
               <p className="goal-note">{GOALS[form.goal].note}</p>
 
-              <div className="limits-block">
-                <span className="eyebrow">Daily ceilings applied to your diary</span>
-                <div className="limit-rows">
-                  <div className="limit-row"><span>Calories</span><strong>{plan.limits.calories.toLocaleString()} kcal</strong></div>
-                  <div className="limit-row"><span>Added sugar</span><strong>{plan.limits.sugar} g</strong></div>
-                  <div className="limit-row"><span>Sodium</span><strong>{plan.limits.sodium.toLocaleString()} mg</strong></div>
-                  <div className="limit-row"><span>Saturated fat</span><strong>{plan.limits.satFat} g</strong></div>
-                </div>
-              </div>
-              <p className="pf-disclaimer">Estimates use the Mifflin–St Jeor equation. Educational only — not medical advice.</p>
+              <LimitsBlock base={plan.limits} tightened={tightened} />
+              <p className="pf-disclaimer">Estimates use the Mifflin–St Jeor equation. {DISCLAIMER}</p>
             </>
           ) : (
-            <div className="empty-state" style={{ padding: '40px 16px' }}>
-              <HeartPulse size={30} />
-              <h2>Awaiting your metrics</h2>
-              <p>Fill in the form to see your BMI, energy needs and personalised diary targets.</p>
-            </div>
+            <>
+              <div className="empty-state" style={{ padding: form.conditions.length ? '24px 16px' : '40px 16px' }}>
+                <HeartPulse size={30} />
+                <h2>Awaiting your metrics</h2>
+                <p>Fill in the form to see your BMI, energy needs and personalised diary targets.</p>
+              </div>
+              {form.conditions.length > 0 && (
+                <>
+                  <LimitsBlock base={DEFAULT_LIMITS} tightened={tightened} />
+                  <p className="pf-disclaimer">{DISCLAIMER}</p>
+                </>
+              )}
+            </>
           )}
         </article>
       </div>
     </main>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/*  Daily ceilings, showing what each condition tightened              */
+/* ------------------------------------------------------------------ */
+function LimitsBlock({ base, tightened }) {
+  const { limits, applied } = tightened
+  const rows = [
+    { key: 'calories', label: 'Calories', unit: 'kcal' },
+    { key: 'sugar', label: 'Added sugar', unit: 'g' },
+    { key: 'sodium', label: 'Sodium', unit: 'mg' },
+    { key: 'satFat', label: 'Saturated fat', unit: 'g' },
+  ]
+  // Latest tightening per nutrient is the one that won (applyConditions only
+  // records a change when it actually lowers the value).
+  const winner = {}
+  for (const a of applied) winner[a.nutrient] = a.condition
+
+  return (
+    <div className="limits-block">
+      <span className="eyebrow">Daily ceilings applied to your diary</span>
+      <div className="limit-rows">
+        {rows.map((r) => {
+          const was = base[r.key]
+          const now = limits[r.key]
+          const changed = now !== was
+          return (
+            <div key={r.key} className={`limit-row ${changed ? 'tightened' : ''}`}>
+              {/* The space before <em> is explicit: JSX drops whitespace between
+                  an expression and an adjacent element when the line wraps,
+                  which rendered "Sodiumwas 2,300". */}
+              <span>
+                {r.label}{' '}
+                {changed && <em className="limit-was">was {was.toLocaleString()}</em>}
+              </span>
+              <strong>
+                {now.toLocaleString()} {r.unit}
+                {changed && <small className="limit-why">for {winner[r.key]?.label}</small>}
+              </strong>
+            </div>
+          )
+        })}
+      </div>
+      {applied.length > 0 && (
+        <p className="limits-note">
+          <Info size={13} /> Tightened to the strictest published guideline among your conditions.
+          Selecting more conditions can only lower these numbers, never raise them.
+        </p>
+      )}
+    </div>
   )
 }

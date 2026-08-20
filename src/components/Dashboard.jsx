@@ -3,6 +3,8 @@ import { Plus, HeartPulse, Zap, Sparkles, Flame, ArrowRight, CheckCircle2, Leaf,
 import { products } from '../data/foodDatabase'
 import ProductPack from './ProductPack'
 import { DEFAULT_LIMITS } from '../lib/health'
+import ScoreBadge from './ScoreBadge'
+import { isRated } from '../lib/dataQuality'
 
 const metricMeta = {
   calories: { label: 'Calories', unit: ' kcal', color: '#9c1b2e', icon: Flame },
@@ -37,18 +39,12 @@ export default function Dashboard({ totals, log, onAdd, onOpen, onNavigate, limi
 
   const recommendations = useMemo(() => {
     // Highest-scoring clean products as upgrade suggestions
-    return [...products].filter((p) => p.score >= 80 && p.image).sort((a, b) => b.score - a.score).slice(0, 3)
+    // isRated() guard is explicit: `null >= 80` is already false, but relying on
+    // that coincidence is how an unrated product sneaks back into a recommendation.
+    return [...products].filter((p) => isRated(p) && p.score >= 80 && p.image)
+      .sort((a, b) => b.score - a.score).slice(0, 3)
   }, [])
 
-  const ScoreBadge = ({ score, grade }) => {
-    const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
-    return (
-      <div className={`score-badge ${tone}`}>
-        <strong>{grade}</strong>
-        <span>{score}</span>
-      </div>
-    )
-  }
 
   const ProductCard = ({ product }) => {
     const topConcern = product.concerns[0]

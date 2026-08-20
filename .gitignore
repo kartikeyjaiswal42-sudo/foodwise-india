@@ -29,3 +29,7 @@ src/data/*.bak-*
 /out/
 next-env.d.ts
 .env*
+
+# Tata harvest working files — raw Open Food Facts responses, regenerable via
+# `npm run catalog:tata`. The curated output lives in public/data/catalog.json.
+scripts/out/

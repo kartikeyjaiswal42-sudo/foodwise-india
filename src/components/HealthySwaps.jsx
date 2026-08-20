@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import { ArrowRight, Search, Sparkles, TrendingUp } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import ProductPack from './ProductPack'
+import { isRated } from '../lib/dataQuality'
 
 export default function HealthySwaps({ onOpen, onAdd }) {
   const [query, setQuery] = useState('')
@@ -15,7 +16,7 @@ export default function HealthySwaps({ onOpen, onAdd }) {
     return products
       .map((p) => {
         const alt = p.alternative ? byId[p.alternative] : null
-        if (!alt || alt.score <= p.score + 5) return null
+        if (!alt || !isRated(p) || !isRated(alt) || alt.score <= p.score + 5) return null
         return { base: p, alt, gain: alt.score - p.score }
       })
       .filter(Boolean)

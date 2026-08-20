@@ -138,7 +138,7 @@ export default function BodyToxicity({ onOpen, log = [] }) {
                 <button key={p.id} className="tox-sample-card" onClick={() => onOpen?.(p)}>
                   <img src={p.image} alt={p.name} loading="lazy" />
                   <div><strong>{p.name}</strong><small>{p.brand}</small></div>
-                  <span className={`grade-pill g-${p.grade}`}>{p.grade}</span>
+                  <span className={`grade-pill g-${p.grade || 'none'}`}>{p.grade || '?'}</span>
                 </button>
               ))}
             </div>

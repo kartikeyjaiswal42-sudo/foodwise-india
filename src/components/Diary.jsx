@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Plus, ArrowLeft, ArrowRight, Trash2, ChevronRight, Info, Calendar, FlaskConical, ChevronDown } from 'lucide-react'
+import { Plus, ArrowLeft, ArrowRight, Trash2, ChevronRight, Info, Calendar, FlaskConical, ChevronDown, Camera, ChefHat, Store, Utensils } from 'lucide-react'
 import { products } from '../data/foodDatabase'
 import HealthReport from './HealthReport'
 import { DEFAULT_LIMITS } from '../lib/health'
@@ -13,7 +13,59 @@ const metricMeta = {
   satFat: { label: 'Saturated fat', unit: 'g', color: '#c49143' },
 }
 
-export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOpen, onDeleteLog, limits = DEFAULT_LIMITS }) {
+const MEAL_SOURCE_META = {
+  photo: { icon: Camera, label: 'From a photo' },
+  builder: { icon: ChefHat, label: 'Cooked at home' },
+  'eating-out': { icon: Store, label: 'Eating out' },
+  manual: { icon: Utensils, label: 'Added by hand' },
+}
+
+/**
+ * A cooked meal in the timeline.
+ *
+ * It shows a RANGE where a packaged item shows a single figure, because that is
+ * the honest difference between the two: a pack's label is a measurement, a
+ * plate of dal is an estimate. Rendering both identically would quietly claim a
+ * precision the meal never had.
+ */
+function MealTimelineCard({ item, onDelete }) {
+  const meal = item.meal
+  const meta = MEAL_SOURCE_META[meal.source] || MEAL_SOURCE_META.manual
+  const Icon = meta.icon
+  const pct = meal.uncertainty ? Math.round(meal.uncertainty * 100) : null
+  return (
+    <div className="timeline-item">
+      <span className="time">{item.time}</span>
+      <span className="timeline-dot meal" />
+      <div className="timeline-card meal-card">
+        <div className="timeline-card-row">
+          {meal.thumb
+            ? <img className="meal-thumb" src={meal.thumb} alt="" />
+            : <span className="meal-thumb placeholder"><Icon size={18} /></span>}
+          <span className="timeline-card-meta">
+            <strong>{meal.title}</strong>
+            <small>{meta.label}{meal.serves > 1 ? ` · 1 of ${meal.serves} servings` : ''}</small>
+            <span className="meal-item-chips">
+              {(meal.items || []).slice(0, 4).map((i, n) => (
+                <i key={n}>{i.qty % 1 === 0 ? i.qty : i.qty.toFixed(2).replace(/0$/, '')} {i.unit} {i.name}</i>
+              ))}
+              {(meal.items || []).length > 4 && <i>+{meal.items.length - 4} more</i>}
+            </span>
+          </span>
+          <div className="timeline-card-cal range">
+            <strong>{meal.kcalLow}–{meal.kcalHigh}</strong>
+            <small>kcal{pct != null ? ` · ±${pct}%` : ''}</small>
+          </div>
+          <button className="delete-log-btn" onClick={onDelete} title="Remove from logs">
+            <Trash2 size={15} />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOpen, onDeleteLog, limits = DEFAULT_LIMITS, onNavigate }) {
   const dailyLimits = limits
   const [openIng, setOpenIng] = useState(null)   // which timeline entry has its label expanded
   // Generate a dynamic list of 7 days around the activeDate
@@ -33,6 +85,13 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
       if (dayLogs.length > 0) {
         let daySugar = 0, daySodium = 0, daySatFat = 0
         dayLogs.forEach(item => {
+          // A logged meal carries its own totals — it is not in the catalog.
+          if (item.meal?.totals) {
+            daySugar += item.meal.totals.sugar || 0
+            daySodium += item.meal.totals.sodium || 0
+            daySatFat += item.meal.totals.satFat || 0
+            return
+          }
           const prod = products.find(p => p.id === item.productId)
           if (prod) {
             daySugar += prod.nutrients.sugar * item.servings
@@ -68,6 +127,13 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
   const dailyTotals = useMemo(() => {
     let totals = { sugar: 0, sodium: 0, satFat: 0, calories: 0 }
     activeLogs.forEach(item => {
+      if (item.meal?.totals) {
+        totals.sugar += item.meal.totals.sugar || 0
+        totals.sodium += item.meal.totals.sodium || 0
+        totals.satFat += item.meal.totals.satFat || 0
+        totals.calories += item.meal.totals.kcal || 0
+        return
+      }
       const prod = products.find(p => p.id === item.productId)
       if (prod) {
         totals.sugar += prod.nutrients.sugar * item.servings
@@ -181,6 +247,14 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
 
           <div className="timeline">
             {activeLogs.map((item, index) => {
+              // Meals render their own card: they have no pack, no brand and no
+              // INS codes, but they DO have a range, which a packaged item never
+              // has. Forcing them through the product card would have to invent
+              // a precision the estimate does not claim.
+              if (item.meal) return (
+                <MealTimelineCard key={item.id || `meal-${index}`} item={item}
+                  onDelete={() => onDeleteLog(item.id)} />
+              )
               const product = products.find((p) => p.id === item.productId)
               if (!product) return null
               const scan = scanProduct(product)
@@ -238,13 +312,24 @@ export default function Diary({ log = [], activeDate, setActiveDate, onAdd, onOp
               )
             })}
 
-            <button className="timeline-add" onClick={() => onAdd(null)}>
-              <span>Add</span>
-              <span className="timeline-dot" />
-              <div>
-                <Plus size={18} /> Add another food item
-              </div>
-            </button>
+            <div className="timeline-add-row">
+              <button className="timeline-add" onClick={() => onAdd(null)}>
+                <span>Add</span>
+                <span className="timeline-dot" />
+                <div>
+                  <Plus size={18} /> Add a packaged item
+                </div>
+              </button>
+              {onNavigate && (
+                <button className="timeline-add meal" onClick={() => onNavigate('meal-photo')}>
+                  <span>Meal</span>
+                  <span className="timeline-dot" />
+                  <div>
+                    <Camera size={18} /> Log a cooked meal
+                  </div>
+                </button>
+              )}
+            </div>
           </div>
         </div>
 

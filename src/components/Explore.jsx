@@ -4,6 +4,8 @@ import { products, categories } from '../data/foodDatabase'
 import { scanProduct, TOX_BANDS } from '../lib/toxicity'
 import { avoidHits } from '../lib/avoidList'
 import ProductPack from './ProductPack'
+import ScoreBadge from './ScoreBadge'
+import { isRated } from '../lib/dataQuality'
 
 const SORTS = [
   { id: 'relevance', label: 'Default' },
@@ -29,7 +31,7 @@ export default function Explore({ query, setQuery, onOpen, onAdd, avoid = [] }) 
       const searchStr = `${product.name} ${product.brand} ${product.company} ${product.category} ${product.ingredients.join(' ')}`.toLowerCase()
       const matchesQuery = searchStr.includes(query.toLowerCase())
       const matchesCategory = activeCategory === 'All' || product.category === activeCategory
-      const matchesBetter = !onlyBetter || product.score >= 75
+      const matchesBetter = !onlyBetter || (isRated(product) && product.score >= 75)
       if (!(matchesQuery && matchesCategory && matchesBetter)) return false
       if (noAdditives && scanProduct(product).riskyAdditives.length > 0) return false
       if (hideAvoided && avoid.length && avoidHits(product, avoid).length > 0) return false
@@ -47,15 +49,6 @@ export default function Explore({ query, setQuery, onOpen, onAdd, avoid = [] }) 
   // Reset to the first page whenever the result set changes underneath us.
   useEffect(() => { setPage(1) }, [query, activeCategory, onlyBetter, noAdditives, hideAvoided, sort])
 
-  const ScoreBadge = ({ score, grade }) => {
-    const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
-    return (
-      <div className={`score-badge ${tone}`}>
-        <strong>{grade}</strong>
-        <span>{score}</span>
-      </div>
-    )
-  }
 
   // Find the swap details for the chosen product
   const swapPairDetails = useMemo(() => {
@@ -65,6 +58,12 @@ export default function Explore({ query, setQuery, onOpen, onAdd, avoid = [] }) 
     const alt = products.find(p => p.id === base.alternative)
     return { base, alt }
   }, [selectedSwapPair])
+
+  // Products where BOTH a nutrition panel and an ingredient list were published.
+  const fullLabelCount = useMemo(
+    () => products.filter((p) => p.dataConfidence === 'full').length,
+    []
+  )
 
   return (
     <main className="explore-view">
@@ -76,9 +75,16 @@ export default function Explore({ query, setQuery, onOpen, onAdd, avoid = [] }) 
         </div>
         <div className="explore-stat">
           <strong>{products.length}</strong>
-          <span>verified Indian products</span>
+          <span>Indian products listed</span>
+          {/* This used to read "verified Indian products · 100% additive audited".
+              Neither survived contact with the data: 60% of the catalog has no
+              nutrition panel published and 43% has no ingredient list at all, so
+              they cannot have been audited for additives. Claiming otherwise on
+              the first screen is the same failure `lib/dataQuality.js` exists to
+              stop — presenting absence of evidence as evidence. The honest stat
+              is how many we can actually read the label of. */}
           <div>
-            <Leaf size={15} /> 100% additive audited
+            <Leaf size={15} /> {fullLabelCount} with a full label
           </div>
         </div>
       </section>
@@ -272,11 +278,17 @@ export default function Explore({ query, setQuery, onOpen, onAdd, avoid = [] }) 
               <div className="product-footer">
                 <div className="footer-price-info">
                   <strong>₹{product.price}</strong>
-                  <span>est. cost</span>
+                  {/* Say which kind of number this is. Most prices in the
+                      catalog are still derived from a per-kilo rate; the ones
+                      scraped from BigBasket are the printed MRP, and the
+                      measured gap between the two was large (besan estimated
+                      at ₹9 against a real ₹159), so conflating them would keep
+                      showing a figure we know to be wrong. */}
+                  <span>{product.priceSource === 'bigbasket-mrp' ? 'MRP' : 'est. cost'}</span>
                 </div>
                 
                 <div className="footer-actions">
-                  {product.alternative && product.score < 60 && (
+                  {product.alternative && isRated(product) && product.score < 60 && (
                     <button 
                       className="text-button swap-compare-trigger" 
                       onClick={() => setSelectedSwapPair(product.id)}

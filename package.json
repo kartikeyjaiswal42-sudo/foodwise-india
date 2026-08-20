@@ -4,10 +4,19 @@
   "version": "0.2.0",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/check-no-secrets.mjs && node scripts/build-pwa.mjs",
     "build": "next build",
     "start": "next start",
-    "deploy-build": "PAGES_BASE=1 next build",
-    "catalog": "node scripts/build-catalog.mjs"
+    "deploy-build": "node scripts/check-no-secrets.mjs && PAGES_BASE=1 node scripts/build-pwa.mjs && PAGES_BASE=1 next build",
+    "catalog": "node scripts/build-catalog.mjs",
+    "catalog:split": "node scripts/split-catalog.mjs",
+    "catalog:repair": "node scripts/repair-catalog.mjs",
+    "test": "node scripts/test-conditions.mjs && node scripts/test-meals.mjs && node scripts/test-scrape.mjs && node scripts/check-no-secrets.mjs",
+    "catalog:tata": "node scripts/harvest-tata.mjs && node scripts/curate-tata.mjs && node scripts/build-tata-curated.mjs && node scripts/normalise-tata.mjs",
+    "secrets": "node scripts/check-no-secrets.mjs",
+    "tata:roster": "node scripts/scrape-tataconsumer.mjs",
+    "tata:bigbasket": "node scripts/scrape-bigbasket-tata.mjs && node scripts/merge-bigbasket.mjs",
+    "tata:coverage": "node scripts/tata-coverage.mjs"
   },
   "dependencies": {
     "next": "^15.1.6",

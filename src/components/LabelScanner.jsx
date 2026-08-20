@@ -9,6 +9,7 @@ import { scanLabel, ORGAN_SYSTEMS, RISK_META, TOX_BANDS, scanProduct } from '../
 import { VERDICT_META } from '../lib/ingredientClassify'
 import { avoidHitsInLines } from '../lib/avoidList'
 import ProductPack from './ProductPack'
+import { isRated } from '../lib/dataQuality'
 
 const SAMPLES = [
   {
@@ -49,7 +50,7 @@ export default function LabelScanner({ avoid = [], onOpen }) {
   const cleaner = useMemo(() => {
     if (!result) return []
     return products
-      .filter((p) => p.score >= 78 && p.image && (p.ingredients || []).length >= 2)
+      .filter((p) => isRated(p) && p.score >= 78 && p.image && (p.ingredients || []).length >= 2)
       .map((p) => ({ p, s: scanProduct(p) }))
       .sort((a, b) => a.s.toxIndex - b.s.toxIndex)
       .slice(0, 4)

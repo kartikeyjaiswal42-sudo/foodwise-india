@@ -3,6 +3,8 @@ import { Search, ScanLine, X, ArrowLeft, Minus, Plus, Check, Info, Ban, FlaskCon
 import { scanProduct, TOX_BANDS } from '../lib/toxicity'
 import { VERDICT_META } from '../lib/ingredientClassify'
 import { avoidHits } from '../lib/avoidList'
+import ScoreBadge from './ScoreBadge'
+import { isRated } from '../lib/dataQuality'
 
 export default function AddFoodModal({ products, initialProduct, onClose, onAdd, avoid = [] }) {
   const [query, setQuery] = useState('')
@@ -36,15 +38,6 @@ export default function AddFoodModal({ products, initialProduct, onClose, onAdd,
     )
   }
 
-  const ScoreBadge = ({ score, grade }) => {
-    const tone = score >= 75 ? 'good' : score >= 50 ? 'fair' : 'poor'
-    return (
-      <div className={`score-badge ${tone}`}>
-        <strong>{grade}</strong>
-        <span>{score}</span>
-      </div>
-    )
-  }
 
   return (
     <div className="modal-backdrop" onMouseDown={onClose}>
@@ -184,7 +177,7 @@ export default function AddFoodModal({ products, initialProduct, onClose, onAdd,
               )
             })()}
 
-            {selected.score < 50 && (
+            {isRated(selected) && selected.score < 50 && (
               <div className="alert-box warning-alert">
                 <strong>⚠️ Processed Food Notice</strong>
                 <p>This product contains multiple high-concern additives. Swapping to the recommended alternative is advised for regular meals.</p>
