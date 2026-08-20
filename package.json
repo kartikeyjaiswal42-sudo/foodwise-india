@@ -16,7 +16,9 @@
     "secrets": "node scripts/check-no-secrets.mjs",
     "tata:roster": "node scripts/scrape-tataconsumer.mjs",
     "tata:bigbasket": "node scripts/scrape-bigbasket-tata.mjs && node scripts/merge-bigbasket.mjs",
-    "tata:coverage": "node scripts/tata-coverage.mjs"
+    "tata:coverage": "node scripts/tata-coverage.mjs",
+    "deploy:cf": "node scripts/check-no-secrets.mjs && node scripts/build-pwa.mjs && next build && CLOUDFLARE_ACCOUNT_ID=225f2c3132920804e70224f830c9aadc npx wrangler pages deploy out --project-name=jaano --branch=main --commit-dirty=true",
+    "deploy:pages": "npm run deploy-build"
   },
   "dependencies": {
     "next": "^15.1.6",
